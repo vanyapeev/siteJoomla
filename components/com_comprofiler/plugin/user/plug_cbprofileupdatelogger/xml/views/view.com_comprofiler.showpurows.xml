@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="showpulogs" type="params" ui="admin" label="Log" icon="list" viewformatting="none">
+			<tablebrowser name="pulogbrowser" table="#__comprofiler_plug_pulogger" class="\CB\Plugin\ProfileUpdateLogger\Table\UpdateLogTable">
+				<toolbarmenu>
+					<menu name="edit" action="linkAction" task="search" link="cbo:editrows/logid" label="View" />
+					<menu name="delete" action="linkAction" task="delete" link="cbo:deleterows" label="Delete" />
+					<menu name="cancel" action="linkAction" task="cancel" link="cb_action:plugins" label="Close" />
+				</toolbarmenu>
+				<quicksearchfields placeholder="Search Log..." size="30">
+					<field name="user">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="profileid" />
+					</field>
+					<field name="by">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="editedbyid" />
+					</field>
+					<field name="fieldname" />
+					<field name="oldvalue" />
+					<field name="newvalue" />
+					<field name="id" valuetype="const:int" />
+				</quicksearchfields>
+				<filters>
+					<filter name="user" value="username" valuetype="sql:string" type="string" label="" blanktext="User">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="profileid" />
+					</filter>
+					<filter name="by" value="username" valuetype="sql:string" type="string" label="" blanktext="By">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="editedbyid" />
+					</filter>
+					<filter name="fieldname" valuetype="sql:string" type="field" key="name" label="" blanktext="- Select Field -" />
+					<filter name="mode" valuetype="sql:string" type="list" label="" blanktext="- Select Mode -">
+						<option value="0">Frontend</option>
+						<option value="1">Backend</option>
+					</filter>
+					<filter name="changedatefrom" value="changedate" valuetype="sql:string" type="datetime" operator="&gt;=" view="changedatefromto" />
+					<filter name="changedateto" value="changedate" valuetype="sql:string" type="datetime" operator="&lt;=" view="changedatefromto" />
+					<view name="changedatefromto" type="params">
+						<fieldset name="changedaterange" label="Date">
+							<param name="filter_changedatefrom" type="datetime" default="" label="From" />
+							<param name="filter_changedateto" type="datetime" default="" label="To" />
+						</fieldset>
+					</view>
+					<filter name="id" type="field_show_only_if_selected" base="int" default="" label="" blanktext="- Select ID -" />
+				</filters>
+				<orderby>
+					<ordergroup name="changedate_asc" label="Date ascending">
+						<field name="changedate" ordering="ASC" />
+					</ordergroup>
+					<ordergroup name="changedate_desc" label="Date descending" default="true" translate-default="no">
+						<field name="changedate" ordering="DESC" />
+					</ordergroup>
+					<ordergroup name="user_asc" label="User ascending">
+						<field name="user_comment" type="sql:string" ordering="ASC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="profileid" />
+						</field>
+					</ordergroup>
+					<ordergroup name="user_desc" label="User descending">
+						<field name="user_comment" type="sql:string" ordering="DESC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="profileid" />
+						</field>
+					</ordergroup>
+					<ordergroup name="by_asc" label="By ascending">
+						<field name="user_comment" type="sql:string" ordering="ASC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="editedbyid" />
+						</field>
+					</ordergroup>
+					<ordergroup name="by_desc" label="By descending">
+						<field name="user_comment" type="sql:string" ordering="DESC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="editedbyid" />
+						</field>
+					</ordergroup>
+				</orderby>
+				<listfields>
+					<header type="standard" />
+					<rows type="standard" height="auto">
+						<field name="" type="rownumber" width="1%" align="center" label="#" responsivehiddenon="xsmall" />
+						<field name="id" type="primarycheckbox" width="1%" align="center" />
+						<field name="user" type="string" link="cbo:rowedit" parameters="logid" paramvalues="id" align="left" label="User" allowordering="ascending,descending">
+							<data name="profileid" type="sql:field" />
+							<data name="username" as="user" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="profileid" />
+						</field>
+						<field name="fieldname" type="string" width="15%" label="Field" allowordering="ascending,descending" />
+						<field name="oldvalue" type="firstwords" size="90" width="20%" label="Old" allowordering="ascending,descending" />
+						<field name="newvalue" type="firstwords" size="90" width="20%" label="New" allowordering="ascending,descending" />
+						<field name="changedate" type="datetime" timezone="RAW" width="15%" align="center" label="Date" responsivehiddenon="xsmall" allowordering="ascending,descending" />
+						<field name="by" type="string" width="10%" align="center" label="By" responsivehiddenon="xsmall" allowordering="ascending,descending">
+							<data name="editedbyid" type="sql:field" />
+							<data name="username" as="by" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="editedbyid" />
+						</field>
+						<field name="mode" type="list" width="5%" align="center" label="Mode" responsivehiddenon="xsmall" allowordering="ascending,descending">
+							<option value="0">Frontend</option>
+							<option value="1">Backend</option>
+						</field>
+						<field name="id" type="int" width="5%" align="center" label="ID" allowordering="ascending,descending" />
+					</rows>
+				</listfields>
+			</tablebrowser>
+		</view>
+	</views>
+</cbxml>

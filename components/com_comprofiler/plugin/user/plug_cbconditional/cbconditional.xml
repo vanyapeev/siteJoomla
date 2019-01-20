@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbinstall version="1.0" type="plugin" group="user">
+	<name>CB Conditional</name>
+	<author>Krileon</author>
+	<creationDate>2017-11-30</creationDate>
+	<copyright>(C) 2004-2017 www.joomlapolis.com / Lightning MultiCom SA - and its licensors, all rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2</license>
+	<authorEmail>krileon@joomlapolis.com</authorEmail>
+	<description>Enables conditional show/hide of fields and show/hide of tabs based off fields value.</description>
+	<version>2.1.3</version>
+	<release>5.0.0+build.2017.11.30.14.03.59.09c44753f</release>
+	<installfile>install.cbconditional.php</installfile>
+	<files>
+		<filename plugin="cbconditional">cbconditional.php</filename>
+		<filename>install.cbconditional.php</filename>
+		<filename>index.html</filename>
+		<foldername>js</foldername>
+		<foldername>language</foldername>
+		<foldername>library</foldername>
+	</files>
+	<delete>
+		<filename>admin.cbconditional.css</filename>
+		<filename>admin.cbconditional.html.php</filename>
+		<filename>admin.cbconditional.php</filename>
+		<filename>cbconditional.class.php</filename>
+		<filename>field.cbconditional.php</filename>
+		<filename>plugin.cbconditional.php</filename>
+		<filename>tab.cbconditional.php</filename>
+		<filename>toolbar.cbconditional.html.php</filename>
+		<filename>toolbar.cbconditional.php</filename>
+		<filename>js/cbconditional.js</filename>
+		<filename>js/cbconditional.min.js</filename>
+		<foldername>images</foldername>
+	</delete>
+	<libraries>
+		<library name="CB/Plugin/Conditional">
+			<files folder="library">
+				<filename>CBConditional.php</filename>
+				<filename>index.html</filename>
+				<foldername>Trigger</foldername>
+			</files>
+		</library>
+	</libraries>
+	<tabsparams>
+		<tab type="other_types" label="Tab condition preferences">
+			<params>
+				<param name="cbconditional_conditioned" type="list" default="0" label="Display" description="Select conditional display for this tab. Show will show the tab if the conditions match. Hide will hide the tab if the conditions match. If the conditions do not match then the display will be reversed (e.g. if set to Show and does not match the tab will Hide).">
+					<option value="0">Normal CB settings</option>
+					<option value="1">Tab conditional show</option>
+					<option value="2">Tab conditional hide</option>
+				</param>
+				<if name="cbconditional_conditioned" type="showhide" operator="&gt;" value="0" valuetype="const:int">
+					<fieldset name="cbconditional_conditions_fieldset" label="Conditions">
+						<params name="cbconditional_conditions" type="params" repeat="true" repeatlabel="Add OR Rows" label="" display="2lines">
+							<params name="condition" type="params" repeat="true" repeatlabel="Add AND Rows" label="" display="2lines">
+								<param name="field" type="field" key="name" default="" blanktext="- Select Field -" label="Field" description="Select field to match value against in determining this tabs display.">
+									<optgroup label="Custom">
+										<option value="customvalue">Value</option>
+										<option value="customviewaccesslevels">View Access Levels</option>
+										<option value="customusergroups">Usergroups</option>
+										<option value="customlanguages">Languages</option>
+										<option value="custommoderators">Moderators</option>
+										<option value="customusers">Users</option>
+									</optgroup>
+									<optgroup label="Fields" />
+								</param>
+								<if name="field" type="showhide" operator="!=" value="" valuetype="const:string">
+									<if name="field" type="showhide" operator="=" value="customvalue" valuetype="const:string">
+										<param name="field_custom" type="text" size="30" default="" label="Custom Value" description="Input substitution supported value to match against. In addition to user substitutions you can access $_REQUEST, $_GET, and $_POST substitutions as [request_VARIABLE],[post_VARIABLE], and [get_VARIABLE] (e.g. [get_task])." />
+										<param name="field_custom_translate" type="yesno" default="0" label="Translate Custom Value" description="Enable or disable translation of language strings in value." />
+									</if>
+									<if name="field" type="showhide" operator="=" value="customviewaccesslevels" valuetype="const:string">
+										<param name="operator_viewaccesslevels" type="list" default="0" label="Operator" description="Select if the user should have at least one of the selected view access levels or not.">
+											<option value="0">Has</option>
+											<option value="1">Does Not Have</option>
+										</param>
+										<param name="field_viewaccesslevels" type="viewaccesslevel" multiple="true" size="10" default="" managelevels="false" label="View Access Levels" description="Select the view access levels to match against the user. The user only needs to have one of the selected view access levels to match." />
+									</if>
+									<if name="field" type="showhide" operator="=" value="customusergroups" valuetype="const:string">
+										<param name="operator_usergroups" type="list" default="0" label="Operator" description="Select if the user should have at least one of the selected usergroups or not.">
+											<option value="0">Has</option>
+											<option value="1">Does Not Have</option>
+										</param>
+										<param name="field_usergroups" type="usergroup" multiple="true" size="10" default="" managegroups="false" label="Usergroups" description="Select the usergroups to match against the user. The user only needs to have one of the selected usergroups to match." />
+									</if>
+									<if name="field" type="showhide" operator="=" value="customlanguages" valuetype="const:string">
+										<param name="operator_languages" type="list" default="12" label="Operator" description="Select if the user should have at least one of the languages or not.">
+											<option value="12">Has</option>
+											<option value="13">Does Not Have</option>
+										</param>
+										<param name="field_languages" type="list" multiple="true" size="10" default="" label="Languages" description="Select the languages to match against the user. The user only needs to have one of the selected languages to match.">
+											<data name="" type="sql:multiplerows" table="#__languages" key="lang_id">
+												<rows>
+													<field name="lang_code" as="value" />
+													<field name="title" as="text" />
+												</rows>
+												<orderby>
+													<field name="ordering" ordering="ASC" />
+												</orderby>
+											</data>
+										</param>
+									</if>
+									<if name="field" type="showhide" operator="=" value="custommoderators" valuetype="const:string">
+										<param name="operator_moderators" type="list" default="0" label="Operator" description="Select if the user should be a moderator or not.">
+											<option value="0">Is</option>
+											<option value="1">Is Not</option>
+										</param>
+									</if>
+									<if name="field" type="showhide" operator="=" value="customusers" valuetype="const:string">
+										<param name="operator_users" type="list" default="12" label="Operator" description="Select if the user should be one of the listed user ids or not.">
+											<option value="12">Is</option>
+											<option value="13">Is Not</option>
+										</param>
+										<param name="field_users" type="text" size="30" default="" label="Users" description="Input substitution supported comma separated list of user ids to match against the user." />
+									</if>
+									<if name="field" type="showhide" operator="!regexp" value="customviewaccesslevels|customusergroups|customlanguages|custommoderators|customusers" valuetype="const:string">
+										<param name="operator" type="list" default="0" label="Operator" description="Select operator to compare field value against input value.">
+											<option value="0">Equal To</option>
+											<option value="1">Not Equal To</option>
+											<option value="2">Greater Than</option>
+											<option value="3">Less Than</option>
+											<option value="4">Greater Than or Equal To</option>
+											<option value="5">Less Than or Equal To</option>
+											<option value="6">Empty</option>
+											<option value="7">Not Empty</option>
+											<option value="8">Does Contain</option>
+											<option value="9">Does Not Contain</option>
+											<option value="10">Is REGEX</option>
+											<option value="11">Is Not REGEX</option>
+											<option value="12">Is In</option>
+											<option value="13">Is Not In</option>
+										</param>
+										<if name="operator" type="showhide" operator="regexp" value="8|9|12|13" valuetype="const:string">
+											<param name="delimiter" type="text" size="15" default="" label="Delimiter" description="Optionally input a delimiter to split the field or value by. This can be used to check if a value exists in a list of values by splitting by |*| or comma for example. Contain operators will split the field value while In operators will split the value supplied below." />
+										</if>
+										<if name="operator" type="showhide" operator="!regexp" value="6|7" valuetype="const:string">
+											<param name="value" type="text" size="30" default="" label="Value" description="Input substitution supported value to match against field value. In addition to user substitutions you can access $_REQUEST, $_GET, and $_POST substitutions as [request_VARIABLE],[post_VARIABLE], and [get_VARIABLE] (e.g. [get_task])." />
+											<param name="value_translate" type="yesno" default="0" label="Translate Value" description="Enable or disable translation of language strings in value." />
+										</if>
+									</if>
+									<fieldset name="locations" label="Locations" collapsed="true">
+										<param name="location_registration" type="yesno" default="1" label="Registration" description="Enable or disable conditional usage on registration." />
+										<param name="location_profile_edit" type="yesno" default="1" label="Profile Edit" description="Enable or disable conditional usage on profile edit." />
+										<param name="location_profile_view" type="yesno" default="1" label="Profile View" description="Enable or disable conditional usage on profile view." />
+										<param name="location_userlist_search" type="yesno" default="0" label="Userlists Search" description="Enable or disable conditional usage on userlists searching." />
+										<param name="location_userlist_view" type="yesno" default="1" label="Userlists View" description="Enable or disable conditional usage on userlists view." />
+									</fieldset>
+								</if>
+							</params>
+						</params>
+					</fieldset>
+					<param name="cbconditional_debug" type="yesno" default="0" label="Debug" description="Enable or disable debug output of this condition. This can help determine why a condition is failing or passing when not expected to." />
+				</if>
+			</params>
+		</tab>
+	</tabsparams>
+	<fieldsparams>
+		<field type="other_types" label="Field condition preferences">
+			<params>
+				<param name="cbconditional_conditioned" type="list" default="0" label="Display" description="Select conditional display for this field. Show will show the field if the conditions match. Hide will hide the field if the conditions match. If the conditions do not match then the display will be reversed (e.g. if set to Show and does not match the field will Hide).">
+					<option value="0">Normal CB settings</option>
+					<option value="1">Field conditional show</option>
+					<option value="2">Field conditional hide</option>
+				</param>
+				<if name="cbconditional_conditioned" type="showhide" operator="&gt;" value="0" valuetype="const:int">
+					<fieldset name="cbconditional_conditions_fieldset" label="Conditions">
+						<params name="cbconditional_conditions" type="params" repeat="true" repeatlabel="Add OR Rows" label="" display="2lines">
+							<params name="condition" type="params" repeat="true" repeatlabel="Add AND Rows" label="" display="2lines">
+								<param name="field" type="list" default="" blanktext="- Select Field -" label="Field" description="Select field to match value against in determining this fields display.">
+									<optgroup label="Custom">
+										<option value="customvalue">Value</option>
+										<option value="customviewaccesslevels">View Access Levels</option>
+										<option value="customusergroups">Usergroups</option>
+										<option value="customlanguages">Languages</option>
+										<option value="custommoderators">Moderators</option>
+										<option value="customusers">Users</option>
+									</optgroup>
+									<optgroup label="Fields">
+										<data name="" type="custom" class="\CB\Plugin\Conditional\CBConditional" method="loadFields" />
+									</optgroup>
+								</param>
+								<if name="field" type="showhide" operator="!=" value="" valuetype="const:string">
+									<if name="field" type="showhide" operator="=" value="customvalue" valuetype="const:string">
+										<param name="field_custom" type="text" size="30" default="" label="Custom Value" description="Input substitution supported value to match against. In addition to user substitutions you can access $_REQUEST, $_GET, and $_POST substitutions as [request_VARIABLE],[post_VARIABLE], and [get_VARIABLE] (e.g. [get_task])." />
+										<param name="field_custom_translate" type="yesno" default="0" label="Translate Custom Value" description="Enable or disable translation of language strings in value." />
+									</if>
+									<if name="field" type="showhide" operator="=" value="customviewaccesslevels" valuetype="const:string">
+										<param name="operator_viewaccesslevels" type="list" default="0" label="Operator" description="Select if the user should have at least one of the selected view access levels or not.">
+											<option value="0">Has</option>
+											<option value="1">Does Not Have</option>
+										</param>
+										<param name="field_viewaccesslevels" type="viewaccesslevel" multiple="true" size="10" default="" managelevels="false" label="View Access Levels" description="Select the view access levels to match against the user. The user only needs to have one of the selected view access levels to match." />
+									</if>
+									<if name="field" type="showhide" operator="=" value="customusergroups" valuetype="const:string">
+										<param name="operator_usergroups" type="list" default="0" label="Operator" description="Select if the user should have at least one of the selected usergroups or not.">
+											<option value="0">Has</option>
+											<option value="1">Does Not Have</option>
+										</param>
+										<param name="field_usergroups" type="usergroup" multiple="true" size="10" default="" managegroups="false" label="Usergroups" description="Select the usergroups to match against the user. The user only needs to have one of the selected usergroups to match." />
+									</if>
+									<if name="field" type="showhide" operator="=" value="customlanguages" valuetype="const:string">
+										<param name="operator_languages" type="list" default="12" label="Operator" description="Select if the user should have at least one of the languages or not.">
+											<option value="12">Has</option>
+											<option value="13">Does Not Have</option>
+										</param>
+										<param name="field_languages" type="list" multiple="true" size="10" default="" label="Languages" description="Select the languages to match against the user. The user only needs to have one of the selected languages to match.">
+											<data name="" type="sql:multiplerows" table="#__languages" key="lang_id">
+												<rows>
+													<field name="lang_code" as="value" />
+													<field name="title" as="text" />
+												</rows>
+												<orderby>
+													<field name="ordering" ordering="ASC" />
+												</orderby>
+											</data>
+										</param>
+									</if>
+									<if name="field" type="showhide" operator="=" value="custommoderators" valuetype="const:string">
+										<param name="operator_moderators" type="list" default="0" label="Operator" description="Select if the user should be a moderator or not.">
+											<option value="0">Is</option>
+											<option value="1">Is Not</option>
+										</param>
+									</if>
+									<if name="field" type="showhide" operator="=" value="customusers" valuetype="const:string">
+										<param name="operator_users" type="list" default="12" label="Operator" description="Select if the user should be one of the listed user ids or not.">
+											<option value="12">Is</option>
+											<option value="13">Is Not</option>
+										</param>
+										<param name="field_users" type="text" size="30" default="" label="Users" description="Input substitution supported comma separated list of user ids to match against the user." />
+									</if>
+									<if name="field" type="showhide" operator="!regexp" value="customviewaccesslevels|customusergroups|customlanguages|custommoderators|customusers" valuetype="const:string">
+										<param name="operator" type="list" default="0" label="Operator" description="Select operator to compare field value against input value.">
+											<option value="0">Equal To</option>
+											<option value="1">Not Equal To</option>
+											<option value="2">Greater Than</option>
+											<option value="3">Less Than</option>
+											<option value="4">Greater Than or Equal To</option>
+											<option value="5">Less Than or Equal To</option>
+											<option value="6">Empty</option>
+											<option value="7">Not Empty</option>
+											<option value="8">Does Contain</option>
+											<option value="9">Does Not Contain</option>
+											<option value="10">Is REGEX</option>
+											<option value="11">Is Not REGEX</option>
+											<option value="12">Is In</option>
+											<option value="13">Is Not In</option>
+										</param>
+										<if name="operator" type="showhide" operator="regexp" value="8|9|12|13" valuetype="const:string">
+											<param name="delimiter" type="text" size="15" default="" label="Delimiter" description="Optionally input a delimiter to split the field or value by. This can be used to check if a value exists in a list of values by splitting by |*| or comma for example. Contain operators will split the field value while In operators will split the value supplied below." />
+										</if>
+										<if name="operator" type="showhide" operator="!regexp" value="6|7" valuetype="const:string">
+											<param name="value" type="text" size="30" default="" label="Value" description="Input substitution supported value to match against field value. In addition to user substitutions you can access $_REQUEST, $_GET, and $_POST substitutions as [request_VARIABLE],[post_VARIABLE], and [get_VARIABLE] (e.g. [get_task])." />
+											<param name="value_translate" type="yesno" default="0" label="Translate Value" description="Enable or disable translation of language strings in value." />
+										</if>
+									</if>
+									<fieldset name="locations" label="Locations" collapsed="true">
+										<param name="location_registration" type="yesno" default="1" label="Registration" description="Enable or disable conditional usage on registration." />
+										<param name="location_profile_edit" type="yesno" default="1" label="Profile Edit" description="Enable or disable conditional usage on profile edit." />
+										<param name="location_profile_view" type="yesno" default="1" label="Profile View" description="Enable or disable conditional usage on profile view." />
+										<param name="location_userlist_search" type="yesno" default="0" label="Userlists Search" description="Enable or disable conditional usage on userlists searching." />
+										<param name="location_userlist_view" type="yesno" default="1" label="Userlists View" description="Enable or disable conditional usage on userlists view." />
+									</fieldset>
+								</if>
+							</params>
+						</params>
+					</fieldset>
+					<param name="cbconditional_debug" type="yesno" default="0" label="Debug" description="Enable or disable debug output of this condition. This can help determine why a condition is failing or passing when not expected to." />
+				</if>
+			</params>
+		</field>
+	</fieldsparams>
+	<params>
+		<param name="conditions_backend" type="yesno" default="0" label="Backend" description="Enable or disable usage of conditions in Backend." yes="Enable" no="Disable" />
+		<param name="conditions_reset" type="yesno" default="1" label="Reset" description="Enable or disable reset of field values to blank if condition is not met." yes="Enable" no="Disable" />
+	</params>
+	<database>
+	</database>
+</cbinstall>

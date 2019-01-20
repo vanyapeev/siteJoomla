@@ -1,0 +1,317 @@
+.cb_template .pbGuestbookRow,
+.cb_template .pbWallRow,
+.cb_template .pbBlogRow,
+.cb_template .pbModuleRow {
+	position: relative;
+	display: block;
+	padding: 0;
+	margin: 10px 0 0 0;
+}
+
+.cb_template .pbModuleRow {
+	margin: 5px 0 0 0;
+}
+
+.cb_template .pbBlogRow {
+	border-radius: 0;
+}
+
+.cb_template .pbBlogRow .pbBlogRowHeader {
+	padding-left: 25px;
+	padding-right: 25px;
+	margin-bottom: 10px;
+}
+
+.cb_template .pbBlogIntroRow .pbBlogRow {
+	border-bottom-width: 4px;
+}
+
+.cb_template .pbGuestbookRow:first-child,
+.cb_template .pbWallRow:first-child,
+.cb_template .pbModuleRow:first-child,
+.cb_template .pbBlogFeaturedRow,
+.cb_template .pbBlogDirectRow {
+	margin: 0;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowAvatar,
+.cb_template .pbWallRow .pbWallRowAvatar,
+.cb_template .pbModuleRow .pbModuleRowAvatar {
+	padding: 10px;
+	float: left;
+}
+
+.cb_template .pbModuleRow .pbModuleRowAvatar {
+	padding: 5px 5px 5px 0;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowAvatar img,
+.cb_template .pbWallRow .pbWallRowAvatar img,
+.cb_template .pbModuleRow .pbModuleRowAvatar img {
+	width: 48px;
+	max-width: none;
+}
+
+.cb_template .pbGuestbookFeedback .pbGuestbookRow .pbGuestbookRowAvatar img,
+.cb_template .pbWallFeedback .pbWallRow .pbWallRowAvatar img,
+.cb_template .pbModuleRow .pbModuleRowAvatar img {
+	width: 32px;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowDetails,
+.cb_template .pbWallRow .pbWallRowDetails,
+.cb_template .pbModuleRow .pbModuleRowDetails {
+	padding-right: 100px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: block;
+	width: auto;
+}
+
+.cb_template .pbModuleRow .pbModuleRowDetails {
+	padding-right: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.cb_template .pbGuestbookFeedback .pbGuestbookRow .pbGuestbookRowAvatar,
+.cb_template .pbWallFeedback .pbWallRow .pbWallRowAvatar {
+	padding-left: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.cb_template .pbGuestbookFeedback .pbGuestbookRow .pbGuestbookRowDetails,
+.cb_template .pbWallFeedback .pbWallRow .pbWallRowDetails {
+	padding-right: 40px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookDivider,
+.cb_template .pbGuestbookRow .pbGuestbookInputGroupRow + .pbGuestbookInputGroupRow,
+.cb_template .pbWallRow .pbWallDivider,
+.cb_template .pbWallRow .pbWallInputGroupRow + .pbWallInputGroupRow,
+.cb_template .pbBlogDivider {
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+.cb_template .pbBlogDivider {
+	margin-top: 10px;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowHeader,
+.cb_template .pbWallRow .pbWallRowHeader,
+.cb_template .pbModuleRow .pbModuleRowHeader {
+	position: relative;
+	min-height: 32px;
+	padding: 0;
+	background: none;
+	border: 0;
+	word-wrap: break-word;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowMessage,
+.cb_template .pbWallRow .pbWallRowMessage,
+.cb_template .pbBlogRow .panel-body {
+	padding: 10px;
+	word-wrap: break-word;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowHeader + .pbWallRowMessage,
+.cb_template .pbWallRow .pbWallRowHeader + .pbWallRowMessage {
+	padding: 0 10px 10px;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowFooter,
+.cb_template .pbWallRow .pbWallRowFooter {
+	padding: 10px;
+	word-wrap: break-word;
+}
+
+.cb_template .pbGuestbookNew .pbGuestbookNewFooter,
+.cb_template .pbWallRow .pbWallNewFooter {
+	padding: 6px;
+	word-wrap: break-word;
+}
+
+.cb_template .pbGuestbookNewFeedback .pbGuestbookNewFeedbackFooter,
+.cb_template .pbWallNewFeedback .pbWallNewFeedbackFooter {
+	padding-top: 6px;
+}
+
+.cb_template .pbGuestbookRowIntegrations,
+.cb_template .pbWallRowIntegrations {
+	padding: 0;
+}
+
+.cb_template .pbGuestbookRowIntegrations .panel,
+.cb_template .pbWallRowIntegrations .panel {
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+.cb_template .pbGuestbookRow img,
+.cb_template .pbWallRow img,
+.cb_template .pbBlogRow img,
+.cb_template .pbModuleRow img {
+	max-height: 100%;
+}
+
+.cb_template .pbGuestbookNew .pbGuestbookForm textarea,
+.cb_template .pbWallNew .pbWallForm textarea {
+	border: 0;
+	margin: 0;
+	box-shadow: none;
+	overflow: hidden;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.cb_template .pbGuestbookNewFeedback .pbGuestbookForm textarea,
+.cb_template .pbWallNewFeedback .pbWallkForm textarea {
+	overflow: hidden;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInputGroup .pbGuestbookInputGroupLabel,
+.cb_template .pbWallRow .pbWallInputGroup .pbWallInputGroupLabel {
+	display: inline-block;
+	float: left;
+	width: auto;
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+	font-weight: bold;
+	cursor: default;
+	min-width: 80px;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInputGroup .pbGuestbookInputGroupLabel + .pbGuestbookInputGroupInput,
+.cb_template .pbWallRow .pbWallInputGroup .pbWallInputGroupLabel + .pbWallInputGroupInput {
+	border-left-width: 1px;
+	border-left-style: dashed;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInputGroup .pbGuestbookInputGroupInput,
+.cb_template .pbWallRow .pbWallInputGroup .pbWallInputGroupInput {
+	overflow: hidden;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInput + .pbGuestbookInput,
+.cb_template .pbWallRow .pbWallInput + .pbWallInput {
+	margin-top: 5px;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInput.no-border,
+.cb_template .pbGuestbookRow .pbGuestbookInputSelect.no-border,
+.cb_template .pbWallRow .pbWallInput.no-border,
+.cb_template .pbWallRow .pbWallInputSelect.no-border {
+	border: 0;
+	margin: 0;
+	box-shadow: none;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInput.cbValidationError::-moz-placeholder,
+.cb_template .pbWallRow .pbWallInput.cbValidationError::-moz-placeholder {
+	color: #a94442;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInput.cbValidationError:-ms-input-placeholder,
+.cb_template .pbWallRow .pbWallInput.cbValidationError:-ms-input-placeholder {
+	color: #a94442;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInput.cbValidationError::-webkit-input-placeholder,
+.cb_template .pbWallRow .pbWallInput.cbValidationError::-webkit-input-placeholder {
+	color: #a94442;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookInputGroup.cbValidationError .pbGuestbookInputGroupLabel,
+.cb_template .pbWallRow .pbWallInputGroup.cbValidationError .pbWallInputGroupLabel {
+	color: #a94442;
+}
+
+.cb_template .pbGuestbookNew .pbGuestbookInputGroup + .pbGuestbookInputGroup,
+.cb_template .pbGuestbookEdit .pbGuestbookInputGroup + .pbGuestbookInputGroup,
+.cb_template .pbWallNew .pbWallInputGroup + .pbWallInputGroup,
+.cb_template .pbWallEdit .pbWallInputGroup + .pbWallInputGroup {
+	position: relative;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+.cb_template .pbGuestbookNew .pbGuestbookInputCaptchaContainer .pbGuestbookInputGroupInput,
+.cb_template .pbWallNew .pbWallInputCaptchaContainer .pbWallInputGroupInput {
+	padding: 5px;
+}
+
+.cb_template .pbGuestbookNew .cbValidationMessage,
+.cb_template .pbGuestbookNewFeedback .cbValidationMessage,
+.cb_template .pbWallNew .cbValidationMessage,
+.cb_template .pbWallNewFeedback .cbValidationMessage {
+	display: none !important;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookMenu,
+.cb_template .pbWallRow .pbWallMenu {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.cb_template .pbBlogRow .pbBlogMenu {
+	position: absolute;
+	right: -1px;
+	top: -1px;
+}
+
+.cb_template .pbBlogRow:not(.pbBlogDirectRow) .pbBlogMenu .btn {
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.cb_template .pbGuestbookFeedback .pbGuestbookRow .pbGuestbookMenu,
+.cb_template .pbWallFeedback .pbWallRow .pbWallMenu {
+	right: 0;
+	top: 0;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowNew + .pbGuestbookRowMenu,
+.cb_template .pbWallRow .pbWallRowNew + .pbWallRowMenu {
+	margin-left: 5px;
+}
+
+.cb_template .pbGuestbookRow .pbGuestbookRowMenu + .pbGuestbookRowRating,
+.cb_template .pbWallRow .pbWallRowMenu + .pbWallRowRating {
+	margin-top: 5px;
+}
+
+.cb_template .pbGuestbookRow .cbMoreLessOpen > a,
+.cb_template .pbWallRow .cbMoreLessOpen > a,
+.cb_template .pbBlogRow .cbMoreLessOpen > a {
+	padding-left: 5px;
+}
+
+.cb_template .pbBBCodeQuote {
+	margin: 5px 0 5px 0;
+	padding: 5px 10px;
+}
+
+.cb_template .pbSmiley {
+	display: inline-block;
+	max-width: 16px;
+}
+
+.cb_template .pbBack {
+	margin-top: 10px;
+}
+
+.cb_template .pbBlogIntegrations {
+	margin-top: 10px;
+	padding: 10px;
+	border-top-width: 2px;
+	border-top-style: solid;
+}

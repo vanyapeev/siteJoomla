@@ -1,0 +1,920 @@
+.cb_template .streamContainer {
+	position: relative;
+}
+
+.cb_template .streamItems {
+	clear: both;
+}
+
+.cb_template .streamItem {
+	position: relative;
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+
+.cb_template .streamItem .streamMedia {
+	margin-top: 0;
+}
+
+.cb_template .streamItem .streamMediaLeft {
+	padding: 10px;
+	float: left;
+}
+
+.cb_template .streamItem .streamMediaLeft img {
+	width: 48px;
+	max-width: none;
+}
+
+.cb_template .streamItem .streamMediaBody {
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: block;
+	width: auto;
+}
+
+.cb_template .streamItem.streamItemCompact .streamMediaBody {
+	padding: 10px;
+}
+
+.cb_template .streamItem .streamItemInsert {
+	padding: 0 10px 10px 10px;
+}
+
+.cb_template .streamItem .streamItemDivider,
+.cb_template .streamItem .streamItemInputGroupRow + .streamItemInputGroupRow {
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+.cb_template .streamItem .streamPanelHeading {
+	position: relative;
+	min-height: 50px;
+	padding: 10px;
+	background: none;
+	border: 0;
+	word-wrap: break-word;
+}
+
+.cb_template .streamItem .streamMedia.streamPanelHeading {
+	min-height: 48px;
+	padding: 0;
+}
+
+.cb_template .streamItem.streamItemCompact .streamMedia.streamPanelHeading {
+	min-height: 0;
+}
+
+.cb_template .streamItem .streamPanelBody {
+	padding: 10px;
+	word-wrap: break-word;
+}
+
+.cb_template .streamItem .streamPanelHeading ~ .streamPanelBody:not(.streamItemDivider) {
+	padding: 0 10px 10px;
+}
+
+.cb_template .streamItem .streamPanelFooter {
+	padding: 10px;
+	word-wrap: break-word;
+}
+
+.cb_template .streamItem .streamPanelFooterDivider {
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+.cb_template .streamItem .streamItemNew + .streamPanelFooter,
+.cb_template .streamItem .streamItemEdit .streamPanelFooter {
+	padding: 6px;
+}
+
+.cb_template .streamItem .streamPanel {
+	margin: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+.cb_template .streamMore {
+	display: inline-block;
+}
+
+.cb_template .streamItem ~ .streamItems,
+.cb_template .streamItem ~ .streamToolbar,
+.cb_template .streamMore ~ .streamItems,
+.cb_template .streamCount ~ .streamItems,
+.cb_template .streamToolbar ~ .streamItems,
+.cb_template .streamToolbar ~ .streamMore,
+.cb_template .streamToolbar ~ .streamCount,
+.cb_template .streamItems ~ .streamItem,
+.cb_template .streamItems ~ .streamToolbar,
+.cb_template .streamItems ~ .streamMore,
+.cb_template .streamItems ~ .streamCount,
+.cb_template .streamItem,
+.cb_template .streamItemEmpty {
+	margin: 10px 0 0 0;
+}
+
+.cb_template .streamItem ~ .streamItems:empty,
+.cb_template .streamMore ~ .streamItems:empty,
+.cb_template .streamCount ~ .streamItems:empty,
+.cb_template .streamToolbar ~ .streamItems:empty,
+.cb_template .streamItems:empty ~ .streamItem,
+.cb_template .streamItems:empty ~ .streamToolbar,
+.cb_template .streamItems:empty ~ .streamMore,
+.cb_template .streamItems:empty ~ .streamCount,
+.cb_template .streamItem:first-child,
+.cb_template .streamItemEmpty:first-child {
+	margin: 0;
+}
+
+.cb_template .streamItem .streamItemForm {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background: none;
+}
+
+.cb_template .streamOverlay {
+	opacity: 0.6 !important;
+}
+
+.cb_template .streamOverlay:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	border-radius: 3px;
+}
+
+.cb_template .streamItem img {
+	max-height: 100%;
+}
+
+.cb_template .streamItemNotice,
+.cb_template .streamItemAlert {
+	position: relative;
+}
+
+.cb_template .streamItemNoticeMessage,
+.cb_template .streamItemAlertMessage {
+	margin-right: 20px;
+}
+
+.cb_template .streamItemNoticeClose,
+.cb_template .streamItemAlertClose {
+	position: absolute;
+}
+
+.cb_template .streamItemNoticeClose,
+.cb_template .streamItemAlertClose {
+	right: 16px;
+	top: 16px;
+}
+
+.cb_template .streamItem .streamItemNoticeClose,
+.cb_template .streamItem .streamItemAlertClose {
+	right: 10px;
+	top: 10px;
+}
+
+.cb_template .streamItem .cbMoreLessOpen > a {
+	padding-left: 5px;
+}
+
+.cb_template .streamItem .cbMoreLessContent {
+	vertical-align: middle;
+	max-height: 100px;
+}
+
+.cb_template .streamItem .cbRepeat .cbRepeatRow {
+	margin: 0;
+}
+
+.cb_template .streamItem .cbRepeat .cbRepeatRow .cbRepeatRowRemove {
+	margin-left: 0;
+}
+
+.cb_template .streamItem .cbRepeat:not(.cbRepeatMin) .cbRepeatRow .streamInput {
+	padding-right: 40px;
+}
+
+.cb_template .streamItem .streamItemInputGroup .streamItemInputGroupLabel {
+	display: inline-block;
+	float: left;
+	width: auto;
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+	font-weight: bold;
+	cursor: default;
+}
+
+.cb_template .streamItem .streamItemInputGroup .streamItemInputGroupLabel + .streamItemInputGroupInput {
+	border-left-width: 1px;
+	border-left-style: dashed;
+}
+
+.cb_template .streamItem .streamItemInputGroup .streamItemInputGroupInput {
+	overflow: hidden;
+}
+
+.cb_template .streamItem .streamInput input[type=checkbox] {
+	margin-top: 2px;
+}
+
+.cb_template .streamItem .streamInput + .streamInput {
+	margin-top: 5px;
+}
+
+.cb_template .streamItem .streamInput.no-border,
+.cb_template .streamItem .streamInputSelect.no-border {
+	border: 0;
+	margin: 0;
+	box-shadow: none;
+}
+
+.cb_template .streamItem .streamInputActionMessage,
+.cb_template .streamItem .streamFindLocation + .streamInputLocationAddress {
+	padding-right: 40px;
+}
+
+.cb_template .streamItem .streamItemNew .streamItemInputGroup,
+.cb_template .streamItem .streamItemEdit .streamItemInputGroup {
+	position: relative;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+.cb_template .streamItem .streamItemNotice,
+.cb_template .streamItem .streamItemAlert {
+	padding: 10px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.cb_template .streamItem .streamItemAlert {
+	margin: 0;
+	border-radius: 0;
+}
+
+.cb_template .streamOverlay .streamItemNoticeMessage + .streamItemNoticeClose,
+.cb_template .streamOverlay .streamItemAlertMessage + .streamItemAlertClose {
+	display: none;
+}
+
+.cb_template .streamItem .streamItemNew,
+.cb_template .streamItem .streamItemEdit {
+	position: relative;
+}
+
+.cb_template .streamItem .streamItemSubContent {
+	margin-top: 5px;
+}
+
+.cb_template .streamItem .streamInputMessage {
+	overflow: hidden;
+}
+
+.cb_template .streamItem .streamInputMessageLimit {
+	display: inline-block;
+	padding: 1px 3px;
+	background-color: rgba(0, 0, 0, 0.08);
+}
+
+.cb_template .streamPanelFooter select.btn {
+	width: auto;
+	height: 22px;
+}
+
+.cb_template .streamItem .streamInputSelectToggle {
+	padding: 0;
+}
+
+.cb_template .streamItem .streamInputSelectToggle .select2-selection {
+	min-width: 20px;
+}
+
+.cb_template .streamItem .streamInputSelect:not(.streamInputTags) .select2-selection {
+	display: block;
+	border: 0;
+	margin: 0;
+	padding: 1px 5px;
+	background: none;
+	width: auto;
+	height: 100%;
+	outline: none;
+	box-shadow: none;
+	text-decoration: none;
+	line-height: inherit;
+	color: inherit;
+	cursor: pointer;
+}
+
+.cb_template .streamItem .streamInputEmote .select2-selection__rendered {
+	padding: 0;
+}
+
+.cb_template .streamItem .streamInputEmote .select2-selection,
+.cb_template .streamItem .streamInputEmote:not(.streamInputTags) .select2-selection {
+	padding: 6px;
+}
+
+.cb_template .streamItem .streamInputEmote .select2-selection__arrow,
+.cb_template .streamItem .streamInputSelectToggle .select2-selection__rendered,
+.cb_template .streamItem .streamInputSelectToggle .select2-selection__arrow {
+	display: none;
+}
+
+.cb_template .streamItem .streamInputEmote {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.cb_template .streamItem .streamFindLocation {
+	position: absolute;
+	bottom: 0;
+	right: 5px;
+	cursor: pointer;
+	padding: 6px;
+}
+
+.select2-container.streamEmoteOptions {
+	max-width: 410px;
+}
+
+.select2-container.streamEmoteOptions .select2-dropdown .select2-results .select2-results__option {
+	display: inline-block;
+	width: auto;
+	min-width: 26px;
+	height: auto;
+	vertical-align: middle;
+	text-align: center;
+	line-height: 1px;
+	padding: 6px;
+}
+
+.select2-container.streamEmoteOptions .streamSelectOptionIcon {
+	min-width: 18px;
+}
+
+.select2-container.streamSelectOptions .streamSelectOptionIcon {
+	display: inline-block;
+	width: 20px;
+	text-align: left;
+	padding-right: 5px;
+}
+
+.select2-container.streamEmoteOptions .streamIconEmote,
+.cb_template .streamItem .streamIconEdited > .fa,
+.cb_template .streamItem .streamIconAction:not(.fa),
+.cb_template .streamItem .streamIconEmote:not(.fa) {
+	vertical-align: middle;
+}
+
+.cb_template .streamItem .streamItemMenu {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.cb_template .streamItem .streamItemMenu > span {
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+}
+
+.cb_template .streamItem .streamItemMenu > span.open,
+.cb_template .streamItem .streamItemMenu > span:hover {
+	cursor: pointer;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+.cb_template .streamItem .streamItemAlert + .streamItemInner .streamItemMenu,
+.cb_template .streamOverlay .streamItemMenu {
+	display: none;
+}
+
+.cb_template .streamItemMenuItem.divider {
+	border: 0;
+}
+
+.cb_template .streamItem .streamItemImage {
+	display: inline-block;
+	max-width: 100%;
+}
+
+.cb_template .streamItem .streamItemFile {
+	margin: 0;
+}
+
+.cb_template .streamItem .streamItemFile td {
+	word-break: break-all;
+	vertical-align: middle;
+}
+
+.cb_template .streamItem .streamItemScroll {
+	position: relative;
+	min-height: 40px;
+}
+
+.cb_template .streamItem .streamItemScroller {
+	margin-top: 15px;
+}
+
+.cb_template .streamItem .streamItemScrollContent {
+	padding-left: 20px;
+	padding-right: 20px;
+	min-height: 40px;
+	margin: 0;
+}
+
+.cb_template .streamItem .streamItemScrollContent .streamPanel .streamPanelBody {
+	padding: 0;
+}
+
+.cb_template .streamItem .streamItemScrollContent .streamMedia .streamMediaLeft {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.cb_template .streamItem .streamItemScrollContent .streamPanel .streamPanelFooter,
+.cb_template .streamItem .streamItemScrollContent .streamMedia .streamPanelFooter {
+	border: 0;
+}
+
+.cb_template .streamItem .streamItemScrollLeft table,
+.cb_template .streamItem .streamItemScrollLeft table > tr,
+.cb_template .streamItem .streamItemScrollLeft table > tr > td,
+.cb_template .streamItem .streamItemScrollRight table,
+.cb_template .streamItem .streamItemScrollRight table > tr,
+.cb_template .streamItem .streamItemScrollRight table > tr > td {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.cb_template .streamItem .streamItemScrollRight table > tr > td,
+.cb_template .streamItem .streamItemScrollRight table > tr > td {
+	vertical-align: middle;
+}
+
+.cb_template .streamItem .streamItemScroll > .streamItemScrollLeft {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	cursor: pointer;
+}
+
+.cb_template .streamItem .streamItemScroll > .streamItemScrollRight {
+	position: absolute;
+	height: 100%;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+}
+
+.cb_template .streamItem .streamItemScrollLeftIcon,
+.cb_template .streamItem .streamItemScrollRightIcon {
+	font-size: 20px;
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+	transition: opacity 0.15s linear;
+		-webkit-transition: opacity 0.15s linear;
+}
+
+.cb_template .streamItem .streamItemScrollLeft:hover .streamItemScrollLeftIcon,
+.cb_template .streamItem .streamItemScrollRight:hover .streamItemScrollRightIcon {
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+.cb_template .streamItem .streamItemAttachment:not(.streamItemScrollContent) .streamItemAttachmentMedia {
+	padding: 0;
+}
+
+.cb_template .streamItem .streamItemAttachmentMedia img,
+.cb_template .streamItem .streamItemAttachmentMedia iframe,
+.cb_template .streamItem .streamItemAttachmentMedia object,
+.cb_template .streamItem .streamItemAttachmentMedia embed {
+	max-width: 100%;
+	max-height: 400px;
+}
+
+.cb_template .streamItem .streamItemAttachment .streamItemAttachmentMedia.streamMediaLeft {
+	padding: 5px;
+	max-width: 200px;
+}
+
+.cb_template .streamItem .streamItemAttachmentMedia.streamMediaLeft img {
+	width: auto;
+}
+
+.cb_template .streamItem .streamItemAttachmentUrl {
+	position: relative;
+	padding-right: 50px;
+}
+
+.cb_template .streamItem .streamItemAttachmentUrl > a {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.cb_template .streamItem .streamItemAttachmentCount {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.08);
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.cb_template .streamCount.streamCountLabel {
+	position: relative;
+	display: inline-block;
+	opacity: 0.9;
+}
+
+.cb_template .streamCount.streamCountLabel .streamCountLabelArrow {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 3px;
+	margin-top: -5px;
+	width: 0;
+	height: 0;
+	border-width: 5px 5px 5px 0;
+	border-style: solid;
+	border-left-color: transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.cb_template .streamCount.streamCountLabel .streamCountLabelArrow + .streamCountLabelContent {
+	margin-left: 8px;
+}
+
+.cb_template .streamCount.streamCountLabel .streamCountLabelContent {
+	display: block;
+	padding: 1px;
+	border-radius: 4px;
+	border-width: 1px;
+	border-style: solid;
+	min-width: 40px;
+	text-shadow: none;
+}
+
+.cb_template .streamCountLabelContent > a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+
+.cb_template .streamCountLabelContent > a:hover,
+.cb_template .streamCountLabelContent > a:active,
+.cb_template .streamCountLabelContent > a:focus {
+	text-decoration: none;
+}
+
+.qtip.streamModalContainer .qtip-content {
+	max-height: 100%;
+}
+
+.qtip.streamModalContainerLoad {
+	height: auto !important;
+	width: auto !important;
+}
+
+.qtip.streamModalContainerLoading {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	color: white;
+	height: auto !important;
+	width: auto !important;
+}
+
+.qtip.streamModalContainerLoad .qtip-content,
+.qtip.streamModalContainerLoading .qtip-content {
+	padding: 0;
+}
+
+.qtip.streamModalContainerLoad .qtip-titlebar,
+.qtip.streamModalContainerLoad .qtip-close,
+.qtip.streamModalContainerLoading .qtip-titlebar,
+.qtip.streamModalContainerLoading .qtip-close {
+	display: none;
+}
+
+/* ACTIVITY/NOTIFICATIONS */
+
+.cb_template .activityContainer .activityContainerTitleTop,
+.cb_template .notificationContainer .notificationContainerTitleTop {
+	padding-right: 60px;
+	min-height: 24px;
+}
+
+.cb_template .activityContainer .activityContainerTitleBottom,
+.cb_template .notificationContainer .notificationContainerTitleBottom {
+	min-height: 24px;
+}
+
+.cb_template .cbMenuNav > li.cbMenu_UE_MENU_ACTIVITY_NOTIFICATIONS {
+	float: right !important;
+	z-index: 10;
+}
+
+.cb_template .cbMenuNav > li.cbMenu_UE_MENU_ACTIVITY_NOTIFICATIONS > .cbActivityNotifications {
+	width: 100%;
+	height: 100%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	border-radius: 0;
+}
+
+.cb_template .cbScrollerWidth .cbMenuNav > li.cbMenu_UE_MENU_ACTIVITY_NOTIFICATIONS {
+	float: none !important;
+}
+
+.cb_template .cbScrollerWidth .cbMenuNav > li.cbMenu_UE_MENU_ACTIVITY_NOTIFICATIONS > .cbActivityNotifications {
+	padding-right: 15px;
+}
+
+@media (max-width: 767px) {
+	.cb_template .cbMenuNav > li.cbMenu_UE_MENU_ACTIVITY_NOTIFICATIONS {
+		float: none !important;
+	}
+
+	.cb_template .cbMenuNav > li.cbMenu_UE_MENU_ACTIVITY_NOTIFICATIONS > .cbActivityNotifications {
+		padding: 15px;
+	}
+}
+
+.cb_template .activityStreamButton > a:hover,
+.cb_template .activityStreamButton > a:active,
+.cb_template .activityStreamButton > a:focus,
+.cb_template .activityStreamButton > a,
+.cb_template .notificationsStreamButton > a:hover,
+.cb_template .notificationsStreamButton > a:active,
+.cb_template .notificationsStreamButton > a:focus,
+.cb_template .notificationsStreamButton > a {
+	text-decoration: none;
+}
+
+.qtip.activityModalContainer,
+.qtip.commentsModalContainer,
+.qtip.notificationsModalContainer {
+	border-radius: 0;
+	font-size: 12px;
+	max-width: 90%;
+	z-index: 10000 !important;
+}
+
+.qtip.activityModalContainer .streamModalLoading,
+.qtip.commentsModalContainer .streamModalLoading,
+.qtip.notificationsModalContainer .streamModalLoading {
+	margin: 10px;
+}
+
+.qtip.activityModalContainer .qtip-content,
+.qtip.commentsModalContainer .qtip-content,
+.qtip.notificationsModalContainer .qtip-content {
+	padding: 5px;
+}
+
+.qtip.activityModalContainer .qtip-content > .streamContainer > .streamItems,
+.qtip.commentsModalContainer .qtip-content > .streamContainer > .streamItems,
+.qtip.notificationsModalContainer .qtip-content > .streamContainer > .streamItems {
+	height: 350px;
+	overflow: auto;
+	padding: 5px;
+}
+
+/* COMMENTS */
+
+.cb_template .commentContainer {
+	border-radius: 0;
+}
+
+.cb_template .commentContainer.streamItemInline .commentContainerLogo {
+	padding-left: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.cb_template .commentContainer .streamMedia.streamPanelHeading {
+	min-height: 36px;
+}
+
+.cb_template .commentContainer .commentContainerLogo img {
+	width: 36px;
+}
+
+.cb_template .commentContainer.streamItemInline .commentContainerContent {
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.cb_template .commentContainer .commentContainerContentInner {
+	padding-right: 60px;
+}
+
+.cb_template .commentContainer.streamItemInline .streamItemNoticeClose {
+	right: 0;
+	top: 0;
+}
+
+.cb_template .commentContainer.streamItemInline .streamItemMenu {
+	right: 0;
+	top: 0;
+}
+
+.cb_template .commentContainer .commentContainerContentFooter .streamItems + .streamItem,
+.cb_template .commentContainer .commentContainerContentFooter .streamItem:first-child {
+	margin: 10px 0 0 0;
+}
+
+.cb_template .commentContainer .commentContainerContentFooter .streamMore + .streamItems .streamItem:first-child {
+	margin: 0;
+}
+
+.cb_template .commentContainer .commentContainerFooter {
+	margin-top: 5px;
+}
+
+.cb_template .commentContainer.streamItemInline .streamItemNotice {
+	padding: 0 0 0 46px;
+}
+
+.cb_template .commentContainer.streamItemInline .streamItemAlert {
+	margin: 0 0 5px 46px;
+}
+
+.cb_template .commentContainer .streamItemNew,
+.cb_template .commentContainer .streamItemEdit {
+	border-width: 1px;
+	border-style: solid;
+}
+
+.cb_template .commentContainer .streamInput.no-border,
+.cb_template .commentContainer .streamInputSelect.no-border {
+	border-radius: 0;
+}
+
+.cb_template .commentContainer .commentContainerAttachments,
+.cb_template .commentContainer .commentContainerAttachmentsInner {
+	margin-top: 10px;
+}
+
+.cb_template .commentsStream > .streamCount {
+	display: inline-block;
+	opacity: 0.6;
+	margin-bottom: 10px;
+}
+
+.cb_template .commentsStream.streamContainerDown > .commentContainerNew + .streamCount {
+	margin-top: 10px;
+}
+
+.cb_template .commentsStream > .streamCount:hover {
+	opacity: 0.8;
+}
+
+.cb_template .commentsStream .commentsStream > .streamCount {
+	display: none;
+}
+
+.cbActivityArticleComments {
+	margin-top: 10px;
+	padding: 10px;
+	border-top-width: 2px;
+	border-top-style: solid;
+}
+
+/* LIKES */
+
+.qtip.likeStreamSelector {
+	box-shadow: none;
+}
+
+.qtip.likeStreamSelector .qtip-content {
+	padding: 3px 8px;
+}
+
+.likesStreamMenu {
+	white-space: nowrap;
+	font-size: 14px;
+}
+
+.likesStreamMenu .likesStreamMenuItem {
+	display: inline-block;
+}
+
+.likesStreamMenu .likesStreamMenuItem > a:hover,
+.likesStreamMenu .likesStreamMenuItem > a:active,
+.likesStreamMenu .likesStreamMenuItem > a:focus,
+.likesStreamMenu .likesStreamMenuItem > a {
+	text-decoration: none;
+}
+
+.likesStreamMenu .likesStreamMenuItem + .likesStreamMenuItem {
+	margin-left: 10px;
+}
+
+.likesStreamMenu .likesStreamMenuIcon {
+	min-width: 30px;
+	min-height: 25px;
+}
+
+.likesStreamMenu .likesStreamMenuItem .likesStreamMenuTitle {
+	opacity: 0.8;
+}
+
+.likesStreamMenu .likesStreamMenuItem:hover .likesStreamMenuTitle {
+	opacity: 1;
+}
+
+.cbActivityArticleLike {
+	margin-top: 10px;
+}
+
+/* TAGS / FOLLOWING / LIKES */
+
+.cb_template .followStream,
+.cb_template .likeStream {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.cb_template .followStream .followStreamButton {
+	min-width: 100px;
+}
+.cb_template .likeStream .likeStreamButton {
+	min-width: 70px;
+}
+
+.cb_template .followStream .followStreamButtons .followStreamUnfollow,
+.cb_template .followStream.streamOverlay .followStreamButtons .followStreamFollowed,
+.cb_template .followStream .followStreamButtons:hover .followStreamFollowed,
+.cb_template .likeStream .likeStreamButtons .likeStreamUnlike,
+.cb_template .likeStream.streamOverlay .likeStreamButtons .likeStreamLiked,
+.cb_template .likeStream .likeStreamButtons:hover .likeStreamLiked {
+	display: none;
+}
+
+.cb_template .followStream.streamOverlay .followStreamButtons .followStreamUnfollow,
+.cb_template .followStream .followStreamButtons:hover .followStreamUnfollow,
+.cb_template .likeStream.streamOverlay .likeStreamButtons .likeStreamUnlike,
+.cb_template .likeStream .likeStreamButtons:hover .likeStreamUnlike {
+	display: inline-block;
+}
+
+.cb_template .namesStream .streamItem + .streamItem,
+.cb_template .followingStream .streamItem + .streamItem,
+.cb_template .likesStream .streamItem + .streamItem {
+	border-top-width: 1px;
+	border-top-style: solid;
+	margin: 0;
+}
+
+.qtip.namesModalContainer .qtip-titlebar,
+.qtip.taggedModalContainer .qtip-titlebar,
+.qtip.followingModalContainer .qtip-titlebar,
+.qtip.likesModalContainer .qtip-titlebar {
+	padding-right: 35px;
+}
+
+.qtip.namesModalContainer .qtip-titlebar .qtip-close,
+.qtip.taggedModalContainer .qtip-titlebar .qtip-close,
+.qtip.followingModalContainer .qtip-titlebar .qtip-close,
+.qtip.likesModalContainer .qtip-titlebar .qtip-close {
+	right: 12px;
+	top: 12px;
+}
+
+.qtip.namesModalContainer .nameContainerLogo,
+.qtip.taggedModalContainer .tagContainerLogo,
+.qtip.followingModalContainer .followerContainerLogo,
+.qtip.likesModalContainer .likeContainerLogo {
+	min-width: 68px;
+}

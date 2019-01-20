@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="antispam_login_duplicate_method" base="list" valuetype="string">
+			<option value="0">Logout Current Session</option>
+			<option value="1">Deny Login</option>
+			<option value="2">Block IP Address</option>
+			<option value="3">Block User</option>
+		</type>
+		<type name="antispam_login_block_method" base="list" valuetype="string">
+			<option value="0">Deny Login</option>
+			<option value="1">Block IP Address</option>
+		</type>
+		<type name="antispam_forgot_block_method" base="list" valuetype="string">
+			<option value="0">Deny Forgot Login</option>
+			<option value="1">Block IP Address</option>
+		</type>
+		<type name="antispam_registration_block_method" base="list" valuetype="string">
+			<option value="0">Deny Registration</option>
+			<option value="1">Block IP Address</option>
+		</type>
+		<type name="antispam_captcha_mode" base="list" valuetype="string">
+			<option value="internal">Code (Internal)</option>
+			<option value="question">Question (Internal)</option>
+			<option value="math">Math (Internal)</option>
+			<option value="honeypot">Honeypot (Internal)</option>
+			<option value="recaptcha">reCaptcha (v2)</option>
+			<option value="recaptcha_invisible">reCaptcha (Invisible)</option>
+			<option value="joomla">Joomla</option>
+		</type>
+		<type name="antispam_captcha_format" base="list" valuetype="string">
+			<option value="jpeg">JPEG</option>
+			<option value="png">PNG</option>
+			<option value="gif">GIF</option>
+		</type>
+		<type name="antispam_recaptcha_theme" base="list" valuetype="string">
+			<option value="light">Light</option>
+			<option value="dark">Dark</option>
+		</type>
+		<type name="antispam_recaptcha_size" base="list" valuetype="string">
+			<option value="normal">Normal</option>
+			<option value="compact">Compact</option>
+		</type>
+		<type name="antispam_recaptcha_badge" base="list" valuetype="string">
+			<option value="bottomright">Bottom Right</option>
+			<option value="bottomleft">Bottom Left</option>
+			<option value="inline">Inline</option>
+		</type>
+		<type name="antispam_recaptcha_language" base="list" valuetype="string">
+			<option value="auto">Automatic</option>
+			<option value="ar">Arabic</option>
+			<option value="af">Afrikaans</option>
+			<option value="am">Amharic</option>
+			<option value="hy">Armenian</option>
+			<option value="az">Azerbaijani</option>
+			<option value="eu">Basque</option>
+			<option value="bn">Bengali</option>
+			<option value="bg">Bulgarian</option>
+			<option value="ca">Catalan</option>
+			<option value="zh-HK">Chinese (Hong Kong)</option>
+			<option value="zh-CN">Chinese (Simplified)</option>
+			<option value="zh-TW">Chinese (Traditional)</option>
+			<option value="hr">Croatian</option>
+			<option value="cs">Czech</option>
+			<option value="da">Danish</option>
+			<option value="nl">Dutch</option>
+			<option value="en-GB">English (UK)</option>
+			<option value="en">English (US)</option>
+			<option value="et">Estonian</option>
+			<option value="fil">Filipino</option>
+			<option value="fi">Finnish</option>
+			<option value="fr">French</option>
+			<option value="fr-CA">French (Canadian)</option>
+			<option value="gl">Galician</option>
+			<option value="ka">Georgian</option>
+			<option value="de">German</option>
+			<option value="de-AT">German (Austria)</option>
+			<option value="de-CH">German (Switzerland)</option>
+			<option value="el">Greek</option>
+			<option value="gu">Gujarati</option>
+			<option value="iw">Hebrew</option>
+			<option value="hi">Hindi</option>
+			<option value="hu">Hungarain</option>
+			<option value="is">Icelandic</option>
+			<option value="id">Indonesian</option>
+			<option value="it">Italian</option>
+			<option value="ja">Japanese</option>
+			<option value="kn">Kannada</option>
+			<option value="ko">Korean</option>
+			<option value="lo">Laothian</option>
+			<option value="lv">Latvian</option>
+			<option value="lt">Lithuanian</option>
+			<option value="ms">Malay</option>
+			<option value="ml">Malayalam</option>
+			<option value="mr">Marathi</option>
+			<option value="mn">Mongolian</option>
+			<option value="no">Norwegian</option>
+			<option value="fa">Persian</option>
+			<option value="pl">Polish</option>
+			<option value="pt">Portuguese</option>
+			<option value="pt-BR">Portuguese (Brazil)</option>
+			<option value="pt-PT">Portuguese (Portugal)</option>
+			<option value="ro">Romanian</option>
+			<option value="ru">Russian</option>
+			<option value="sr">Serbian</option>
+			<option value="si">Sinhalese</option>
+			<option value="sk">Slovak</option>
+			<option value="sl">Slovenian</option>
+			<option value="es">Spanish</option>
+			<option value="es-419">Spanish (Latin America)</option>
+			<option value="sw">Swahili</option>
+			<option value="sv">Swedish</option>
+			<option value="ta">Tamil</option>
+			<option value="te">Telugu</option>
+			<option value="th">Thai</option>
+			<option value="tr">Turkish</option>
+			<option value="uk">Ukrainian</option>
+			<option value="ur">Urdu</option>
+			<option value="vi">Vietnamese</option>
+			<option value="zu">Zulu</option>
+		</type>
+		<type name="antispam_captcha_block_method" base="list" valuetype="string">
+			<option value="0">Deny Captcha</option>
+			<option value="1">Block IP Address</option>
+		</type>
+		<type name="antispam_prune_duration" base="list" valuetype="string">
+			<option value="-1 WEEK">1 Week</option>
+			<option value="-2 WEEKS">2 Weeks</option>
+			<option value="-3 WEEKS">3 Weeks</option>
+			<option value="-1 MONTH">1 Month</option>
+			<option value="-3 MONTHS">3 Months</option>
+			<option value="-6 MONTHS">6 Months</option>
+			<option value="-1 YEAR">1 Year</option>
+			<option value="-2 YEARS">2 Years</option>
+			<option value="-3 YEARS">3 Years</option>
+			<option value="-6 YEARS">6 Years</option>
+		</type>
+		<type name="antispam_block_type" base="list" valuetype="string">
+			<option value="user">User</option>
+			<option value="ip">IP Address</option>
+			<option value="ip_range">IP Address Range</option>
+			<option value="email">Email Address</option>
+			<option value="domain">Email Domain</option>
+		</type>
+		<type name="antispam_block_duration" base="list" valuetype="string">
+			<option value="MIDNIGHT">Midnight</option>
+			<option value="NOON">Noon</option>
+			<option value="TOMORROW">Tomorrow</option>
+			<option value="NEXT WEEK">Next Week</option>
+			<option value="NEXT MONTH">Next Month</option>
+			<option value="NEXT YEAR">Next Year</option>
+			<option value="LAST DAY OF THIS MONTH">Last Day of This Month</option>
+			<option value="FIRST DAY OF NEXT MONTH">First Day of Next Month</option>
+			<option value="LAST DAY OF NEXT MONTH">Last Day of Next Month</option>
+			<option value="LAST DAY OF THIS YEAR">Last Day of This Year</option>
+			<option value="FIRST DAY OF NEXT YEAR">First Day of Next Year</option>
+			<option value="LAST DAY OF NEXT YEAR">Last Day of Next Year</option>
+			<option value="FIRST DAY OF JANUARY">First Day of January</option>
+			<option value="LAST DAY OF JANUARY">Last Day of January</option>
+			<option value="FIRST DAY OF FEBRUARY">First Day of February</option>
+			<option value="LAST DAY OF FEBRUARY">Last Day of February</option>
+			<option value="FIRST DAY OF MARCH">First Day of March</option>
+			<option value="LAST DAY OF MARCH">Last Day of March</option>
+			<option value="FIRST DAY OF APRIL">First Day of Apil</option>
+			<option value="LAST DAY OF APRIL">Last Day of Apil</option>
+			<option value="FIRST DAY OF MAY">First Day of May</option>
+			<option value="LAST DAY OF MAY">Last Day of May</option>
+			<option value="FIRST DAY OF JUNE">First Day of June</option>
+			<option value="LAST DAY OF JUNE">Last Day of June</option>
+			<option value="FIRST DAY OF JULY">First Day of July</option>
+			<option value="LAST DAY OF JULY">Last Day of July</option>
+			<option value="FIRST DAY OF AUGUST">First Day of August</option>
+			<option value="LAST DAY OF AUGUST">Last Day of August</option>
+			<option value="FIRST DAY OF SEPTEMBER">First Day of September</option>
+			<option value="LAST DAY OF SEPTEMBER">Last Day of September</option>
+			<option value="FIRST DAY OF OCTOBER">First Day of October</option>
+			<option value="LAST DAY OF OCTOBER">Last Day of October</option>
+			<option value="FIRST DAY OF NOVEMBER">First Day of November</option>
+			<option value="LAST DAY OF NOVEMBER">Last Day of November</option>
+			<option value="FIRST DAY OF DECEMBER">First Day of December</option>
+			<option value="LAST DAY OF DECEMBER">Last Day of December</option>
+			<option value="+30 MINUTES">30 Minutes</option>
+			<option value="+1 HOUR">1 Hour</option>
+			<option value="+3 HOURS">3 Hours</option>
+			<option value="+6 HOURS">6 Hours</option>
+			<option value="+12 HOURS">12 Hours</option>
+			<option value="+1 DAY">1 Day</option>
+			<option value="+3 DAYS">3 Days</option>
+			<option value="+6 DAYS">6 Days</option>
+			<option value="+12 DAYS">12 Days</option>
+			<option value="+1 WEEK">1 Week</option>
+			<option value="+2 WEEKS">2 Weeks</option>
+			<option value="+3 WEEKS">3 Weeks</option>
+			<option value="+1 MONTH">1 Month</option>
+			<option value="+3 MONTHS">3 Months</option>
+			<option value="+6 MONTHS">6 Months</option>
+			<option value="+1 YEAR">1 Year</option>
+		</type>
+	</types>
+</cbxml>

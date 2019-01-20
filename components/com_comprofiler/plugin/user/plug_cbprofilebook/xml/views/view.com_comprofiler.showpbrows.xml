@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="showpbentries" type="params" ui="admin" label="Entries" icon="list" viewformatting="none">
+			<tablebrowser name="pbentriesbrowser" table="#__comprofiler_plug_profilebook" class="\CB\Plugin\ProfileBook\Table\EntryTable">
+				<toolbarmenu>
+					<menu name="new" action="linkAction" task="new" link="cbo:newrow" label="New" />
+					<menu name="edit" action="linkAction" task="edit" link="cbo:editrows/entryid" label="Edit" />
+					<menu name="publish" action="linkAction" task="publish" link="cbo:publish/published" label="Publish" />
+					<menu name="unpublish" action="linkAction" task="unpublish" link="cbo:unpublish/published" label="Unpublish" />
+					<menu name="delete" action="linkAction" task="delete" link="cbo:deleterows" label="Delete" />
+					<menu name="cancel" action="linkAction" task="cancel" link="cb_action:plugins" label="Close" />
+				</toolbarmenu>
+				<quicksearchfields placeholder="Search Entries..." size="30">
+					<field name="owner">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="posterid" />
+					</field>
+					<field name="user">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="userid" />
+					</field>
+					<field name="postername" />
+					<field name="posteremail" />
+					<field name="postertitle" />
+					<field name="postercomment" />
+					<field name="id" valuetype="const:int" />
+				</quicksearchfields>
+				<filters>
+					<filter name="owner" value="username" valuetype="sql:string" type="string" label="" blanktext="Owner">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="posterid" />
+					</filter>
+					<filter name="user" value="username" valuetype="sql:string" type="string" label="" blanktext="User">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="userid" />
+					</filter>
+					<filter name="mode" valuetype="sql:string" type="xml:profilebook_mode" label="" blanktext="- Select Mode -" />
+					<filter name="published" valuetype="sql:string" type="xml:profilebook_state" label="" blanktext="- Select State -" />
+					<filter name="status" valuetype="sql:string" type="xml:profilebook_status" label="" blanktext="- Select Status -" />
+					<filter name="datefrom" value="date" valuetype="sql:string" type="datetime" operator="&gt;=" view="datefromto" />
+					<filter name="dateto" value="date" valuetype="sql:string" type="datetime" operator="&lt;=" view="datefromto" />
+					<view name="datefromto" type="params">
+						<fieldset name="daterange" label="Date">
+							<param name="filter_datefrom" type="datetime" default="" label="From" />
+							<param name="filter_dateto" type="datetime" default="" label="To" />
+						</fieldset>
+					</view>
+					<filter name="id" type="field_show_only_if_selected" base="int" default="" label="" blanktext="- Select ID -" />
+				</filters>
+				<orderby>
+					<ordergroup name="date_asc" label="Date ascending">
+						<field name="date" ordering="ASC" />
+					</ordergroup>
+					<ordergroup name="date_desc" label="Date descending" default="true" translate-default="no">
+						<field name="date" ordering="DESC" />
+					</ordergroup>
+					<ordergroup name="owner_asc" label="Owner ascending">
+						<field name="user_comment" type="sql:string" ordering="ASC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="posterid" />
+						</field>
+					</ordergroup>
+					<ordergroup name="owner_desc" label="Owner descending">
+						<field name="user_comment" type="sql:string" ordering="DESC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="posterid" />
+						</field>
+					</ordergroup>
+					<ordergroup name="user_asc" label="User ascending">
+						<field name="user_comment" type="sql:string" ordering="ASC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="userid" />
+						</field>
+					</ordergroup>
+					<ordergroup name="user_desc" label="User descending">
+						<field name="user_comment" type="sql:string" ordering="DESC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="userid" />
+						</field>
+					</ordergroup>
+				</orderby>
+				<listfields>
+					<header type="standard" />
+					<rows type="standard" height="auto">
+						<field name="" type="rownumber" width="1%" align="center" label="#" responsivehiddenon="xsmall" />
+						<field name="id" type="primarycheckbox" width="1%" align="center" />
+						<field name="owner" type="group" link="cbo:rowedit" parameters="entryid" paramvalues="id" align="left" label="Owner" allowordering="ascending,descending">
+							<if name="posterid" nametype="param:int" operator="=" value="0" valuetype="const:int" type="condition">
+								<then>
+									<if name="postername" nametype="param:string" operator="!=" value="" valuetype="const:string" type="condition">
+										<then>
+											<param name="postername" type="string" label="" />
+										</then>
+										<else>
+											<param name="posteremail" type="string" label="" />
+										</else>
+									</if>
+								</then>
+								<else>
+									<param name="owner" type="string" label="" />
+								</else>
+							</if>
+						</field>
+						<field name="user" type="string" align="left" label="User" allowordering="ascending,descending">
+							<data name="userid" type="sql:field" />
+							<data name="username" as="user" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="userid" />
+						</field>
+						<field name="posterip" type="string" width="10%" label="IP Address" responsivehiddenon="xsmall" allowordering="ascending,descending" />
+						<field name="mode" type="xml:profilebook_mode" width="5%" label="Mode" allowordering="ascending,descending" />
+						<field name="postertitle" type="firstwords" size="90" width="15%" label="Title" responsivehiddenon="xsmall" allowordering="ascending,descending" />
+						<field name="postercomment" type="firstwords" size="90" width="20%" label="Message" allowordering="ascending,descending" />
+						<field name="date" type="datetime" timezone="RAW" width="15%" align="center" label="Date" responsivehiddenon="xsmall" allowordering="ascending,descending" />
+						<field name="published" type="xml:profilebook_state" width="5%" align="center" label="Published" onclick="toggle" allowordering="ascending,descending" />
+						<field name="status" type="xml:profilebook_status" width="5%" align="center" label="Read" onclick="toggle" responsivehiddenon="xsmall" allowordering="ascending,descending" />
+						<field name="id" type="int" width="5%" align="center" label="ID" allowordering="ascending,descending" />
+						<field name="owner" type="hidden">
+							<data name="posterid" type="sql:field" />
+							<data name="username" as="owner" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="posterid" />
+						</field>
+						<field name="postername" type="hidden" />
+						<field name="posteremail" type="hidden" />
+					</rows>
+				</listfields>
+				<batchprocess>
+					<batch name="posterid" type="text" label="" blanktext="Owner" />
+					<batch name="userid" type="text" label="" blanktext="User" />
+					<batch name="mode" valuetype="sql:string" type="xml:profilebook_mode" label="" blanktext="- Select Mode -" />
+					<batch name="status" valuetype="sql:string" type="xml:profilebook_status" label="" blanktext="- Select Status -" />
+				</batchprocess>
+			</tablebrowser>
+		</view>
+	</views>
+</cbxml>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="showpulog" type="params" ui="admin" label="Log" icon="list-alt" viewformatting="div">
+			<toolbarmenu>
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:purows" label="Cancel" />
+			</toolbarmenu>
+			<param name="profileid" type="int" label="Profile ID" />
+			<param name="fieldname" type="text" label="Field" />
+			<param name="oldvalue" type="text" label="Old Value" />
+			<param name="newvalue" type="text" label="New Value" />
+			<param name="changedate" type="datetime" label="Date" />
+			<param name="editedbyid" type="int" label="Edited By ID" />
+			<param name="mode" type="list" label="Mode">
+				<option value="0">Frontend</option>
+				<option value="1">Backend</option>
+			</param>
+			<param name="editedbyip" type="text" label="IP Address" />
+		</view>
+	</views>
+</cbxml>

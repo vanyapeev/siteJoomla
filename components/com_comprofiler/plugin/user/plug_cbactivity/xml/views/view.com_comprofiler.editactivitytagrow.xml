@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="editactivitytag" type="params" ui="admin" label="Tag" icon="list-alt" viewformatting="div">
+			<toolbarmenu>
+				<menu name="apply" action="apply" task="act=apply" label="Save" />
+				<menu name="save" action="save" task="act=save" label="Save &amp; Close" />
+				<menu name="savenew" action="custom" task="act=savenew" label="Save &amp; New" icon="save-new" />
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:activitytagrows" label="Cancel" />
+			</toolbarmenu>
+			<param name="asset" type="text" label="Asset" size="25" validate="required" description="Input the asset for this tag. Asset determines tag location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+			<param name="tag" type="text" label="Tag" size="25" validate="required" description="Input the tag user as a single integer user_id or a name" />
+			<param name="user_id" type="user" label="Owner" size="5" validate="required" description="Input owner as single integer user_id." />
+		</view>
+	</views>
+</cbxml>

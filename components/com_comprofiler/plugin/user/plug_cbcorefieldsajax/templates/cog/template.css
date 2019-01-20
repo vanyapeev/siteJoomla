@@ -1,0 +1,56 @@
+.cbAjaxCog.cbAjaxContainerDisplay {
+	position: relative;
+}
+
+.cbAjaxCog.cbAjaxContainerDisplay .cbAjaxValue {
+	margin-left: 0;
+	padding-left: 0;
+	cursor: initial;
+}
+
+.cbAjaxCog.cbAjaxContainerDisplay .cbAjaxToggle {
+	position: absolute;
+	top: 0;
+	right: -15px;
+	line-height: inherit;
+	opacity: 0.4;
+}
+
+.cbAjaxCog.cbAjaxContainerDisplay .cbAjaxToggle:hover {
+	opacity: 0.8;
+}
+
+.cbAjaxCog.cbAjaxContainerDisplay.cbAjaxEditing .cbAjaxToggle {
+	display: none;
+}
+
+.cb_template .cbPosCanvas .cbPosCanvasBackground .cbAjaxCog.cbAjaxContainerDisplay .cbAjaxToggle,
+.cb_template .cbPosCanvas .cbPosCanvasPhoto .cbAjaxCog.cbAjaxContainerDisplay .cbAjaxToggle,
+.cb_template .cbPosCanvas .cbPosCanvasBackground .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="tooltip"] .cbSpinner,
+.cb_template .cbPosCanvas .cbPosCanvasBackground .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="modal"] .cbSpinner,
+.cb_template .cbPosCanvas .cbPosCanvasPhoto .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="tooltip"] .cbSpinner,
+.cb_template .cbPosCanvas .cbPosCanvasPhoto .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="modal"] .cbSpinner {
+	right: 10px;
+	top: 5px;
+	font-size: 18px;
+	color: #ffffff;
+	text-shadow: -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, 2px 2px 0 #000000;
+}
+
+.cb_template .cbPosCanvas .cbPosCanvasBackground .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="tooltip"] .cbSpinner,
+.cb_template .cbPosCanvas .cbPosCanvasBackground .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="modal"] .cbSpinner,
+.cb_template .cbPosCanvas .cbPosCanvasPhoto .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="tooltip"] .cbSpinner,
+.cb_template .cbPosCanvas .cbPosCanvasPhoto .cbAjaxCog.cbAjaxContainerDisplay[data-cbajaxfield-mode="modal"] .cbSpinner {
+	left: initial;
+	opacity: 0.6;
+}
+
+.cb_template .cbPosCanvas .cbPosCanvasBackground .cbAjaxCog.cbAjaxContainerDisplay:hover .cbAjaxToggle,
+.cb_template .cbPosCanvas .cbPosCanvasPhoto .cbAjaxCog.cbAjaxContainerDisplay:hover .cbAjaxToggle {
+	opacity: 0.6;
+}
+
+.cb_template .cbPosCanvas .cbPosCanvasBackground .cbAjaxCog.cbAjaxContainerDisplay .cbAjaxToggle:hover,
+.cb_template .cbPosCanvas .cbPosCanvasPhoto .cbAjaxCog.cbAjaxContainerDisplay .cbAjaxToggle:hover {
+	opacity: 0.8;
+}

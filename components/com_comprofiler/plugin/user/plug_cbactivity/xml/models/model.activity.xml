@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="activity_published" base="published" valuetype="string">
+			<option value="0" title="Unpublish Item">No</option>
+			<option value="1" title="Published Item">Yes</option>
+		</type>
+		<type name="activity_pinned" base="published" valuetype="string">
+			<option value="0" title="Unpin Item">No</option>
+			<option value="1" title="Pin Item">Yes</option>
+		</type>
+		<type name="activity_yesno" base="list" valuetype="string">
+			<option value="-1">Same as Global</option>
+			<option value="1">Enable</option>
+			<option value="0">Disable</option>
+		</type>
+		<type name="activity_stream_yesno" base="list" valuetype="string">
+			<option value="-1">Same as Stream</option>
+			<option value="1">Enable</option>
+			<option value="0">Disable</option>
+		</type>
+		<type name="activity_direction" base="list" valuetype="string">
+			<option value="up">Up</option>
+			<option value="down">Down</option>
+		</type>
+		<type name="activity_link_type" base="list" valuetype="string">
+			<option value="image">Image</option>
+			<option value="video">Video</option>
+			<option value="audio">Audio</option>
+			<option value="file">File</option>
+			<option value="url">URL</option>
+			<option value="custom">Custom</option>
+		</type>
+		<type name="activity_hidden_type" base="list" valuetype="string">
+			<option value="activity">Activity</option>
+			<option value="activity.asset">Activity Asset</option>
+			<option value="activity.user">Activity User</option>
+			<option value="notification">Notification</option>
+			<!--<option value="notification.asset">Notification Asset</option>-->
+			<!--<option value="notification.user">Notification User</option>-->
+			<option value="comment">Comment</option>
+			<option value="comment.asset">Comment Asset</option>
+			<option value="comment.user">Comment User</option>
+		</type>
+	</types>
+</cbxml>

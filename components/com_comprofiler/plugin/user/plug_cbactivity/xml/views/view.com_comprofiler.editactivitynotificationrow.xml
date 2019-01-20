@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="editactivitynotification" type="params" ui="admin" label="Notification" icon="list-alt" viewformatting="div">
+			<toolbarmenu>
+				<menu name="apply" action="apply" task="act=apply" label="Save" />
+				<menu name="save" action="save" task="act=save" label="Save &amp; Close" />
+				<menu name="savenew" action="custom" task="act=savenew" label="Save &amp; New" icon="save-new" />
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:activitynotificationrows" label="Cancel" />
+			</toolbarmenu>
+			<param name="" type="group" label="" display="2lines">
+				<param name="title" type="text" label="Title %s" description="Optionally input the notification title. Title is displayed to the right of the users name." size="80" />
+			</param>
+			<tabpane name="editpane">
+				<tabpanetab name="global" label="Global">
+					<grid fluid="true">
+						<gridcol size="9">
+							<gridrow>
+								<param name="message" type="textarea" rows="10" label="Message" display="2lines" description="Optionally input the notification message. Message is displayed below the notification header." cssclass="input-block" />
+								<param name="date" type="datetime" default="" timezone="RAW" label="Date" display="2lines" validate="required" description="Select a date for this notification." />
+							</gridrow>
+						</gridcol>
+						<gridcol size="3">
+							<gridrow>
+								<param name="published" type="published" default="1" label="Published" display="2lines" description="Select publish status of this notification. If unpublished this notification will not be visible to the public." />
+								<param name="asset" type="text" onchange="evaluate" label="Asset" display="2lines" size="25" validate="required" description="Input the asset for this notification. Asset determines notification location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+								<param name="user_id" type="user" label="Owner" display="2lines" size="5" validate="required" description="Input owner as single integer user_id. This is the user sending the notification." />
+								<param name="user" type="user" label="User" display="2lines" size="5" validate="required" description="Input user as single integer user_id. This is the user who is receiving the notification." />
+								<param name="pinned" type="yesno" label="Pinned" display="2lines" description="Select pinned status of this notification. If pinned this notification will always be displayed at the top of streams that display pinned notifications." />
+							</gridrow>
+						</gridcol>
+					</grid>
+				</tabpanetab>
+				<tabpanetab name="params" label="Parameters">
+					<tabpane name="editnotificationparams">
+						<tabpanetab name="notificationlinks" label="Links">
+							<params name="params" type="params">
+								<showview view="cbactivity_linksParams" mode="edit" type="view" />
+							</params>
+						</tabpanetab>
+						<showview name="params" view="notificationparams" mandatory="false" formatting="tab">
+							<data name="params" type="sql:string" default="" />
+						</showview>
+						<showview name="params" path="views/view[@name=&quot;notificationparams&quot;]" action="notification" type="plugins" formatting="tab">
+							<data name="params" type="sql:string" default="" />
+						</showview>
+					</tabpane>
+				</tabpanetab>
+			</tabpane>
+		</view>
+	</views>
+</cbxml>

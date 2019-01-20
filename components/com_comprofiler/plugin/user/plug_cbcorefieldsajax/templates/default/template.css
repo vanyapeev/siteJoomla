@@ -1,0 +1,68 @@
+.cbAjaxContainer {
+	max-width: 100%;
+}
+
+.cbAjaxContainerInline {
+	display: inline-block;
+}
+
+.cbAjaxContainerDisplay {
+	position: relative;
+}
+
+.cbAjaxContainerDisplay .cbAjaxValue {
+	margin-left: -15px;
+	padding-left: 15px;
+	position: relative;
+}
+
+.cbAjaxContainerDisplay .cbAjaxToggle {
+	cursor: pointer;
+}
+
+.cbAjaxContainerDisplay .cbAjaxValue:before {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	line-height: inherit;
+}
+
+.cbAjaxContainerDisplay[data-cbajaxfield-mode="tooltip"] .cbSpinner,
+.cbAjaxContainerDisplay[data-cbajaxfield-mode="modal"] .cbSpinner {
+	position: absolute;
+	left: -17px;
+	top: 0;
+	line-height: inherit;
+}
+
+.cbAjaxContainerDisplay:not(.cbAjaxEditing) .cbAjaxValue:hover:before {
+	display: inline-block;
+}
+
+.cbAjaxContainerEdit textarea {
+	max-width: 100%;
+}
+
+.cbAjaxContainerEdit .cbAjaxForm {
+	margin: 0;
+}
+
+.cbAjaxContainerEdit .cbAjaxInput .cb_field > .form-group {
+	margin-bottom: 0;
+}
+
+.cbAjaxContainerEdit .cbAjaxInput .cb_field > .form-group + .form-group {
+	margin-top: 15px;
+}
+
+.cbAjaxContainerEdit .cbAjaxButtons {
+	margin-bottom: 0;
+}
+
+.qtip.cbAjaxTooltip {
+	border-radius: 0;
+	padding: 0;
+	margin-top: -1px;
+	margin-left: -1px;
+}

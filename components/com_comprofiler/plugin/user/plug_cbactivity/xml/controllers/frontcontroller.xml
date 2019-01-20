@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" group="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types />
+	<actions ui="admin" permission="core.manage" permissionasset="com_comprofiler">
+		<action name="activityrows" request="view action" action="editPlugin showactivity">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivity" mode="show" />
+		</action>
+
+		<action name="activitynotificationrows" request="view action" action="editPlugin showactivitynotifications">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivitynotifications" mode="show" />
+		</action>
+
+		<action name="activitycommentrows" request="view action" action="editPlugin showactivitycomments">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivitycomments" mode="show" />
+		</action>
+
+		<action name="activityfollowingrows" request="view action" action="editPlugin showactivityfollowing">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivityfollowing" mode="show" />
+		</action>
+
+		<action name="activitylikerows" request="view action" action="editPlugin showactivitylikes">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivitylikes" mode="show" />
+		</action>
+
+		<action name="activityliketyperows" request="view action" action="editPlugin showactivityliketypes">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivityliketypes" mode="show" />
+		</action>
+
+		<action name="activitylikesrows" request="view action" action="editPlugin showactivitylikes">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivitylikes" mode="show" />
+		</action>
+
+		<action name="hiddenactivityrows" request="view action" action="editPlugin showhiddenactivity">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showhiddenactivity" mode="show" />
+		</action>
+
+		<action name="activitytagrows" request="view action" action="editPlugin showactivitytags">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivitytags" mode="show" />
+		</action>
+
+		<action name="activityactionrows" request="view action" action="editPlugin showactivityactions">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivityactions" mode="show" />
+		</action>
+
+		<action name="activitylocationrows" request="view action" action="editPlugin showactivitylocations">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivitylocations" mode="show" />
+		</action>
+
+		<action name="activityemoterows" request="view action" action="editPlugin showactivityemotes">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="showactivityemotes" mode="show" />
+		</action>
+
+		<action name="activityrow" request="view table action" action="editPlugin activitybrowser editrow" requestparameters="activityid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbactivityoverrides" mandatory="false" mode="extend" keyattribute="name" />
+			<showview view="editactivity" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity" class="\CB\Plugin\Activity\Table\ActivityTable" key="id" value="activityid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activitynotificationrow" request="view table action" action="editPlugin activitynotificationsbrowser editrow" requestparameters="notificationid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbactivityoverrides" mandatory="false" mode="extend" keyattribute="name" />
+			<showview view="editactivitynotification" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_notifications" class="\CB\Plugin\Activity\Table\NotificationTable" key="id" value="notificationid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activitycommentrow" request="view table action" action="editPlugin activitycommentsbrowser editrow" requestparameters="commentid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbactivityoverrides" mandatory="false" mode="extend" keyattribute="name" />
+			<showview view="editactivitycomment" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_comments" class="\CB\Plugin\Activity\Table\CommentTable" key="id" value="commentid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activityfollowrow" request="view table action" action="editPlugin activityfollowingbrowser editrow" requestparameters="followid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="editactivityfollow" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_following" class="\CB\Plugin\Activity\Table\FollowTable" key="id" value="followid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activitylikerow" request="view table action" action="editPlugin activitylikesbrowser editrow" requestparameters="likeid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="editactivitylike" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_likes" class="\CB\Plugin\Activity\Table\LikeTable" key="id" value="likeid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="hiddenactivityrow" request="view table action" action="editPlugin hiddenactivitybrowser editrow" requestparameters="hiddenid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="edithiddenactivity" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_hidden" class="\CB\Plugin\Activity\Table\HiddenTable" key="id" value="hiddenid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activitytagrow" request="view table action" action="editPlugin activitytagsbrowser editrow" requestparameters="tagid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="editactivitytag" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_tags" class="\CB\Plugin\Activity\Table\TagTable" key="id" value="tagid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activityactionrow" request="view table action" action="editPlugin activityactionsbrowser editrow" requestparameters="actionid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="editactivityaction" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_actions" class="\CB\Plugin\Activity\Table\ActionTable" key="id" value="actionid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activitylocationrow" request="view table action" action="editPlugin activitylocationsbrowser editrow" requestparameters="locationid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="editactivitylocation" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_locations" class="\CB\Plugin\Activity\Table\LocationTable" key="id" value="locationid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activityemoterow" request="view table action" action="editPlugin activityemotesbrowser editrow" requestparameters="emoteid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="editactivityemote" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_emotes" class="\CB\Plugin\Activity\Table\EmoteTable" key="id" value="emoteid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="activityliketyperow" request="view table action" action="editPlugin activityliketypesbrowser editrow" requestparameters="liketypeid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.activity" mandatory="true" />
+			<showview view="editactivityliketype" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_activity_like_types" class="\CB\Plugin\Activity\Table\LikeTypeTable" key="id" value="liketypeid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="plugin" request="view table" action="editrow pluginsbrowser" requestparameters="cid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbactivity/xml/models/model.activity" mandatory="false" />
+		</action>
+
+		<action name="tab" request="view table" action="editrow tabsbrowser" requestparameters="cid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbactivity/xml/models/model.activity" mandatory="false" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbactivityoverrides" mandatory="false" mode="extend" keyattribute="name" />
+		</action>
+
+		<action name="field" request="view table" action="editrow fieldsbrowser" requestparameters="cid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbactivity/xml/models/model.activity" mandatory="false" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbactivityoverrides" mandatory="false" mode="extend" keyattribute="name" />
+		</action>
+	</actions>
+	<views>
+		<view name="pluginmenu" type="params" ui="admin" label="" viewformatting="none">
+			<param name="activity" type="button" default="Activity" buttonclass="default" buttonsize="xsmall" link="cb_action:activityrows" parameters="cid" paramvalues="id" label="" />
+			<param name="notifications" type="button" default="Notifications" buttonclass="default" buttonsize="xsmall" link="cb_action:activitynotificationrows" parameters="cid" paramvalues="id" label="" />
+			<param name="comments" type="button" default="Comments" buttonclass="default" buttonsize="xsmall" link="cb_action:activitycommentrows" parameters="cid" paramvalues="id" label="" />
+			<param name="following" type="button" default="Following" buttonclass="default" buttonsize="xsmall" link="cb_action:activityfollowingrows" parameters="cid" paramvalues="id" label="" />
+			<param name="likes" type="button" default="Likes" buttonclass="default" buttonsize="xsmall" link="cb_action:activitylikesrows" parameters="cid" paramvalues="id" label="" />
+			<param name="hidden" type="button" default="Hidden" buttonclass="default" buttonsize="xsmall" link="cb_action:hiddenactivityrows" parameters="cid" paramvalues="id" label="" />
+			<param name="tags" type="button" default="Tags" buttonclass="default" buttonsize="xsmall" link="cb_action:activitytagrows" parameters="cid" paramvalues="id" label="" />
+			<param name="actions" type="button" default="Actions" buttonclass="default" buttonsize="xsmall" link="cb_action:activityactionrows" parameters="cid" paramvalues="id" label="" />
+			<param name="locations" type="button" default="Locations" buttonclass="default" buttonsize="xsmall" link="cb_action:activitylocationrows" parameters="cid" paramvalues="id" label="" />
+			<param name="emotes" type="button" default="Emotes" buttonclass="default" buttonsize="xsmall" link="cb_action:activityemoterows" parameters="cid" paramvalues="id" label="" />
+		</view>
+	</views>
+</cbxml>

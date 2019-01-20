@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbinstall version="1.0" type="plugin" group="user">
+	<name>CB Auto Actions</name>
+	<author>Krileon</author>
+	<creationDate>2018-01-01</creationDate>
+	<copyright>(C) 2004-2018 www.joomlapolis.com / Lightning MultiCom SA - and its licensors, all rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2</license>
+	<authorEmail>krileon@joomlapolis.com</authorEmail>
+	<description>Perform actions at various Community Builder triggers.</description>
+	<version>2.1.3</version>
+	<release>7.1.0</release>
+	<installfile>install.cbautoactions.php</installfile>
+	<files>
+		<filename plugin="cbautoactions">cbautoactions.php</filename>
+		<filename>component.cbautoactions.php</filename>
+		<filename>install.cbautoactions.php</filename>
+		<filename>index.html</filename>
+		<foldername>language</foldername>
+		<foldername>library</foldername>
+		<foldername>xml</foldername>
+	</files>
+	<delete>
+		<filename>admin.cbautoactions.css</filename>
+		<filename>admin.cbautoactions.html.php</filename>
+		<filename>admin.cbautoactions.php</filename>
+		<filename>cbautoactions.class.php</filename>
+		<filename>plugin.cbautoactions.php</filename>
+		<filename>toolbar.cbautoactions.html.php</filename>
+		<filename>toolbar.cbautoactions.php</filename>
+		<foldername>models</foldername>
+		<foldername>images</foldername>
+		<foldername>js</foldername>
+	</delete>
+	<libraries>
+		<library name="CB/Plugin/AutoActions">
+			<files folder="library">
+				<filename>CBAutoActions.php</filename>
+				<filename>index.html</filename>
+				<foldername>Action</foldername>
+				<foldername>Table</foldername>
+				<foldername>Trigger</foldername>
+			</files>
+		</library>
+	</libraries>
+	<params>
+		<param name="general_menu" type="yesno" default="1" label="Admin Menu" description="Enable or disable usage of backend administrator menu." yes="Enable" no="Disable" />
+		<param name="internal_general_url" type="custom" class="\CB\Plugin\AutoActions\CBAutoActions" method="loadInternalGeneralURL" label="Internal General URL" description="Your site unique URL that can be used in HTTP requests, accessed directly, or in CRON to execute Internal General actions." />
+		<param name="internal_users_url" type="custom" class="\CB\Plugin\AutoActions\CBAutoActions" method="loadInternalUsersURL" label="Internal Users URL" description="Your site unique URL that can be used in HTTP requests, accessed directly, or in CRON to execute Internal Users actions on every CB user. To execute on a specific user or set of users include the users parameter as a comma separated list of user ids in the URL (e.g. users=62,38,43,29)." />
+		<param name="exclude" type="text" default="" size="30" label="Exclude" description="Input comma seperated list of user ids to be excluded from all auto actions (e.g. 62,39,21,8)." />
+	</params>
+	<database version="1">
+		<table name="#__comprofiler_plugin_autoactions" class="\CB\Plugin\AutoActions\Table\AutoActionTable" strict="false" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" />
+				<column name="system" type="sql:varchar(255)" default="" />
+				<column name="title" type="sql:varchar(255)" null="true" />
+				<column name="description" type="sql:text" null="true" />
+				<column name="type" type="sql:varchar(255)" />
+				<column name="trigger" type="sql:text" />
+				<column name="object" type="sql:int(11)" default="0" />
+				<column name="variable" type="sql:int(11)" default="1" />
+				<column name="access" type="sql:text" default="-1" />
+				<column name="conditions" type="sql:text" null="true" />
+				<column name="published" type="sql:int(11)" default="0" />
+				<column name="ordering" type="sql:int(11)" default="99999" />
+				<column name="params" type="sql:mediumtext" null="true" />
+			</columns>
+			<indexes strict="true" drop="never">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="published">
+					<column name="published" />
+					<column name="ordering" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+	</database>
+</cbinstall>

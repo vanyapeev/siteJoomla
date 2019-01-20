@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbinstall version="2.0" type="plugin" group="user">
+	<name>CB ProfileBook</name>
+	<author>Krileon</author>
+	<creationDate>2017-06-16</creationDate>
+	<copyright>(C) 2004-2017 www.joomlapolis.com / Lightning MultiCom SA - and its licensors, all rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2</license>
+	<authorEmail>krileon@joomlapolis.com</authorEmail>
+	<description>Provides each registered user with there own Guestbook like system, as well as a small blog and wall.</description>
+	<version>2.1.2</version>
+	<release>3.0.0+build.2017.06.16.03.19.08.580e243aa</release>
+	<files>
+		<filename plugin="cb.profilebook">cb.profilebook.php</filename>
+		<filename>component.cb.profilebook.php</filename>
+		<filename>index.html</filename>
+		<foldername>language</foldername>
+		<foldername>library</foldername>
+		<foldername>templates</foldername>
+		<foldername>xml</foldername>
+	</files>
+	<delete>
+		<filename>bb_adm.js</filename>
+		<filename>bb_adm.min.js</filename>
+		<foldername>classes</foldername>
+		<foldername>smilies</foldername>
+	</delete>
+	<libraries>
+		<library name="CB/Plugin/ProfileBook">
+			<files folder="library">
+				<filename>CBProfileBook.php</filename>
+				<filename>index.html</filename>
+				<foldername>Field</foldername>
+				<foldername>Table</foldername>
+				<foldername>Trigger</foldername>
+			</files>
+		</library>
+	</libraries>
+	<fieldtypes>
+		<field type="pb_profile_rating" label="Avg Profile Rating" unique="true">
+			<database version="1">
+				<table name="#__comprofiler" class="moscomprofiler" maintable="true" strict="false" drop="never" shared="true">
+					<columns>
+					</columns>
+				</table>
+			</database>
+			<params>
+				<showview view="fieldLayoutParams" mode="edit" type="view" />
+			</params>
+		</field>
+	</fieldtypes>
+	<tabs>
+		<tab name="ProfileBook" description="" class="getprofilebookTab" fields="1" position="cb_tabmain" displaytype="tab">
+			<params>
+				<tabpane name="profilebook">
+					<tabpanetab label="Display">
+						<param name="template" type="folderlist" default="-1" blanktext="Same as Global" label="Template" description="Select template to be used for this tab. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/" />
+						<param name="pbAllowSmiles" type="yesno" default="1" label="Smilies" description="Enable or disable parsing for smilies in signatures." yes="Enable" no="Disable" />
+						<param name="pbAllowBBCode" type="yesno" default="1" label="BBCode" description="Enable or disable parsing for BBCode in signatures." yes="Enable" no="Disable" />
+						<if name="pbAllowBBCode" operator="=" value="1" valuetype="const:string" type="showhide">
+							<param name="pbAllowImgBBCode" type="yesno" default="0" label="[img] BBCode" description="Enable or disable parsing for image BBCode in signatures." yes="Enable" no="Disable" />
+							<param name="pbAllowVideoBBCode" type="yesno" default="0" label="[video] BBCode" description="Enable or disable parsing for youtube video BBCode in signatures." yes="Enable" no="Disable" />
+						</if>
+					</tabpanetab>
+					<tabpanetab label="Signatures">
+						<param name="pbAllowAnony" type="yesno" default="0" label="Anonymous" description="Enable or disable anonymous guestbook signatures." yes="Enable" no="Disable" />
+						<param name="pbEnableRating" type="list" default="2" label="Rating" description="Select if guestbook signatures should allow or require rating the users profile.">
+							<option value="0">No</option>
+							<option value="1">Yes, Optional</option>
+							<option value="3">Yes, Mandatory</option>
+						</param>
+						<param name="pbCaptcha" type="list" default="1" label="Captcha" description="Select if captcha should be required for all users or only anonymous users. Moderators are exempt from this configuration.">
+							<option value="0">No</option>
+							<option value="1">Yes, only for not logged-in guests</option>
+							<option value="2">Yes, also for logged-in users</option>
+						</param>
+					</tabpanetab>
+					<tabpanetab label="Paging">
+						<param name="pbPagingEngabbled" type="yesno" default="1" label="Paging" description="Enable or disable usage of paging." yes="Enable" no="Disable" />
+						<param name="pbEntriesPerPage" type="text" default="10" size="5" label="Limit" description="Input page limit. Page limit determines how many signatures are displayed per page." />
+						<param name="pbSortDirection" type="list" default="DESC" translate-default="no" label="Order By" description="Select how to order the signatures.">
+							<option value="ASC">Date ASC</option>
+							<option value="DESC">Date DESC</option>
+						</param>
+					</tabpanetab>
+				</tabpane>
+			</params>
+			<fields>
+				<field type="radio" title="Enable Profile Entries" name="cb_pb_enable" description="Enable visitors to your profile to make comments about you and your profile." registration="0" readonly="0" profile="0">
+					<fieldvalue title="_UE_YES" ordering="1" sys="0" />
+					<fieldvalue title="_UE_NO" ordering ="2" sys="0" />
+				</field>
+				<field type="radio" title="Auto Publish" name="cb_pb_autopublish" description="Enable Auto Publish if you want entries submitted to be automatically approved and displayed on your profile." registration="0" readonly="0" profile="0" >
+					<fieldvalue title="_UE_YES" ordering="1" sys="0" />
+					<fieldvalue title="_UE_NO" ordering ="2" sys="0" />
+				</field>
+				<field type="radio" title="Notify Me" name="cb_pb_notifyme" description="Enable Notify Me if you'd like to receive an email notification each time someone submits an entry.  This is recommended if you are not using the Auto Publish feature." registration="0" readonly="0" profile="0" >
+					<fieldvalue title="_UE_YES" ordering="1" sys="0" />
+					<fieldvalue title="_UE_NO" ordering ="2" sys="0" />
+				</field>
+			</fields>
+		</tab>
+		<tab name="ProfileBlog" description="" class="getprofilebookblogTab" fields="1" position="cb_tabmain" displaytype="tab">
+			<params>
+				<tabpane name="profilebook">
+					<tabpanetab label="Display">
+						<param name="template" type="folderlist" default="-1" blanktext="Same as Global" label="Template" description="Select template to be used for this tab. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/" />
+						<param name="pbAllowSmiles" type="yesno" default="1" label="Smilies" description="Enable or disable parsing for smilies in blogs." yes="Enable" no="Disable" />
+						<param name="pbAllowBBCode" type="yesno" default="1" label="BBCode" description="Enable or disable parsing for BBCode in blogs." yes="Enable" no="Disable" />
+						<if name="pbAllowBBCode" operator="=" value="1" valuetype="const:string" type="showhide">
+							<param name="pbAllowImgBBCode" type="yesno" default="0" label="[img] BBCode" description="Enable or disable parsing for image BBCode in blogs." yes="Enable" no="Disable" />
+							<param name="pbAllowVideoBBCode" type="yesno" default="0" label="[video] BBCode" description="Enable or disable parsing for youtube video BBCode in blogs." yes="Enable" no="Disable" />
+						</if>
+					</tabpanetab>
+					<tabpanetab label="Paging">
+						<param name="pbPagingEngabbled" type="yesno" default="1" label="Paging" description="Enable or disable usage of paging." yes="Enable" no="Disable" />
+						<param name="pbEntriesPerPage" type="text" default="5" size="5" label="Limit" description="Input page limit. Page limit determines how many blogs are displayed per page." />
+						<param name="pbSortDirection" type="list" default="DESC" translate-default="no" label="Order By" description="Select how to order the blogs.">
+							<option value="ASC">Date ASC</option>
+							<option value="DESC">Date DESC</option>
+						</param>
+					</tabpanetab>
+				</tabpane>
+			</params>
+			<fields>
+				<field type="radio" title="Enable Profile Blog" name="cb_pb_enable_blog" description="Enable your blog on your profile." registration="0" readonly="0" profile="0">
+					<fieldvalue title="_UE_YES" ordering="1" sys="0" />
+					<fieldvalue title="_UE_NO" ordering ="2" sys="0" />
+				</field>
+			</fields>
+		</tab>
+		<tab name="ProfileWall" description="" class="getprofilebookwallTab" fields="1" position="cb_tabmain" displaytype="tab">
+			<params>
+				<tabpane name="profilebook">
+					<tabpanetab label="Display">
+						<param name="template" type="folderlist" default="-1" blanktext="Same as Global" label="Template" description="Select template to be used for this tab. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/" />
+						<param name="pbAllowSmiles" type="yesno" default="1" label="Smilies" description="Enable or disable parsing for smilies in posts." yes="Enable" no="Disable" />
+						<param name="pbAllowBBCode" type="yesno" default="1" label="BBCode" description="Enable or disable parsing for BBCode in posts." yes="Enable" no="Disable" />
+						<if name="pbAllowBBCode" operator="=" value="1" valuetype="const:string" type="showhide">
+							<param name="pbAllowImgBBCode" type="yesno" default="0" label="[img] BBCode" description="Enable or disable parsing for image BBCode in posts." yes="Enable" no="Disable" />
+							<param name="pbAllowVideoBBCode" type="yesno" default="0" label="[video] BBCode" description="Enable or disable parsing for youtube video BBCode in posts." yes="Enable" no="Disable" />
+						</if>
+					</tabpanetab>
+					<tabpanetab label="Posts">
+						<param name="pbAllowAnony" type="yesno" default="0" label="Anonymous" description="Enable or disable anonymous guestbook posts." yes="Enable" no="Disable" />
+						<param name="pbEnableRating" type="list" default="0" label="Rating" description="Select if guestbook posts should allow or require rating the users profile.">
+							<option value="0">No</option>
+							<option value="1">Yes, Optional</option>
+							<option value="3">Yes, Mandatory</option>
+						</param>
+						<param name="pbCaptcha" type="list" default="1" label="Captcha" description="Select if captcha should be required for all users or only anonymous users. Moderators are exempt from this configuration.">
+							<option value="0">No</option>
+							<option value="1">Yes, only for not logged-in guests</option>
+							<option value="2">Yes, also for logged-in users</option>
+						</param>
+					</tabpanetab>
+					<tabpanetab label="Paging">
+						<param name="pbPagingEngabbled" type="yesno" default="1" label="Paging" description="Enable or disable usage of paging." yes="Enable" no="Disable" />
+						<param name="pbEntriesPerPage" type="text" default="10" size="5" label="Limit" description="Input page limit. Page limit determines how many posts are displayed per page." />
+						<param name="pbSortDirection" type="list" default="DESC" translate-default="no" label="Order By" description="Select how to order the posts.">
+							<option value="ASC">Date ASC</option>
+							<option value="DESC">Date DESC</option>
+						</param>
+					</tabpanetab>
+				</tabpane>
+			</params>
+			<fields>
+				<field type="radio" title="Enable Profile Wall" name="cb_pb_enable_wall" description="Enable the wall on your profile so yourself and visitors can write on it." registration="0" readonly="0" profile="0">
+					<fieldvalue title="_UE_YES" ordering="1" sys="0" />
+					<fieldvalue title="_UE_NO" ordering ="2" sys="0" />
+				</field>
+				<field type="radio" title="Auto Publish" name="cb_pb_autopublish_wall" description="Enable Auto Publish if you want entries submitted to be automatically approved and displayed on your profile." registration="0" readonly="0" profile="0" >
+					<fieldvalue title="_UE_YES" ordering="1" sys="0" />
+					<fieldvalue title="_UE_NO" ordering ="2" sys="0" />
+				</field>
+				<field type="radio" title="Notify Me" name="cb_pb_notifyme_wall" description="Enable Notify Me if you'd like to receive an email notification each time someone submits an entry.  This is recommended if you are not using the Auto Publish feature." registration="0" readonly="0" profile="0" >
+					<fieldvalue title="_UE_YES" ordering="1" sys="0" />
+					<fieldvalue title="_UE_NO" ordering ="2" sys="0" />
+				</field>
+			</fields>
+		</tab>
+		<tab type="existingSytemTab" class="getStatusTab">
+			<fields>
+				<field type="pb_profile_rating" title="Rating" name="cb_pb_profile_rating" description="" registration="0" edit="0" profile="1" readonly="1" calculated="1" tab="Status" />
+			</fields>
+		</tab>
+	</tabs>
+	<params>
+		<param name="general_template" type="folderlist" default="default" label="Template" description="Select template to be used for all of CB ProfileBook. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprofilebook/templates/" />
+		<param name="general_class" type="text" default="" size="20" label="Class" description="Optionally add a class suffix to surrounding DIV encasing all of CB ProfileBook." />
+		<param name="general_delete" type="yesno" default="1" label="Auto Delete" description="Enable or disable automatic deletion of entries when a user is deleted." yes="Enable" no="Disable" />
+		<param name="general_menu" type="yesno" default="1" label="Admin Menu" description="Enable or disable usage of backend administrator menu." yes="Enable" no="Disable" />
+	</params>
+	<database version="1">
+		<table name="#__comprofiler_plug_profilebook" class="\CB\Plugin\ProfileBook\Table\EntryTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="mode" type="sql:char(1)" null="false" default="g" strict="true" />
+				<column name="posterid" type="sql:int(11)" unsigned="true" null="true" strict="true" />
+				<column name="posterip" type="sql:varchar(255)" strict="true" />
+				<column name="postername" type="sql:varchar(255)" null="true" default="" strict="true" />
+				<column name="posteremail" type="sql:varchar(255)" null="true" strict="true" />
+				<column name="posterlocation" type="sql:varchar(255)" null="true" strict="true" />
+				<column name="posterurl" type="sql:varchar(255)" null="true" strict="true" />
+				<column name="postervote" type="sql:int(11)" unsigned="true" null="true" strict="true" />
+				<column name="postertitle" type="sql:varchar(128)" strict="true" />
+				<column name="postercomment" type="sql:text" strict="true" />
+				<column name="date" type="sql:datetime" null="true" strict="true" />
+				<column name="userid" type="sql:int(11)" unsigned="true" strict="true" />
+				<column name="feedback" type="sql:text" null="true" strict="true" />
+				<column name="editdate" type="sql:datetime" null="true" strict="true" />
+				<column name="editedbyid" type="sql:int(11)" unsigned="true" strict="true" />
+				<column name="editedbyname" type="sql:varchar(255)" null="true" strict="true" />
+				<column name="published" type="sql:tinyint(3)" strict="true" />
+				<column name="status" type="sql:tinyint(3)" strict="true" />
+			</columns>
+			<indexes strict="true" drop="never">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="user_mode_date">
+					<column name="userid" />
+					<column name="mode" />
+					<column name="date" />
+				</index>
+				<index name="pub_user_mode_date">
+					<column name="published" />
+					<column name="userid" />
+					<column name="mode" />
+					<column name="date" />
+				</index>
+				<index name="mode_pub_date">
+					<column name="mode" />
+					<column name="published" />
+					<column name="date" />
+				</index>
+				<index name="status_user_mode">
+					<column name="status" />
+					<column name="userid" />
+					<column name="mode" />
+				</index>
+				<index name="poster_mode_pub_date">
+					<column name="posterid" />
+					<column name="mode" />
+					<column name="published" />
+					<column name="date" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+	</database>
+</cbinstall>

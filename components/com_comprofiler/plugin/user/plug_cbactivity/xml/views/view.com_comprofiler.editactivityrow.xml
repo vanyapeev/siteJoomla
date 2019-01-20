@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="editactivity" type="params" ui="admin" label="Activity" icon="list-alt" viewformatting="div">
+			<toolbarmenu>
+				<menu name="apply" action="apply" task="act=apply" label="Save" />
+				<menu name="save" action="save" task="act=save" label="Save &amp; Close" />
+				<menu name="savenew" action="custom" task="act=savenew" label="Save &amp; New" icon="save-new" />
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:activityrows" label="Cancel" />
+			</toolbarmenu>
+			<param name="" type="group" label="" display="2lines">
+				<param name="title" type="text" label="Title %s" description="Optionally input the activity title. Title is displayed to the right of the users name." size="80" />
+			</param>
+			<tabpane name="editpane">
+				<tabpanetab name="global" label="Global">
+					<grid fluid="true">
+						<gridcol size="9">
+							<gridrow>
+								<param name="message" type="textarea" rows="10" label="Message" display="2lines" description="Optionally input the activity message. Message is displayed below the activity header." cssclass="input-block" />
+								<param name="date" type="datetime" default="" timezone="RAW" label="Date" display="2lines" validate="required" description="Select a date for this activity." />
+								<params name="params" type="params">
+									<param name="modified" type="datetime" default="" timezone="RAW" label="Modified" display="2lines" description="Optionally select an edit date for this activity. This is typically only set when an existing activity entry has been edited." />
+									<if name="reported" nametype="param:string" operator="!=" value="" valuetype="const:string" type="condition">
+										<param name="reported" type="datetime" default="" timezone="RAW" label="Reported" display="2lines" description="This is the most recent date this activity was reported." mode="show" />
+									</if>
+								</params>
+							</gridrow>
+						</gridcol>
+						<gridcol size="3">
+							<gridrow>
+								<param name="published" type="published" default="1" label="Published" display="2lines" description="Select publish status of this activity. If unpublished this activity will not be visible to the public." />
+								<param name="asset" type="text" onchange="evaluate" label="Asset" display="2lines" size="25" validate="required" description="Input the asset for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+								<param name="user_id" type="user" label="Owner" display="2lines" size="5" validate="required" description="Input owner as single integer user_id." />
+								<params name="params" type="params">
+									<param name="reports" type="int" label="Reports" display="2lines" size="5" description="Optionally mark this activity as controversial. This is typically the number of times the activity has been reported. Once an activity entry reaches the report limit it will automatically become unpublished. Leave blank or set to 0 to reset the number of reports and unmark as controversial." />
+								</params>
+								<param name="pinned" type="yesno" label="Pinned" display="2lines" description="Select pinned status of this activity. If pinned this activity will always be displayed at the top of streams that display pinned activity." />
+							</gridrow>
+						</gridcol>
+					</grid>
+				</tabpanetab>
+				<tabpanetab name="params" label="Parameters">
+					<tabpane name="editactivityparams">
+						<tabpanetab name="activityaction" label="Action">
+							<params name="params" type="params">
+								<showview view="cbactivity_actionParams" mode="edit" type="view" />
+							</params>
+						</tabpanetab>
+						<tabpanetab name="activitylocation" label="Location">
+							<params name="params" type="params">
+								<showview view="cbactivity_locationParams" mode="edit" type="view" />
+							</params>
+						</tabpanetab>
+						<tabpanetab name="activitylinks" label="Links">
+							<params name="params" type="params">
+								<showview view="cbactivity_linksParams" mode="edit" type="view" />
+							</params>
+						</tabpanetab>
+						<showview name="params" view="activityparams" mandatory="false" formatting="tab">
+							<data name="params" type="sql:string" default="" />
+						</showview>
+						<showview name="params" path="views/view[@name=&quot;activityparams&quot;]" action="activity" type="plugins" formatting="tab">
+							<data name="params" type="sql:string" default="" />
+						</showview>
+						<tabpanetab name="activityoverrides" label="Overrides">
+							<params name="params" type="params">
+								<params name="defaults" type="params">
+									<tabpane name="activitydefaults">
+										<tabpanetab name="activitydefaultsgeneral" label="General">
+											<param name="menu" type="xml:activity_stream_yesno" default="-1" label="Menu Display" description="Optionally override displaying this activity menu. Note normal menu item access permissions still apply." />
+											<param name="edit" type="xml:activity_stream_yesno" default="-1" label="Edit Display" description="Optionally override displaying this activity edit menu. Note normal edit access permissions still apply." />
+										</tabpanetab>
+										<tabpanetab name="activitydefaultsactions" label="Actions">
+											<param name="actions" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying actions for this activity." />
+										</tabpanetab>
+										<tabpanetab name="activitydefaultslocations" label="Locations">
+											<param name="locations" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying locations for this activity." />
+										</tabpanetab>
+										<tabpanetab name="activitydefaultslinks" label="Links">
+											<param name="links" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying links for this activity." />
+										</tabpanetab>
+										<tabpanetab name="activitydefaultstags" label="Tags">
+											<param name="tags" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying tags for this activity." />
+											<param name="tags_asset" type="text" label="Asset" size="30" description="Optionally override the asset of the tags stream for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Additionally asset, stream, and activity values also supported." />
+											<param name="tags_user" type="user" label="Owner" size="30" description="Optionally override the owner of the tags stream for this activity as single integer user_id. Additionally user, stream, asset, and activity values also supported." />
+										</tabpanetab>
+										<tabpanetab name="activitydefaultslikes" label="Likes">
+											<param name="likes" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying likes for this activity." />
+											<param name="likes_asset" type="text" label="Asset" size="30" description="Optionally override the asset of the likes stream for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Additionally asset, stream, and activity values also supported." />
+											<param name="likes_user" type="user" label="Owner" size="30" description="Optionally override the owner of the likes stream for this activity as single integer user_id. Additionally user, stream, asset, and activity values also supported.." />
+										</tabpanetab>
+										<tabpanetab name="activitydefaultscomments" label="Comments">
+											<param name="comments" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying comments for this activity." />
+											<param name="comments_asset" type="text" label="Asset" size="30" description="Optionally override the asset of the comments stream for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Additionally asset, stream, and activity values also supported." />
+											<param name="comments_user" type="user" label="Owner" size="30" description="Optionally override the owner of the comments stream for this activity as single integer user_id. Additionally user, stream, asset, and activity values also supported." />
+										</tabpanetab>
+									</tabpane>
+								</params>
+							</params>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+			</tabpane>
+		</view>
+	</views>
+</cbxml>

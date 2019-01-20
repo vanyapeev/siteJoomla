@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="editactivitycomment" type="params" ui="admin" label="Comment" icon="list-alt" viewformatting="div">
+			<toolbarmenu>
+				<menu name="apply" action="apply" task="act=apply" label="Save" />
+				<menu name="save" action="save" task="act=save" label="Save &amp; Close" />
+				<menu name="savenew" action="custom" task="act=savenew" label="Save &amp; New" icon="save-new" />
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:activitycommentrows" label="Cancel" />
+			</toolbarmenu>
+			<tabpane name="editpane">
+				<tabpanetab name="global" label="Global">
+					<grid fluid="true">
+						<gridcol size="9">
+							<gridrow>
+								<param name="message" type="textarea" rows="10" label="Message" display="2lines" validate="required" description="Input the comment message." cssclass="input-block" />
+								<param name="date" type="datetime" default="" timezone="RAW" label="Date" display="2lines" validate="required" description="Select a date for this comment." />
+								<params name="params" type="params">
+									<param name="modified" type="datetime" default="" timezone="RAW" label="Modified" display="2lines" description="Optionally select an edit date for this comment. This is typically only set when an existing comment entry has been edited." />
+									<if name="reported" nametype="param:string" operator="!=" value="" valuetype="const:string" type="condition">
+										<param name="reported" type="datetime" default="" timezone="RAW" label="Reported" display="2lines" description="This is the most recent date this comment was reported." mode="show" />
+									</if>
+								</params>
+							</gridrow>
+						</gridcol>
+						<gridcol size="3">
+							<gridrow>
+								<param name="published" type="published" default="1" label="Published" display="2lines" description="Select publish status of this comment. If unpublished this comment will not be visible to the public." />
+								<param name="asset" type="text" onchange="evaluate" label="Asset" display="2lines" size="25" validate="required" description="Input the asset for this comment. Asset determines comment location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+								<param name="user_id" type="user" label="Owner" display="2lines" size="5" validate="required" description="Input owner as single integer user_id." />
+								<params name="params" type="params">
+									<param name="reports" type="int" label="Reports" display="2lines" size="5" description="Optionally mark this comment as controversial. This is typically the number of times the comment has been reported. Once an comment entry reaches the report limit it will automatically become unpublished. Leave blank or set to 0 to reset the number of reports and unmark as controversial." />
+								</params>
+								<param name="pinned" type="yesno" label="Pinned" display="2lines" description="Select pinned status of this comment. If pinned this comment will always be displayed at the top of streams that display pinned comments." />
+							</gridrow>
+						</gridcol>
+					</grid>
+				</tabpanetab>
+				<tabpanetab name="params" label="Parameters">
+					<tabpane name="editcommentparams">
+						<tabpanetab name="commentaction" label="Action">
+							<params name="params" type="params">
+								<showview view="cbactivity_actionParams" mode="edit" type="view" />
+							</params>
+						</tabpanetab>
+						<tabpanetab name="commentlocation" label="Location">
+							<params name="params" type="params">
+								<showview view="cbactivity_locationParams" mode="edit" type="view" />
+							</params>
+						</tabpanetab>
+						<tabpanetab name="commentlinks" label="Links">
+							<params name="params" type="params">
+								<showview view="cbactivity_linksParams" mode="edit" type="view" />
+							</params>
+						</tabpanetab>
+						<showview name="params" view="commentparams" mandatory="false" formatting="tab">
+							<data name="params" type="sql:string" default="" />
+						</showview>
+						<showview name="params" path="views/view[@name=&quot;commentparams&quot;]" action="comment" type="plugins" formatting="tab">
+							<data name="params" type="sql:string" default="" />
+						</showview>
+					</tabpane>
+				</tabpanetab>
+			</tabpane>
+		</view>
+	</views>
+</cbxml>

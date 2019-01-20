@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="showinstallsystemactions" type="params" ui="admin" label="Reinstall System Actions" icon="download" viewformatting="none">
+			<toolbarmenu>
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:systemactions" label="Close" />
+			</toolbarmenu>
+			<param name="" type="private" class="\CB\Plugin\AutoActions\CBAutoActions" method="installSystemActions" label="" display="2lines" />
+		</view>
+	</views>
+</cbxml>

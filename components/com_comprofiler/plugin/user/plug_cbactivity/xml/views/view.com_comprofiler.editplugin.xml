@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="plugincbactivity" type="params" ui="admin">
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbactivityglobals" mandatory="false" mode="extend" keyattribute="name" />
+		</view>
+	</views>
+</cbxml>

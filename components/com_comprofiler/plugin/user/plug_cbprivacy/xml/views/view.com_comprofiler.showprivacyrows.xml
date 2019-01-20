@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="showprivacy" type="params" ui="admin" label="Privacy" icon="list" viewformatting="none">
+			<tablebrowser name="privacybrowser" table="#__comprofiler_plugin_privacy" class="\CB\Plugin\Privacy\Table\PrivacyTable">
+				<toolbarmenu>
+					<menu name="new" action="linkAction" task="new" link="cbo:newrow" label="New" />
+					<menu name="edit" action="linkAction" task="edit" link="cbo:editrows/privacyid" label="Edit" />
+					<menu name="delete" action="linkAction" task="delete" link="cbo:deleterows" label="Delete" />
+					<menu name="cancel" action="linkAction" task="cancel" link="cb_action:plugins" label="Close" />
+				</toolbarmenu>
+				<quicksearchfields placeholder="Search Privacy..." size="30">
+					<field name="user">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+					</field>
+					<field name="asset" />
+					<field name="rule" />
+					<field name="id" valuetype="const:int" />
+				</quicksearchfields>
+				<filters>
+					<filter name="owner" value="username" valuetype="sql:string" type="string" label="" blanktext="Owner">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+					</filter>
+					<filter name="asset" valuetype="sql:string" type="string" label="" blanktext="Asset" />
+					<filter name="rule" valuetype="sql:string" type="list" label="" blanktext="- Select Rule -">
+						<data name="" type="private" class="\CB\Plugin\Privacy\CBPrivacy" method="getPrivacyOptions" />
+					</filter>
+					<filter name="id" type="field_show_only_if_selected" base="int" default="" label="" blanktext="- Select ID -" />
+				</filters>
+				<orderby>
+					<ordergroup name="id_asc" label="ID ascending">
+						<field name="id" ordering="ASC" />
+					</ordergroup>
+					<ordergroup name="id_desc" label="ID descending" default="true" translate-default="no">
+						<field name="id" ordering="DESC" />
+					</ordergroup>
+					<ordergroup name="user_asc" label="User ascending">
+						<field name="user_comment" type="sql:string" ordering="ASC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+						</field>
+					</ordergroup>
+					<ordergroup name="user_desc" label="User descending">
+						<field name="user_comment" type="sql:string" ordering="DESC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+						</field>
+					</ordergroup>
+				</orderby>
+				<listfields>
+					<header type="standard" />
+					<rows type="standard" height="auto">
+						<field name="" type="rownumber" width="1%" align="center" label="#" responsivehiddenon="xsmall" />
+						<field name="id" type="primarycheckbox" width="1%" align="center" />
+						<field name="username" type="string" link="cbo:rowedit" parameters="privacyid" paramvalues="id" align="left" label="User" allowordering="ascending,descending">
+							<data name="user_id" type="sql:field" />
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+						</field>
+						<field name="asset" type="string" width="20%" align="center" label="Asset" allowordering="ascending,descending" />
+						<field name="rule" type="group" width="15%" align="center" label="Rule" responsivehiddenon="xsmall" allowordering="ascending,descending">
+							<param name="rule" type="list" label="">
+								<data name="" type="private" class="\CB\Plugin\Privacy\CBPrivacy" method="getPrivacyOptions" />
+							</param>
+						</field>
+						<field name="id" type="int" width="5%" align="center" label="ID" allowordering="ascending,descending" />
+					</rows>
+				</listfields>
+				<batchprocess>
+					<batch name="user_id" type="text" label="" blanktext="Owner" />
+					<batch name="asset" type="text" label="" blanktext="Asset" />
+					<batch name="rule" valuetype="sql:string" type="list" label="" blanktext="- Select Rule -">
+						<data name="" type="private" class="\CB\Plugin\Privacy\CBPrivacy" method="getPrivacyOptions" />
+					</batch>
+				</batchprocess>
+			</tablebrowser>
+		</view>
+	</views>
+</cbxml>

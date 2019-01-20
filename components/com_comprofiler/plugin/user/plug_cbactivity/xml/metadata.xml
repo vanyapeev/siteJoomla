@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="request">
+		<fieldset name="request" label="">
+			<field name="action" type="list" required="true" default="recentactivity" label="Action" description="">
+				<option value="activity">Activity</option>
+				<option value="recentactivity">Recent Activity</option>
+				<option value="myactivity">My Activity</option>
+				<option value="hiddenactivity">Hidden Activity</option>
+				<option value="notifications">Notifications</option>
+				<option value="hiddennotifications">Hidden Notifications</option>
+				<option value="comments">Comments</option>
+				<option value="hiddencomments">Hidden Comments</option>
+				<option value="following">Following</option>
+				<option value="likes">Likes</option>
+			</field>
+		</fieldset>
+	</fields>
+	<fields name="params">
+		<fieldset name="activityoverrides" label="Activity">
+			<field type="spacer" label="&lt;strong&gt;Activity&lt;/strong&gt;&lt;hr/&gt;" />
+			<field name="activity_asset" type="text" label="Asset" description="Optionally input the comma separated assets for this activity. Asset determines activity location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for profile activity based off the viewing user (e.g. profile.[user_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars) in addition to custom [viwer_id] and [page_id]. The following custom assets can also be used: global, profile, connections, connectionsonly, self, self.connections, self.connectionsonly, user, user.connections, user.connectionsonly, displayed, displayed.connections, and displayed.connectionsonly." />
+			<field type="spacer" label="&lt;hr/&gt;Display&lt;hr/&gt;" />
+				<field name="activity_direction" type="list" default="-1" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top.">
+					<option value="-1">Same as Global</option>
+					<option value="up">Up</option>
+					<option value="down">Down</option>
+				</field>
+				<field name="activity_auto_update" type="list" default="-1" label="Auto Update" description="Enable or disable automatically updating the stream with newest entries. Note this is done at set intervals and will prepend new entries at the beginning of the stream based off the timestamp of the most recent entry.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_auto_load" type="list" default="-1" label="Auto Load" description="Enable or disable automatically loading in the next page. Note this is done at set intervals and will only load in the next page if the more button is visible during its check.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_pinned" type="list" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Create&lt;hr/&gt;" />
+				<field name="activity_create" type="list" default="-1" label="Create" description="Enable or disable creation of new posts.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_create_access" type="accesslevel" default="-1" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled.">
+					<option value="-1">Same as Global</option>
+				</field>
+				<field name="activity_create_connected" type="list" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_collapsed" type="list" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Paging&lt;hr/&gt;" />
+				<field name="activity_paging" type="list" default="-1" label="Paging" description="Enable or disable usage of paging.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_paging_first_limit" type="number" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				<field name="activity_paging_limit" type="number" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+			<field type="spacer" label="&lt;hr/&gt;Parser&lt;hr/&gt;" />
+				<field name="activity_parser_substitutions" type="list" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_parser_emotes" type="list" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_parser_hashtags" type="list" default="-1" label="Hashtags" description="Enable or disable parsing of messages for #hashtag filter links.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_parser_profiles" type="list" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_parser_links" type="list" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_parser_prepare" type="list" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Actions&lt;hr/&gt;" />
+				<field name="activity_actions" type="list" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_actions_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_actions_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_actions` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Locations&lt;hr/&gt;" />
+				<field name="activity_locations" type="list" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_locations_address_limit" type="number" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_locations_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_locations` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Links&lt;hr/&gt;" />
+				<field name="activity_links" type="list" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_links_embedded" type="list" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_links_link_limit" type="number" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+				<field name="activity_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+			<field type="spacer" label="&lt;hr/&gt;Tags&lt;hr/&gt;" />
+				<field name="activity_tags" type="list" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Likes&lt;hr/&gt;" />
+				<field name="activity_likes" type="list" default="-1" label="Likes" description="Enable or disable usage of likes." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_likes_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="activity_likes_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;&lt;strong&gt;Comments&lt;/strong&gt;&lt;hr/&gt;" />
+				<field name="activity_comments" type="list" default="-1" label="Comments" description="Enable or disable display of activity comments.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_direction" type="list" default="-1" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top.">
+					<option value="-1">Same as Global</option>
+					<option value="up">Up</option>
+					<option value="down">Down</option>
+				</field>
+				<field name="activity_comments_pinned" type="list" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Create&lt;hr/&gt;" />
+				<field name="activity_comments_create" type="list" default="-1" label="Create" description="Enable or disable creation of new posts.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_create_access" type="accesslevel" default="-1" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled.">
+					<option value="-1">Same as Global</option>
+				</field>
+				<field name="activity_comments_create_connected" type="list" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_comments_collapsed" type="list" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Paging&lt;hr/&gt;" />
+				<field name="activity_comments_paging" type="list" default="-1" label="Paging" description="Enable or disable usage of paging.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_paging_first_limit" type="number" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				<field name="activity_comments_paging_limit" type="number" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+			<field type="spacer" label="&lt;hr/&gt;Parser&lt;hr/&gt;" />
+				<field name="activity_comments_parser_substitutions" type="list" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_parser_emotes" type="list" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_parser_profiles" type="list" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_parser_links" type="list" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_parser_prepare" type="list" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Actions&lt;hr/&gt;" />
+				<field name="activity_comments_actions" type="list" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_actions_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_comments_actions_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_actions` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Locations&lt;hr/&gt;" />
+				<field name="activity_comments_locations" type="list" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_locations_address_limit" type="number" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_comments_locations_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_locations` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Links&lt;hr/&gt;" />
+				<field name="activity_comments_links" type="list" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_links_embedded" type="list" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_links_link_limit" type="number" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+				<field name="activity_comments_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+			<field type="spacer" label="&lt;hr/&gt;Tags&lt;hr/&gt;" />
+				<field name="activity_comments_tags" type="list" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Likes&lt;hr/&gt;" />
+				<field name="activity_comments_likes" type="list" default="-1" label="Likes" description="Enable or disable usage of likes." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_likes_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="activity_comments_likes_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;&lt;strong&gt;Replies&lt;/strong&gt;&lt;hr/&gt;" />
+				<field name="activity_comments_replies" type="list" default="-1" label="Replies" description="Enable or disable display of comment replies.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_direction" type="list" default="-1" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top.">
+					<option value="-1">Same as Global</option>
+					<option value="up">Up</option>
+					<option value="down">Down</option>
+				</field>
+				<field name="activity_comments_replies_pinned" type="list" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Create&lt;hr/&gt;" />
+				<field name="activity_comments_replies_create" type="list" default="-1" label="Create" description="Enable or disable creation of new posts.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_create_access" type="accesslevel" default="-1" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled.">
+					<option value="-1">Same as Global</option>
+				</field>
+				<field name="activity_comments_replies_create_connected" type="list" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_comments_replies_collapsed" type="list" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Paging&lt;hr/&gt;" />
+				<field name="activity_comments_replies_paging" type="list" default="-1" label="Paging" description="Enable or disable usage of paging.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_paging_first_limit" type="number" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				<field name="activity_comments_replies_paging_limit" type="number" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+			<field type="spacer" label="&lt;hr/&gt;Parser&lt;hr/&gt;" />
+				<field name="activity_comments_replies_parser_substitutions" type="list" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_parser_emotes" type="list" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_parser_profiles" type="list" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_parser_links" type="list" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_parser_prepare" type="list" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Actions&lt;hr/&gt;" />
+				<field name="activity_comments_replies_actions" type="list" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_actions_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_comments_replies_actions_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_actions` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Locations&lt;hr/&gt;" />
+				<field name="activity_comments_replies_locations" type="list" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_locations_address_limit" type="number" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="activity_comments_replies_locations_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_locations` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Links&lt;hr/&gt;" />
+				<field name="activity_comments_replies_links" type="list" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_links_embedded" type="list" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_links_link_limit" type="number" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+				<field name="activity_comments_replies_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+			<field type="spacer" label="&lt;hr/&gt;Tags&lt;hr/&gt;" />
+				<field name="activity_comments_replies_tags" type="list" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Likes&lt;hr/&gt;" />
+				<field name="activity_comments_replies_likes" type="list" default="-1" label="Likes" description="Enable or disable usage of likes." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="activity_comments_replies_likes_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="activity_comments_replies_likes_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+		</fieldset>
+		<fieldset name="notificationsoverrides" label="Notifications">
+			<field name="notifications_asset" type="text" label="Asset" description="Optionally input the comma separated assets for notifications. Asset determines notifications location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for all notifications based off the viewing user (e.g. profile.[user_id].field.[field_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars) in addition to custom [displayed_id] and [page_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+			<field type="spacer" label="&lt;hr/&gt;Display&lt;hr/&gt;" />
+				<field name="notifications_state" type="list" default="all" label="State" description="Select the read state to check this stream for. This determines if read posts, unread posts, or all posts should be displayed.">
+					<option value="all">All</option>
+					<option value="read">Read</option>
+					<option value="unread">Unread</option>
+				</field>
+				<field name="notifications_direction" type="list" default="-1" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_auto_update" type="list" default="-1" label="Auto Update" description="Enable or disable automatically updating the stream with newest entries. Note this is done at set intervals and will prepend new entries at the beginning of the stream based off the timestamp of the most recent entry.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_auto_load" type="list" default="-1" label="Auto Load" description="Enable or disable automatically loading in the next page. Note this is done at set intervals and will only load in the next page if the more button is visible during its check.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_pinned" type="list" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Paging&lt;hr/&gt;" />
+				<field name="notifications_paging" type="list" default="-1" label="Paging" description="Enable or disable usage of paging.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_paging_first_limit" type="number" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				<field name="notifications_paging_limit" type="number" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+			<field type="spacer" label="&lt;hr/&gt;Parser&lt;hr/&gt;" />
+				<field name="notifications_parser_substitutions" type="list" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_parser_emotes" type="list" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_parser_hashtags" type="list" default="-1" label="Hashtags" description="Enable or disable parsing of messages for #hashtag filter links.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_parser_profiles" type="list" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_parser_links" type="list" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="notifications_parser_prepare" type="list" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+		</fieldset>
+		<fieldset name="commentsoverrides" label="Comments">
+			<field type="spacer" label="&lt;strong&gt;Comments&lt;/strong&gt;&lt;hr/&gt;" />
+			<field name="comments_asset" type="text" label="Asset" description="Input the comma separated assets for comments. Asset determines comments location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Additionally substitutions are supported (e.g. profile.[user_id].cars) in addition to custom [viewer_id] and [page_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+			<field type="spacer" label="&lt;hr/&gt;Display&lt;hr/&gt;" />
+				<field name="comments_direction" type="list" default="-1" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." >
+					<option value="-1">Same as Global</option>
+					<option value="up">Up</option>
+					<option value="down">Down</option>
+				</field>
+				<field name="comments_pinned" type="list" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Create&lt;hr/&gt;" />
+				<field name="comments_create" type="list" default="-1" label="Create" description="Enable or disable creation of new posts." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_create_access" type="accesslevel" default="-1" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled." >
+					<option value="-1">Same as Global</option>
+				</field>
+				<field name="comments_create_connected" type="list" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="comments_collapsed" type="list" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Paging&lt;hr/&gt;" />
+				<field name="comments_paging" type="list" default="-1" label="Paging" description="Enable or disable usage of paging." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_paging_first_limit" type="number" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				<field name="comments_paging_limit" type="number" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+			<field type="spacer" label="&lt;hr/&gt;Parser&lt;hr/&gt;" />
+				<field name="comments_parser_substitutions" type="list" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_parser_emotes" type="list" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_parser_profiles" type="list" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_parser_links" type="list" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_parser_prepare" type="list" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Actions&lt;hr/&gt;" />
+				<field name="comments_actions" type="list" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_actions_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="comments_actions_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_actions` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what actions are included for selection. Note actions already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="comments_actions_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_actions` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Locations&lt;hr/&gt;" />
+				<field name="comments_locations" type="list" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_locations_address_limit" type="number" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="comments_locations_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_locations` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what locations to include for selection. Note locations already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="comments_locations_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_locations` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Links&lt;hr/&gt;" />
+				<field name="comments_links" type="list" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_links_embedded" type="list" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_links_link_limit" type="number" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+				<field name="comments_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+			<field type="spacer" label="&lt;hr/&gt;Tags&lt;hr/&gt;" />
+				<field name="comments_tags" type="list" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Likes&lt;hr/&gt;" />
+				<field name="comments_likes" type="list" default="-1" label="Likes" description="Enable or disable usage of likes." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_likes_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="comments_likes_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;&lt;strong&gt;Replies&lt;/strong&gt;&lt;hr/&gt;" />
+				<field name="comments_replies" type="list" default="-1" label="Replies" description="Enable or disable display of comment replies." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_direction" type="list" default="-1" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." >
+					<option value="-1">Same as Global</option>
+					<option value="up">Up</option>
+					<option value="down">Down</option>
+				</field>
+				<field name="comments_replies_pinned" type="list" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Create&lt;hr/&gt;" />
+				<field name="comments_replies_create" type="list" default="-1" label="Create" description="Enable or disable creation of new posts." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_create_access" type="accesslevel" default="-1" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled." >
+					<option value="-1">Same as Global</option>
+				</field>
+				<field name="comments_replies_create_connected" type="list" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="comments_replies_collapsed" type="list" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Paging&lt;hr/&gt;" />
+				<field name="comments_replies_paging" type="list" default="-1" label="Paging" description="Enable or disable usage of paging." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_paging_first_limit" type="number" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				<field name="comments_replies_paging_limit" type="number" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+			<field type="spacer" label="&lt;hr/&gt;Parser&lt;hr/&gt;" />
+				<field name="comments_replies_parser_substitutions" type="list" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_parser_emotes" type="list" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_parser_profiles" type="list" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_parser_links" type="list" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_parser_prepare" type="list" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Actions&lt;hr/&gt;" />
+				<field name="comments_replies_actions" type="list" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_actions_message_limit" type="number" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="comments_replies_actions_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_actions` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what actions are included for selection. Note actions already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="comments_replies_actions_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_actions` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Locations&lt;hr/&gt;" />
+				<field name="comments_replies_locations" type="list" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_locations_address_limit" type="number" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+				<field name="comments_replies_locations_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_locations` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what locations to include for selection. Note locations already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="comments_replies_locations_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_locations` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Links&lt;hr/&gt;" />
+				<field name="comments_replies_links" type="list" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_links_embedded" type="list" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_links_link_limit" type="number" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+				<field name="comments_replies_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+			<field type="spacer" label="&lt;hr/&gt;Tags&lt;hr/&gt;" />
+				<field name="comments_replies_tags" type="list" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Likes&lt;hr/&gt;" />
+				<field name="comments_replies_likes" type="list" default="-1" label="Likes" description="Enable or disable usage of likes." >
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+				<field name="comments_replies_likes_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="comments_replies_likes_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+		</fieldset>
+		<fieldset name="followingoverrides" label="Follow">
+			<field name="following_asset" type="text" label="Asset" description="Optionally input the comma separated assets to follow. Asset determines what stream will be followed (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank to follow the page by Itemid (e.g. page.[page_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, module.[module_id], page.[page_id]) in addition to custom [displayed_id], [viewer_id], [module_id], and [page_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+			<field type="spacer" label="&lt;hr/&gt;Display&lt;hr/&gt;" />
+				<field name="following_count" type="list" default="1" label="Count" description="Enable or disable the display of the follower count. Clicking the follower count will display a list of users following the asset.">
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Create&lt;hr/&gt;" />
+				<field name="following_connected" type="list" default="-1" label="Connected" description="Enable or disable connected check. This checks if the viewing user is connected to the asset (e.g. in cases of profile.USER_ID) or stream owner. This is in addition to registered user access check. If disabled only registered user access check will be used to determine following permission. Moderators are exempt from this configuration.">
+					<option value="-1">Same as Global</option>
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+		</fieldset>
+		<fieldset name="likesoverrides" label="Like">
+			<field name="likes_asset" type="text" label="Asset" description="Optionally input the comma separated assets to like. Asset determines what stream will be liked (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank to like the page by Itemid (e.g. page.[page_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, module.[module_id], page.[page_id]) in addition to custom [displayed_id], [viewer_id], [module_id], and [page_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+			<field type="spacer" label="&lt;hr/&gt;Display&lt;hr/&gt;" />
+				<field name="likes_count" type="list" default="1" label="Count" description="Enable or disable the display of the likes count. Clicking the likes count will display a list of users who liked the asset.">
+					<option value="1">Enable</option>
+					<option value="0">Disable</option>
+				</field>
+			<field type="spacer" label="&lt;hr/&gt;Create&lt;hr/&gt;" />
+				<field name="likes_include" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">All</option>
+				</field>
+				<field name="likes_exclude" type="sql" query="SELECT `id` AS value, `value` AS text FROM `#__comprofiler_plugin_activity_like_types` ORDER BY `ordering`" key_field="value" value_field="text" default="-1" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+					<option value="-1">Same as Global</option>
+					<option value="0">None</option>
+				</field>
+		</fieldset>
+	</fields>
+</form>

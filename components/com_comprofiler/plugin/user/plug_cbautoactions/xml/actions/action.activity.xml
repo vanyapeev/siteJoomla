@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="autoaction_type" base="xml:autoaction_type">
+			<option value="activity">CB Activity</option>
+		</type>
+		<type name="autoaction_triggers" base="xml:autoaction_triggers">
+			<optgroup label="CB Activity">
+				<option value="activity_onActivity" translate="no">activity_onActivity</option>
+				<option value="activity_onActivitySource" translate="no">activity_onActivitySource</option>
+				<option value="activity_onAfterCreateAction" translate="no">activity_onAfterCreateAction</option>
+				<option value="activity_onAfterCreateActivity" translate="no">activity_onAfterCreateActivity</option>
+				<option value="activity_onAfterCreateComment" translate="no">activity_onAfterCreateComment</option>
+				<option value="activity_onAfterCreateEmote" translate="no">activity_onAfterCreateEmote</option>
+				<option value="activity_onAfterCreateFollow" translate="no">activity_onAfterCreateFollow</option>
+				<option value="activity_onAfterCreateHidden" translate="no">activity_onAfterCreateHidden</option>
+				<option value="activity_onAfterCreateLike" translate="no">activity_onAfterCreateLike</option>
+				<option value="activity_onAfterCreateLikeType" translate="no">activity_onAfterCreateLikeType</option>
+				<option value="activity_onAfterCreateLocation" translate="no">activity_onAfterCreateLocation</option>
+				<option value="activity_onAfterCreateNotification" translate="no">activity_onAfterCreateNotification</option>
+				<option value="activity_onAfterCreateRead" translate="no">activity_onAfterCreateRead</option>
+				<option value="activity_onAfterCreateStreamActivity" translate="no">activity_onAfterCreateStreamActivity</option>
+				<option value="activity_onAfterCreateStreamComment" translate="no">activity_onAfterCreateStreamComment</option>
+				<option value="activity_onAfterCreateStreamTag" translate="no">activity_onAfterCreateStreamTag</option>
+				<option value="activity_onAfterCreateTag" translate="no">activity_onAfterCreateTag</option>
+				<option value="activity_onAfterDeleteAction" translate="no">activity_onAfterDeleteAction</option>
+				<option value="activity_onAfterDeleteActivity" translate="no">activity_onAfterDeleteActivity</option>
+				<option value="activity_onAfterDeleteComment" translate="no">activity_onAfterDeleteComment</option>
+				<option value="activity_onAfterDeleteEmote" translate="no">activity_onAfterDeleteEmote</option>
+				<option value="activity_onAfterDeleteFollow" translate="no">activity_onAfterDeleteFollow</option>
+				<option value="activity_onAfterDeleteHidden" translate="no">activity_onAfterDeleteHidden</option>
+				<option value="activity_onAfterDeleteLike" translate="no">activity_onAfterDeleteLike</option>
+				<option value="activity_onAfterDeleteLikeType" translate="no">activity_onAfterDeleteLikeType</option>
+				<option value="activity_onAfterDeleteLocation" translate="no">activity_onAfterDeleteLocation</option>
+				<option value="activity_onAfterDeleteNotification" translate="no">activity_onAfterDeleteNotification</option>
+				<option value="activity_onAfterDeleteRead" translate="no">activity_onAfterDeleteRead</option>
+				<option value="activity_onAfterDeleteStreamActivity" translate="no">activity_onAfterDeleteStreamActivity</option>
+				<option value="activity_onAfterDeleteStreamComment" translate="no">activity_onAfterDeleteStreamComment</option>
+				<option value="activity_onAfterDeleteStreamNotification" translate="no">activity_onAfterDeleteStreamNotification</option>
+				<option value="activity_onAfterDeleteStreamTag" translate="no">activity_onAfterDeleteStreamTag</option>
+				<option value="activity_onAfterDeleteTag" translate="no">activity_onAfterDeleteTag</option>
+				<option value="activity_onAfterDisplayActivityStream" translate="no">activity_onAfterDisplayActivityStream</option>
+				<option value="activity_onAfterDisplayActivityStreamButton" translate="no">activity_onAfterDisplayActivityStreamButton</option>
+				<option value="activity_onAfterDisplayCommentsStream" translate="no">activity_onAfterDisplayCommentsStream</option>
+				<option value="activity_onAfterDisplayCommentsStreamButton" translate="no">activity_onAfterDisplayCommentsStreamButton</option>
+				<option value="activity_onAfterDisplayFollowingStream" translate="no">activity_onAfterDisplayFollowingStream</option>
+				<option value="activity_onAfterDisplayLikesStream" translate="no">activity_onAfterDisplayLikesStream</option>
+				<option value="activity_onAfterDisplayNotificationsStream" translate="no">activity_onAfterDisplayNotificationsStream</option>
+				<option value="activity_onAfterDisplayNotificationsStreamButton" translate="no">activity_onAfterDisplayNotificationsStreamButton</option>
+				<option value="activity_onAfterDisplayStreamFollow" translate="no">activity_onAfterDisplayStreamFollow</option>
+				<option value="activity_onAfterDisplayStreamLike" translate="no">activity_onAfterDisplayStreamLike</option>
+				<option value="activity_onAfterDisplayStreamTagged" translate="no">activity_onAfterDisplayStreamTagged</option>
+				<option value="activity_onAfterDisplayTagsStream" translate="no">activity_onAfterDisplayTagsStream</option>
+				<option value="activity_onAfterFollowStream" translate="no">activity_onAfterFollowStream</option>
+				<option value="activity_onAfterHideStreamActivity" translate="no">activity_onAfterHideStreamActivity</option>
+				<option value="activity_onAfterHideStreamComment" translate="no">activity_onAfterHideStreamComment</option>
+				<option value="activity_onAfterLikeStream" translate="no">activity_onAfterLikeStream</option>
+				<option value="activity_onAfterPinStreamActivity" translate="no">activity_onAfterPinStreamActivity</option>
+				<option value="activity_onAfterPinStreamComment" translate="no">activity_onAfterPinStreamComment</option>
+				<option value="activity_onAfterReportStreamActivity" translate="no">activity_onAfterReportStreamActivity</option>
+				<option value="activity_onAfterReportStreamComment" translate="no">activity_onAfterReportStreamComment</option>
+				<option value="activity_onAfterUnfollowStream" translate="no">activity_onAfterUnfollowStream</option>
+				<option value="activity_onAfterUnfollowStreamActivity" translate="no">activity_onAfterUnfollowStreamActivity</option>
+				<option value="activity_onAfterUnhideStreamActivity" translate="no">activity_onAfterUnhideStreamActivity</option>
+				<option value="activity_onAfterUnhideStreamComment" translate="no">activity_onAfterUnhideStreamComment</option>
+				<option value="activity_onAfterUnlikeStream" translate="no">activity_onAfterUnlikeStream</option>
+				<option value="activity_onAfterUnpinStreamActivity" translate="no">activity_onAfterUnpinStreamActivity</option>
+				<option value="activity_onAfterUnpinStreamComment" translate="no">activity_onAfterUnpinStreamComment</option>
+				<option value="activity_onAfterUpdateAction" translate="no">activity_onAfterUpdateAction</option>
+				<option value="activity_onAfterUpdateActivity" translate="no">activity_onAfterUpdateActivity</option>
+				<option value="activity_onAfterUpdateComment" translate="no">activity_onAfterUpdateComment</option>
+				<option value="activity_onAfterUpdateEmote" translate="no">activity_onAfterUpdateEmote</option>
+				<option value="activity_onAfterUpdateFollow" translate="no">activity_onAfterUpdateFollow</option>
+				<option value="activity_onAfterUpdateHidden" translate="no">activity_onAfterUpdateHidden</option>
+				<option value="activity_onAfterUpdateLike" translate="no">activity_onAfterUpdateLike</option>
+				<option value="activity_onAfterUpdateLikeType" translate="no">activity_onAfterUpdateLikeType</option>
+				<option value="activity_onAfterUpdateLocation" translate="no">activity_onAfterUpdateLocation</option>
+				<option value="activity_onAfterUpdateNotification" translate="no">activity_onAfterUpdateNotification</option>
+				<option value="activity_onAfterUpdateRead" translate="no">activity_onAfterUpdateRead</option>
+				<option value="activity_onAfterUpdateStreamActivity" translate="no">activity_onAfterUpdateStreamActivity</option>
+				<option value="activity_onAfterUpdateStreamComment" translate="no">activity_onAfterUpdateStreamComment</option>
+				<option value="activity_onAfterUpdateTag" translate="no">activity_onAfterUpdateTag</option>
+				<option value="activity_onAssetSource" translate="no">activity_onAssetSource</option>
+				<option value="activity_onBeforeCreateAction" translate="no">activity_onBeforeCreateAction</option>
+				<option value="activity_onBeforeCreateActivity" translate="no">activity_onBeforeCreateActivity</option>
+				<option value="activity_onBeforeCreateComment" translate="no">activity_onBeforeCreateComment</option>
+				<option value="activity_onBeforeCreateEmote" translate="no">activity_onBeforeCreateEmote</option>
+				<option value="activity_onBeforeCreateFollow" translate="no">activity_onBeforeCreateFollow</option>
+				<option value="activity_onBeforeCreateHidden" translate="no">activity_onBeforeCreateHidden</option>
+				<option value="activity_onBeforeCreateLike" translate="no">activity_onBeforeCreateLike</option>
+				<option value="activity_onBeforeCreateLikeType" translate="no">activity_onBeforeCreateLikeType</option>
+				<option value="activity_onBeforeCreateLocation" translate="no">activity_onBeforeCreateLocation</option>
+				<option value="activity_onBeforeCreateNotification" translate="no">activity_onBeforeCreateNotification</option>
+				<option value="activity_onBeforeCreateRead" translate="no">activity_onBeforeCreateRead</option>
+				<option value="activity_onBeforeCreateStreamActivity" translate="no">activity_onBeforeCreateStreamActivity</option>
+				<option value="activity_onBeforeCreateStreamComment" translate="no">activity_onBeforeCreateStreamComment</option>
+				<option value="activity_onBeforeCreateStreamTag" translate="no">activity_onBeforeCreateStreamTag</option>
+				<option value="activity_onBeforeCreateTag" translate="no">activity_onBeforeCreateTag</option>
+				<option value="activity_onBeforeDeleteAction" translate="no">activity_onBeforeDeleteAction</option>
+				<option value="activity_onBeforeDeleteActivity" translate="no">activity_onBeforeDeleteActivity</option>
+				<option value="activity_onBeforeDeleteComment" translate="no">activity_onBeforeDeleteComment</option>
+				<option value="activity_onBeforeDeleteEmote" translate="no">activity_onBeforeDeleteEmote</option>
+				<option value="activity_onBeforeDeleteFollow" translate="no">activity_onBeforeDeleteFollow</option>
+				<option value="activity_onBeforeDeleteHidden" translate="no">activity_onBeforeDeleteHidden</option>
+				<option value="activity_onBeforeDeleteLike" translate="no">activity_onBeforeDeleteLike</option>
+				<option value="activity_onBeforeDeleteLikeType" translate="no">activity_onBeforeDeleteLikeType</option>
+				<option value="activity_onBeforeDeleteLocation" translate="no">activity_onBeforeDeleteLocation</option>
+				<option value="activity_onBeforeDeleteNotification" translate="no">activity_onBeforeDeleteNotification</option>
+				<option value="activity_onBeforeDeleteRead" translate="no">activity_onBeforeDeleteRead</option>
+				<option value="activity_onBeforeDeleteStreamActivity" translate="no">activity_onBeforeDeleteStreamActivity</option>
+				<option value="activity_onBeforeDeleteStreamComment" translate="no">activity_onBeforeDeleteStreamComment</option>
+				<option value="activity_onBeforeDeleteStreamNotification" translate="no">activity_onBeforeDeleteStreamNotification</option>
+				<option value="activity_onBeforeDeleteStreamTag" translate="no">activity_onBeforeDeleteStreamTag</option>
+				<option value="activity_onBeforeDeleteTag" translate="no">activity_onBeforeDeleteTag</option>
+				<option value="activity_onBeforeDisplayActivityStream" translate="no">activity_onBeforeDisplayActivityStream</option>
+				<option value="activity_onBeforeDisplayActivityStreamButton" translate="no">activity_onBeforeDisplayActivityStreamButton</option>
+				<option value="activity_onBeforeDisplayCommentsStream" translate="no">activity_onBeforeDisplayCommentsStream</option>
+				<option value="activity_onBeforeDisplayCommentsStreamButton" translate="no">activity_onBeforeDisplayCommentsStreamButton</option>
+				<option value="activity_onBeforeDisplayFollowingStream" translate="no">activity_onBeforeDisplayFollowingStream</option>
+				<option value="activity_onBeforeDisplayLikesStream" translate="no">activity_onBeforeDisplayLikesStream</option>
+				<option value="activity_onBeforeDisplayNotificationsStream" translate="no">activity_onBeforeDisplayNotificationsStream</option>
+				<option value="activity_onBeforeDisplayNotificationsStreamButton" translate="no">activity_onBeforeDisplayNotificationsStreamButton</option>
+				<option value="activity_onBeforeDisplayStreamFollow" translate="no">activity_onBeforeDisplayStreamFollow</option>
+				<option value="activity_onBeforeDisplayStreamLike" translate="no">activity_onBeforeDisplayStreamLike</option>
+				<option value="activity_onBeforeDisplayStreamTagged" translate="no">activity_onBeforeDisplayStreamTagged</option>
+				<option value="activity_onBeforeDisplayTagsStream" translate="no">activity_onBeforeDisplayTagsStream</option>
+				<option value="activity_onBeforeFollowStream" translate="no">activity_onBeforeFollowStream</option>
+				<option value="activity_onBeforeHideStreamActivity" translate="no">activity_onBeforeHideStreamActivity</option>
+				<option value="activity_onBeforeHideStreamComment" translate="no">activity_onBeforeHideStreamComment</option>
+				<option value="activity_onBeforeLikeStream" translate="no">activity_onBeforeLikeStream</option>
+				<option value="activity_onBeforePinStreamActivity" translate="no">activity_onBeforePinStreamActivity</option>
+				<option value="activity_onBeforePinStreamComment" translate="no">activity_onBeforePinStreamComment</option>
+				<option value="activity_onBeforeReportStreamActivity" translate="no">activity_onBeforeReportStreamActivity</option>
+				<option value="activity_onBeforeReportStreamComment" translate="no">activity_onBeforeReportStreamComment</option>
+				<option value="activity_onBeforeUnfollowStream" translate="no">activity_onBeforeUnfollowStream</option>
+				<option value="activity_onBeforeUnfollowStreamActivity" translate="no">activity_onBeforeUnfollowStreamActivity</option>
+				<option value="activity_onBeforeUnhideStreamActivity" translate="no">activity_onBeforeUnhideStreamActivity</option>
+				<option value="activity_onBeforeUnhideStreamComment" translate="no">activity_onBeforeUnhideStreamComment</option>
+				<option value="activity_onBeforeUnlikeStream" translate="no">activity_onBeforeUnlikeStream</option>
+				<option value="activity_onBeforeUnpinStreamActivity" translate="no">activity_onBeforeUnpinStreamActivity</option>
+				<option value="activity_onBeforeUnpinStreamComment" translate="no">activity_onBeforeUnpinStreamComment</option>
+				<option value="activity_onBeforeUpdateAction" translate="no">activity_onBeforeUpdateAction</option>
+				<option value="activity_onBeforeUpdateActivity" translate="no">activity_onBeforeUpdateActivity</option>
+				<option value="activity_onBeforeUpdateComment" translate="no">activity_onBeforeUpdateComment</option>
+				<option value="activity_onBeforeUpdateEmote" translate="no">activity_onBeforeUpdateEmote</option>
+				<option value="activity_onBeforeUpdateFollow" translate="no">activity_onBeforeUpdateFollow</option>
+				<option value="activity_onBeforeUpdateHidden" translate="no">activity_onBeforeUpdateHidden</option>
+				<option value="activity_onBeforeUpdateLike" translate="no">activity_onBeforeUpdateLike</option>
+				<option value="activity_onBeforeUpdateLikeType" translate="no">activity_onBeforeUpdateLikeType</option>
+				<option value="activity_onBeforeUpdateLocation" translate="no">activity_onBeforeUpdateLocation</option>
+				<option value="activity_onBeforeUpdateNotification" translate="no">activity_onBeforeUpdateNotification</option>
+				<option value="activity_onBeforeUpdateRead" translate="no">activity_onBeforeUpdateRead</option>
+				<option value="activity_onBeforeUpdateStreamActivity" translate="no">activity_onBeforeUpdateStreamActivity</option>
+				<option value="activity_onBeforeUpdateStreamComment" translate="no">activity_onBeforeUpdateStreamComment</option>
+				<option value="activity_onBeforeUpdateTag" translate="no">activity_onBeforeUpdateTag</option>
+				<option value="activity_onCommentSource" translate="no">activity_onCommentSource</option>
+				<option value="activity_onComments" translate="no">activity_onComments</option>
+				<option value="activity_onDisplayStreamActivity" translate="no">activity_onDisplayStreamActivity</option>
+				<option value="activity_onDisplayStreamActivityEdit" translate="no">activity_onDisplayStreamActivityEdit</option>
+				<option value="activity_onDisplayStreamActivityNew" translate="no">activity_onDisplayStreamActivityNew</option>
+				<option value="activity_onDisplayStreamAttachments" translate="no">activity_onDisplayStreamAttachments</option>
+				<option value="activity_onDisplayStreamComment" translate="no">activity_onDisplayStreamComment</option>
+				<option value="activity_onDisplayStreamCommentEdit" translate="no">activity_onDisplayStreamCommentEdit</option>
+				<option value="activity_onDisplayStreamCommentNew" translate="no">activity_onDisplayStreamCommentNew</option>
+				<option value="activity_onDisplayStreamNotification" translate="no">activity_onDisplayStreamNotification</option>
+				<option value="activity_onDisplayStreamTagsEdit" translate="no">activity_onDisplayStreamTagsEdit</option>
+				<option value="activity_onFollowSource" translate="no">activity_onFollowSource</option>
+				<option value="activity_onFollowing" translate="no">activity_onFollowing</option>
+				<option value="activity_onLikeSource" translate="no">activity_onLikeSource</option>
+				<option value="activity_onLikes" translate="no">activity_onLikes</option>
+				<option value="activity_onLoadActivityStream" translate="no">activity_onLoadActivityStream</option>
+				<option value="activity_onLoadCommentsStream" translate="no">activity_onLoadCommentsStream</option>
+				<option value="activity_onLoadFollowingStream" translate="no">activity_onLoadFollowingStream</option>
+				<option value="activity_onLoadLikesStream" translate="no">activity_onLoadLikesStream</option>
+				<option value="activity_onLoadNotificationsStream" translate="no">activity_onLoadNotificationsStream</option>
+				<option value="activity_onLoadTagsStream" translate="no">activity_onLoadTagsStream</option>
+				<option value="activity_onNotificationSource" translate="no">activity_onNotificationSource</option>
+				<option value="activity_onNotifications" translate="no">activity_onNotifications</option>
+				<option value="activity_onParse" translate="no">activity_onParse</option>
+				<option value="activity_onQueryActivityStream" translate="no">activity_onQueryActivityStream</option>
+				<option value="activity_onQueryCommentsStream" translate="no">activity_onQueryCommentsStream</option>
+				<option value="activity_onQueryFollowingStream" translate="no">activity_onQueryFollowingStream</option>
+				<option value="activity_onQueryLikesStream" translate="no">activity_onQueryLikesStream</option>
+				<option value="activity_onQueryNotificationsStream" translate="no">activity_onQueryNotificationsStream</option>
+				<option value="activity_onQueryTagsStream" translate="no">activity_onQueryTagsStream</option>
+				<option value="activity_onStreamAccess" translate="no">activity_onStreamAccess</option>
+				<option value="activity_onStreamCreateAccess" translate="no">activity_onStreamCreateAccess</option>
+				<option value="activity_onStreamModerateAccess" translate="no">activity_onStreamModerateAccess</option>
+				<option value="activity_onTagSource" translate="no">activity_onTagSource</option>
+				<option value="activity_onTags" translate="no">activity_onTags</option>
+			</optgroup>
+		</type>
+	</types>
+	<views>
+		<view name="actiontype_activity" type="params" ui="admin">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbactivity/xml/models/model.activity" mandatory="false" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbactivityoverrides" mandatory="false" mode="extend" keyattribute="name" />
+			<param name="" type="spacer" display="2lines" label="" default="Creates customized activity, comments, output streams, and much more." />
+			<params name="activity" type="params" repeat="true" label="" display="2lines">
+				<param name="mode" type="list" default="" blanktext="- Select Mode -" label="Mode" onchange="evaluate" description="Select the activity action mode.">
+					<option value="activity">Activity</option>
+					<option value="notification">Notification</option>
+					<option value="comment">Comment</option>
+					<option value="hidden">Hidden</option>
+					<option value="follow">Follow</option>
+					<option value="like">Like</option>
+					<option value="tag">Tag</option>
+					<option value="stream">Stream</option>
+				</param>
+				<if name="mode" nametype="param:string" operator="in" value="activity|*|notification|*|comment|*|hidden|*|follow|*|like|*|tag" valuetype="const:string" type="condition">
+					<param name="method" type="list" default="create" translate-default="no" label="Method" description="Select if a new entry should be created or an existing entry deleted.">
+						<option value="create">Create</option>
+						<option value="delete">Delete</option>
+					</param>
+					<if name="mode" nametype="param:string" operator="in" value="activity|*|notification|*|comment" valuetype="const:string" type="condition">
+						<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+							<param name="published" type="text" default="" label="Published" description="Optionally input the substitution supported published state for this entry. Note this will be converted to an integer with 1 being published and 0 being unpublished." size="15" />
+						</if>
+					</if>
+					<if name="mode" nametype="param:string" operator="in" value="activity|*|notification" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" description="Optionally input the substitution supported asset for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Leave blank to automatically set to profile.user_id." />
+						<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+							<param name="title" type="text" label="Title" description="Optionally input the substitution supported activity title. Title is displayed to the right of the users name." size="50" />
+							<param name="message" type="textarea" rows="5" label="Message" description="Optionally input the substitution supported activity message. Message is displayed below the activity header." cssclass="input-block" />
+						</if>
+					</if>
+					<if name="mode" nametype="param:string" operator="=" value="comment" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported asset for this comment. Asset determines comment location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+						<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+							<param name="message" type="textarea" rows="5" label="Message" description="Optionally input the substitution supported comment message. Message is displayed next to the commenters name." cssclass="input-block" />
+						</if>
+					</if>
+					<if name="mode" nametype="param:string" operator="=" value="hidden" valuetype="const:string" type="condition">
+						<param name="type" type="xml:activity_hidden_type" default="activity" translate-default="no" label="Type" description="Select the hidden item type. This determines what exactly is hidden." />
+						<param name="item" type="text" label="Item" size="30" validate="required" description="Input the substitution supported hidden item id. For activity supply the activity id. For comment supply the comment id. For asset supply the full asset to hide. For user supply the user id to hide." />
+					</if>
+					<if name="mode" nametype="param:string" operator="=" value="follow" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported asset to be followed. Asset determines what is being followed (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+					</if>
+					<if name="mode" nametype="param:string" operator="=" value="like" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported asset to be liked. Asset determines what is being liked (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+						<param name="type" type="list" label="Type" hideblanktext="always" description="Select the type of this like.">
+							<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+								<rows>
+									<field name="id" as="value" />
+									<field name="value" as="text" />
+								</rows>
+								<orderby>
+									<field name="ordering" ordering="ASC" />
+								</orderby>
+							</data>
+						</param>
+					</if>
+					<if name="mode" nametype="param:string" operator="=" value="tag" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported asset for this tag. Asset determines tag location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID)." />
+						<param name="tag" type="text" label="Tag" size="40" description="Input the substitution supported tag user as a single integer user_id or a name. Leave blank to use trigger user as the tag." />
+					</if>
+					<param name="owner" type="text" label="Owner" size="15" description="Input substitution supported owner as single integer user_id. Leave blank to use trigger user as the owner. Note this will result in user substitutions being from the specified user_id." />
+					<if name="mode" nametype="param:string" operator="=" value="notification" valuetype="const:string" type="condition">
+						<param name="user" type="text" label="User" size="15" description="Input substitution supported user as single integer user_id. This is the user who is receiving the notification. Leave blank to use trigger user as the user." />
+					</if>
+					<if name="mode" nametype="param:string" operator="in" value="activity|*|notification|*|comment|*|follow|*|like" valuetype="const:string" type="condition">
+						<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+							<if name="mode" nametype="param:string" operator="in" value="activity|*|notification|*|comment" valuetype="const:string" type="condition">
+								<if name="mode" nametype="param:string" operator="in" value="activity|*|comment" valuetype="const:string" type="condition">
+									<fieldset name="entryaction" label="Action">
+										<showview view="cbactivity_actionParams" mode="edit" type="view" />
+									</fieldset>
+									<fieldset name="entrylocation" label="Location">
+										<showview view="cbactivity_locationParams" mode="edit" type="view" />
+									</fieldset>
+								</if>
+								<fieldset name="entrylinks" label="Links">
+									<showview view="cbactivity_linksParams" mode="edit" type="view" />
+								</fieldset>
+								<if name="mode" nametype="param:string" operator="=" value="activity" valuetype="const:string" type="condition">
+									<fieldset name="activityoverrides" label="Overrides">
+										<params name="defaults" type="params">
+											<tabpane name="activitydefaults">
+												<tabpanetab name="activitydefaultsgeneral" label="General">
+													<param name="menu" type="xml:activity_stream_yesno" default="-1" label="Menu Display" description="Optionally override displaying this activity menu. Note normal menu item access permissions still apply." />
+													<param name="edit" type="xml:activity_stream_yesno" default="-1" label="Edit Display" description="Optionally override displaying this activity edit menu. Note normal edit access permissions still apply." />
+												</tabpanetab>
+												<tabpanetab name="activitydefaultsactions" label="Actions">
+													<param name="actions" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying actions for this activity." />
+												</tabpanetab>
+												<tabpanetab name="activitydefaultslocations" label="Locations">
+													<param name="locations" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying locations for this activity." />
+												</tabpanetab>
+												<tabpanetab name="activitydefaultslinks" label="Links">
+													<param name="links" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying links for this activity." />
+												</tabpanetab>
+												<tabpanetab name="activitydefaultstags" label="Tags">
+													<param name="tags" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying tags for this activity." />
+													<param name="tags_asset" type="text" label="Asset" size="30" description="Optionally substitution supported override the asset of the tags stream for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Additionally asset, stream, and activity values also supported." />
+													<param name="tags_user" type="user" label="Owner" size="30" description="Optionally substitution supported override the owner of the tags stream for this activity as single integer user_id. Additionally user, stream, asset, and activity values also supported." />
+												</tabpanetab>
+												<tabpanetab name="activitydefaultslikes" label="Likes">
+													<param name="likes" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying likes for this activity." />
+													<param name="likes_asset" type="text" label="Asset" size="30" description="Optionally substitution supported override the asset of the likes stream for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Additionally asset, stream, and activity values also supported." />
+													<param name="likes_user" type="user" label="Owner" size="30" description="Optionally substitution supported override the owner of the likes stream for this activity as single integer user_id. Additionally user, stream, asset, and activity values also supported.." />
+												</tabpanetab>
+												<tabpanetab name="activitydefaultscomments" label="Comments">
+													<param name="comments" type="xml:activity_stream_yesno" default="-1" label="Display" description="Optionally override displaying comments for this activity." />
+													<param name="comments_asset" type="text" label="Asset" size="30" description="Optionally substitution supported override the asset of the comments stream for this activity. Asset determines activity location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Additionally asset, stream, and activity values also supported." />
+													<param name="comments_user" type="user" label="Owner" size="30" description="Optionally substitution supported override the owner of the comments stream for this activity as single integer user_id. Additionally user, stream, asset, and activity values also supported." />
+												</tabpanetab>
+											</tabpane>
+										</params>
+									</fieldset>
+								</if>
+								<param name="pinned" type="text" default="" label="Pinned" description="Optionally input the substitution supported pinned status for this entry. If pinned this entry will always be displayed at the top of streams that display pinned entries. Note this will be converted to an integer with 1 being pinned and 0 being not pinned." size="15" />
+							</if>
+							<param name="date" type="text" default="" label="Date" size="30" description="Optionally input the datetime of when this entry should be created. If set to now the current datetime will always be used. If left blank will be the datetime the action triggered." />
+							<param name="create_by" type="list" default="asset" translate-default="no" label="Load" description="Select if this entry should be loaded by the selected criteria to see if it exists first. If it does exist it will be updated instead of a new entry created. Note only the first entry found will be loaded.">
+								<attributes>
+									<attribute name="default">
+										<if name="mode" nametype="param:string" operator="=" value="activity" valuetype="const:string" type="condition">
+											<then>
+												<param name="" default="asset" translate-default="no" type="string" />
+											</then>
+											<else>
+												<if name="mode" nametype="param:string" operator="=" value="notification" valuetype="const:string" type="condition">
+													<then>
+														<param name="" default="asset_owner_user" translate-default="no" type="string" />
+													</then>
+													<else>
+														<param name="" default="asset_owner" translate-default="no" type="string" />
+													</else>
+												</if>
+											</else>
+										</if>
+									</attribute>
+								</attributes>
+								<option value="none">None</option>
+								<option value="owner">By Owner Only</option>
+								<option value="asset">By Asset Only</option>
+								<option value="asset_owner">By Asset and Owner</option>
+								<if name="mode" nametype="param:string" operator="=" value="notification" valuetype="const:string" type="condition">
+									<option value="user">By User Only</option>
+									<option value="owner_user">By Owner and User</option>
+									<option value="asset_user">By Asset and User</option>
+									<option value="asset_owner_user">By Asset, Owner, and User</option>
+								</if>
+							</param>
+						</if>
+						<if name="method" nametype="param:string" operator="=" value="delete" valuetype="const:string" type="showhide">
+							<param name="delete_by" type="list" default="asset" translate-default="no" label="Load" description="Select what criteria to load by when deleting entries.">
+								<attributes>
+									<attribute name="default">
+										<if name="mode" nametype="param:string" operator="=" value="activity" valuetype="const:string" type="condition">
+											<then>
+												<param name="" default="asset" translate-default="no" type="string" />
+											</then>
+											<else>
+												<if name="mode" nametype="param:string" operator="=" value="notification" valuetype="const:string" type="condition">
+													<then>
+														<param name="" default="asset_owner_user" translate-default="no" type="string" />
+													</then>
+													<else>
+														<param name="" default="asset_owner" translate-default="no" type="string" />
+													</else>
+												</if>
+											</else>
+										</if>
+									</attribute>
+								</attributes>
+								<option value="owner">By Owner Only</option>
+								<option value="asset">By Asset Only</option>
+								<option value="asset_owner">By Asset and Owner</option>
+								<if name="mode" nametype="param:string" operator="=" value="notification" valuetype="const:string" type="condition">
+									<option value="user">By User Only</option>
+									<option value="owner_user">By Owner and User</option>
+									<option value="asset_user">By Asset and User</option>
+									<option value="asset_owner_user">By Asset, Owner, and User</option>
+								</if>
+							</param>
+						</if>
+					</if>
+				</if>
+				<if name="mode" nametype="param:string" operator="=" value="stream" valuetype="const:string" type="condition">
+					<param name="stream" type="list" default="" blanktext="- Select Type -" label="Stream" onchange="evaluate" description="Select the type of stream to display.">
+						<option value="activity">Activity</option>
+						<option value="notifications">Notifications</option>
+						<option value="comments">Comments</option>
+						<option value="follow">Follow</option>
+						<option value="like">Like</option>
+					</param>
+					<if name="stream" nametype="param:string" operator="=" value="activity" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" description="Optionally input the comma separated substitution supported assets for this activity. Asset determines activity location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for profile activity based off the owner (e.g. profile.[user_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, profile.[viewer_id].field.[field_id]) in addition to custom [displayed_id] and [viewer_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<fieldset name="activitystream" label="Activity">
+							<params name="activity_stream" type="params" label="">
+								<showview view="cbactivity_activityParams" mode="edit" type="view" />
+							</params>
+						</fieldset>
+					</if>
+					<if name="stream" nametype="param:string" operator="=" value="notifications" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" description="Optionally input the comma separated substitution supported assets for notifications. Asset determines notifications location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for all notifications based off the owner (e.g. notification.[user_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, profile.[viewer_id].field.[field_id]) in addition to custom [displayed_id] and [viewer_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<fieldset name="notificationsstream" label="Notifications">
+							<params name="notifications_stream" type="params" label="">
+								<showview view="cbactivity_notificationsParams" mode="edit" type="view" />
+							</params>
+						</fieldset>
+					</if>
+					<if name="stream" nametype="param:string" operator="=" value="comments" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the comma separated substitution supported assets for comments. Asset determines comments location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Additionally substitutions are supported (e.g. profile.[user_id].cars) in addition to custom [displayed_id] and [viewer_id]. The following custom assets can also be used: global, notifications, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<fieldset name="commentsstream" label="Comments">
+							<params name="comments_stream" type="params" label="">
+								<showview view="cbactivity_commentsParams" mode="edit" type="view" />
+							</params>
+						</fieldset>
+					</if>
+					<if name="stream" nametype="param:string" operator="=" value="follow" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported asset to follow. Asset determines what stream will be followed (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Additionally substitutions are supported (e.g. profile.[user_id].cars) in addition to custom [displayed_id] and [viewer_id]. The following custom assets can also be used: global, notifications, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<fieldset name="followingstream" label="Follow">
+							<params name="following_stream" type="params" label="">
+								<showview view="cbactivity_followParams" mode="edit" type="view" />
+							</params>
+						</fieldset>
+					</if>
+					<if name="stream" nametype="param:string" operator="=" value="like" valuetype="const:string" type="condition">
+						<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported asset to like. Asset determines what stream will be liked (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Additionally substitutions are supported (e.g. profile.[user_id].cars) in addition to custom [displayed_id] and [viewer_id]. The following custom assets can also be used: global, notifications, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<fieldset name="likesstream" label="Like">
+							<params name="likes_stream" type="params" label="">
+								<showview view="cbactivity_likesParams" mode="edit" type="view" />
+							</params>
+						</fieldset>
+					</if>
+					<if name="stream" nametype="param:string" operator="!=" value="" valuetype="const:string" type="condition">
+						<param name="moderators" type="text" size="40" label="Moderators" description="Optionally input the substitution supported moderators as comma separated list of integer user_ids. The supplied user ids will have moderator permissions for this stream." />
+						<param name="owner" type="text" label="Owner" size="15" description="Input substitution supported owner as single integer user_id. Leave blank to use trigger user as the owner. Note this will result in user substitutions being from the specified user_id." />
+					</if>
+				</if>
+			</params>
+		</view>
+	</views>
+</cbxml>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbinstall version="2.0" type="plugin" group="user">
+	<name>CB Profile Update Logger</name>
+	<author>Krileon</author>
+	<creationDate>2017-11-27</creationDate>
+	<copyright>(C) 2004-2017 www.joomlapolis.com / Lightning MultiCom SA - and its licensors, all rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2</license>
+	<authorEmail>krileon@joomlapolis.com</authorEmail>
+	<description>This is a CB plugin used to log profile update changes. The plugin creates a new table and stores frontend profile update events for each user profile. The events can be sent to moderators, superadmins or specific users and can be viewed in a special tab that will appear when moderators view user profiles and can also be configured to appear for profile owners also.</description>
+	<version>2.1.2</version>
+	<release>3.0.0+build.2017.11.27.15.50.24.c769ff50d</release>
+	<files>
+		<filename plugin="cb.pulog">cb.pulog.php</filename>
+		<filename>index.html</filename>
+		<foldername>language</foldername>
+		<foldername>library</foldername>
+		<foldername>templates</foldername>
+		<foldername>xml</foldername>
+	</files>
+	<libraries>
+		<library name="CB/Plugin/ProfileUpdateLogger">
+			<files folder="library">
+				<filename>CBProfileUpdateLogger.php</filename>
+				<filename>index.html</filename>
+				<foldername>Table</foldername>
+				<foldername>Trigger</foldername>
+			</files>
+		</library>
+	</libraries>
+	<params>
+		<tabpane name="pulogger">
+			<tabpanetab label="General">
+				<param name="general_template" type="folderlist" default="default" translate-default="no" label="Template" description="Select template to be used for all of CB Profile Update Logger. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprofileupdatelogger/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprofileupdatelogger/templates/" />
+				<param name="general_class" type="text" default="" size="20" label="Class" description="Optionally add a class suffix to surrounding DIV encasing all of CB CB Profile Update Logger." />
+				<param name="general_delete" type="yesno" default="1" label="Auto Delete" description="Enable or disable automatic deletion of logs when a user is deleted." yes="Enable" no="Disable" />
+				<param name="general_menu" type="yesno" default="1" label="Admin Menu" description="Enable or disable usage of backend administrator menu." yes="Enable" no="Disable" />
+			</tabpanetab>
+			<tabpanetab label="Logging">
+				<param name="pulBackEndLogging" type="yesno" default="1" label="Backend" description="Enable or disable logging of backend profile changes." yes="Enable" no="Disable" />
+				<param name="logging_exclude_users" type="text" default="" size="40" label="Exclude Users" description="Optionally input a comma separated list of user ids to ignore when checking for changes." />
+				<param name="logging_exclude_fields" type="field" multiple="true" key="name" size="10" default="" blanktext="- Select Fields -" label="Exclude Fields" description="Optionally select fields to ignore when checking for changes. Note the password field is always ignored." />
+				<param name="logging_exclude_types" type="list" multiple="true" size="10" default="" blanktext="- Select Field Types -" label="Exclude Field Types" description="Optionally select types of fields to ignore when checking for changes. Note password field types are always ignored.">
+					<data name="" type="sql:multiplerows" table="#__comprofiler_fields" key="fieldid">
+						<rows>
+							<field name="type" as="value" />
+							<field name="type" as="text" />
+						</rows>
+						<groupby>
+							<field name="type" type="field" />
+						</groupby>
+						<orderby>
+							<field name="type" ordering="ASC" />
+						</orderby>
+					</data>
+				</param>
+				<param name="pulEnableNotifications" type="yesno" default="1" label="Notify" description="Enable or disable notifying moderators of frontend profile changes." yes="Enable" no="Disable" />
+				<if name="pulEnableNotifications" operator="=" value="1" valuetype="const:int" type="showhide">
+					<param name="pulNotificationList" type="list" label="Notification Recipients" default="0" description="Select who to send notifications to.">
+						<option value="0">CB Moderators</option>
+						<option value="1">View Access Level</option>
+						<option value="2">Specific Users</option>
+					</param>
+					<if name="pulNotificationList" operator="=" value="1" valuetype="const:int" type="showhide">
+						<param name="pulNotificationAclList" type="viewaccesslevel" default="6" managelevels="false" blanktext="" label="Notify View Access Level" description="Select the view access level to send notifications to. All users with this view access level will be notified." />
+					</if>
+					<if name="pulNotificationList" operator="=" value="2" valuetype="const:int" type="showhide">
+						<param name="pulNotificationRecipientList" type="text" default="" label="Notify Users" description="Input a comma separated list of user ids to send notifications to." />
+					</if>
+					<param name="pulBackendNotifications" type="yesno" default="0" label="Backend Notify" description="Enable or disable notifications for backend profile changes." yes="Enable" no="Disable" />
+				</if>
+			</tabpanetab>
+		</tabpane>
+	</params>
+	<tabs>
+		<tab name="Update Log" description="This tab contains a log of profile updates made by user or moderators" class="getcbpuloggerTab" fields="0" position="cb_tabmain" displaytype="tab">
+			<params>
+				<tabpane name="pulogger">
+					<tabpanetab label="Display">
+						<param name="pulEnableTabUserView" type="yesno" default="0" label="Profile Owner" description="Enable or disable display of the profile update log to the profile owner in addition to moderators." yes="Enable" no="Disable" />
+					</tabpanetab>
+					<tabpanetab label="Signatures">
+						<param name="pulEnablePagingFE" type="yesno" default="1" label="Paging" description="Enable or disable usage of paging." yes="Enable" no="Disable" />
+						<param name="pulEntriesPerPageFE" type="text" default="20" size="5" label="Limit" description="Input page limit. Page limit determines how many changes are displayed per page." />
+					</tabpanetab>
+				</tabpane>
+			</params>
+		</tab>
+	</tabs>
+	<database version="1">
+		<table name="#__comprofiler_plug_pulogger" class="\CB\Plugin\ProfileUpdateLogger\Table\UpdateLogTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(10)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="changedate" type="sql:datetime" null="true" strict="true" />
+				<column name="profileid" type="sql:int(11)" null="true" strict="true" />
+				<column name="editedbyip" type="sql:varchar(255)" strict="true" />
+				<column name="editedbyid" type="sql:int(11)" unsigned="true" strict="true" />
+				<column name="mode" type="sql:tinyint(1)" default="0" strict="true" />
+				<column name="fieldname" type="sql:varchar(50)" strict="true" />
+				<column name="oldvalue" type="sql:text" strict="true" />
+				<column name="newvalue" type="sql:text" strict="true" />
+			</columns>
+			<indexes strict="true" drop="never">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="profile_change_date">
+					<column name="profileid" />
+					<column name="changedate" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+	</database>
+</cbinstall>

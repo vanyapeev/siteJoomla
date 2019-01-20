@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" group="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types />
+	<actions ui="admin" permission="core.manage" permissionasset="com_comprofiler">
+		<action name="privacyrows" request="view action" action="editPlugin showprivacy">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.privacy" mandatory="true" />
+			<showview view="showprivacy" mode="show" />
+		</action>
+
+		<action name="privacyrow" request="view table action" action="editPlugin privacybrowser editrow" requestparameters="privacyid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.privacy" mandatory="true" />
+			<showview view="editprivacy" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_privacy" class="\CB\Plugin\Privacy\Table\PrivacyTable" key="id" value="privacyid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="closedrows" request="view action" action="editPlugin showclosed">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.privacy" mandatory="true" />
+			<showview view="showclosed" mode="show" />
+		</action>
+
+		<action name="closedrow" request="view table action" action="editPlugin closedbrowser editrow" requestparameters="closedid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.privacy" mandatory="true" />
+			<showview view="viewclosed" mode="show">
+				<data name="" type="sql:row" table="#__comprofiler_plugin_privacy_closed" class="\CB\Plugin\Privacy\Table\ClosedTable" key="id" value="closedid" valuetype="request:int" />
+			</showview>
+		</action>
+
+		<action name="plugin" request="view table" action="editrow pluginsbrowser" requestparameters="cid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbprivacy/xml/models/model.privacy" mandatory="false" />
+		</action>
+
+		<action name="tab" request="view table" action="editrow tabsbrowser" requestparameters="cid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbprivacy/xml/models/model.privacy" mandatory="false" />
+			<extend toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="/components/com_comprofiler/plugin/user/plug_cbprivacy/xml/views/view.com_comprofiler.cbprivacyoverrides" mandatory="false" />
+		</action>
+
+		<action name="field" request="view table" action="editrow fieldsbrowser" requestparameters="cid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbprivacy/xml/models/model.privacy" mandatory="false" />
+			<extend toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="/components/com_comprofiler/plugin/user/plug_cbprivacy/xml/views/view.com_comprofiler.cbprivacyoverrides" mandatory="false" />
+		</action>
+	</actions>
+	<views>
+		<view name="pluginmenu" type="params" ui="admin" label="" viewformatting="none">
+			<param name="privacy" type="button" default="Privacy" buttonclass="default" buttonsize="xsmall" link="cb_action:privacyrows" parameters="cid" paramvalues="id" label="" />
+			<param name="closed" type="button" default="Closed" buttonclass="default" buttonsize="xsmall" link="cb_action:closedrows" parameters="cid" paramvalues="id" label="" />
+		</view>
+	</views>
+</cbxml>

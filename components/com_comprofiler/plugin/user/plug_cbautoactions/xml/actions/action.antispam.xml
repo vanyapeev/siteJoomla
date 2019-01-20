@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="autoaction_type" base="xml:autoaction_type">
+			<option value="antispam">CB AntiSpam</option>
+		</type>
+		<type name="autoaction_triggers" base="xml:autoaction_triggers">
+			<optgroup label="CB AntiSpam">
+				<option value="antispam_onAfterCreateAttempt" translate="no">antispam_onAfterCreateAttempt</option>
+				<option value="antispam_onAfterCreateBlock" translate="no">antispam_onAfterCreateBlock</option>
+				<option value="antispam_onAfterCreateLog" translate="no">antispam_onAfterCreateLog</option>
+				<option value="antispam_onAfterCreateWhitelist" translate="no">antispam_onAfterCreateWhitelist</option>
+				<option value="antispam_onAfterDeleteAttempt" translate="no">antispam_onAfterDeleteAttempt</option>
+				<option value="antispam_onAfterDeleteBlock" translate="no">antispam_onAfterDeleteBlock</option>
+				<option value="antispam_onAfterDeleteLog" translate="no">antispam_onAfterDeleteLog</option>
+				<option value="antispam_onAfterDeleteWhitelist" translate="no">antispam_onAfterDeleteWhitelist</option>
+				<option value="antispam_onAfterUpdateAttempt" translate="no">antispam_onAfterUpdateAttempt</option>
+				<option value="antispam_onAfterUpdateBlock" translate="no">antispam_onAfterUpdateBlock</option>
+				<option value="antispam_onAfterUpdateLog" translate="no">antispam_onAfterUpdateLog</option>
+				<option value="antispam_onAfterUpdateWhitelist" translate="no">antispam_onAfterUpdateWhitelist</option>
+				<option value="antispam_onBeforeCreateAttempt" translate="no">antispam_onBeforeCreateAttempt</option>
+				<option value="antispam_onBeforeCreateBlock" translate="no">antispam_onBeforeCreateBlock</option>
+				<option value="antispam_onBeforeCreateLog" translate="no">antispam_onBeforeCreateLog</option>
+				<option value="antispam_onBeforeCreateWhitelist" translate="no">antispam_onBeforeCreateWhitelist</option>
+				<option value="antispam_onBeforeDeleteAttempt" translate="no">antispam_onBeforeDeleteAttempt</option>
+				<option value="antispam_onBeforeDeleteBlock" translate="no">antispam_onBeforeDeleteBlock</option>
+				<option value="antispam_onBeforeDeleteLog" translate="no">antispam_onBeforeDeleteLog</option>
+				<option value="antispam_onBeforeDeleteWhitelist" translate="no">antispam_onBeforeDeleteWhitelist</option>
+				<option value="antispam_onBeforeUpdateAttempt" translate="no">antispam_onBeforeUpdateAttempt</option>
+				<option value="antispam_onBeforeUpdateBlock" translate="no">antispam_onBeforeUpdateBlock</option>
+				<option value="antispam_onBeforeUpdateLog" translate="no">antispam_onBeforeUpdateLog</option>
+				<option value="antispam_onBeforeUpdateWhitelist" translate="no">antispam_onBeforeUpdateWhitelist</option>
+			</optgroup>
+		</type>
+	</types>
+	<views>
+		<view name="actiontype_antispam" type="params" ui="admin">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbantispam/xml/models/model.antispam" mandatory="false" />
+			<param name="" type="spacer" display="2lines" label="" default="Creates customized blocks and whitelists." />
+			<params name="antispam" type="params" repeat="true" label="" display="2lines">
+				<param name="mode" type="list" default="block" translate-default="no" label="Mode" description="Select if to create a Block, a Whitelist entry, or display captcha.">
+					<option value="block">Block</option>
+					<option value="whitelist">Whitelist</option>
+					<option value="captcha">Captcha</option>
+				</param>
+				<if name="mode" nametype="param:string" operator="in" value="block|*|whitelist" valuetype="const:string" type="showhide">
+					<param name="type" type="xml:antispam_block_type" default="user" translate-default="no" label="Type" description="Select the type. Type determines what value should be supplied." />
+					<param name="value" type="text" label="Value" description="Optionally input the substitution supported value in relation to the type. User type use the users user_id (e.g. 42). IP Address type use a full valid IP Address (e.g. 192.168.0.1). IP Address Range type use two full valid IP Addresses separated by a colon (e.g. 192.168.0.1:192.168.0.100). Email type use a fill valid email address (e.g. invalid@cb.invalid). Email Domain type use a full email address domain after @ (e.g. example.com). Additionally IP Address, Email Address, and Email Domain types support % wildcard. Leave blank to use the trigger user as the value in relation to the type." />
+					<if name="mode" nametype="param:string" operator="=" value="block" valuetype="const:string" type="showhide">
+						<param name="duration" type="xml:antispam_block_duration" default="+1 MONTH" translate-default="no" label="Duration" description="Select the duration that will be added to the current datetime the action is fired.">
+							<option value="custom">Custom</option>
+						</param>
+						<if name="duration" nametype="param:string" operator="=" value="custom" valuetype="const:string" type="showhide">
+							<param name="custom_duration" type="text" label="Custom Duration" description="Optionally input the substitution supported strtotime relative date (e.g. +1 Day). This duration will be added to the current datetime the action is fired. Leave blank for forever." />
+						</if>
+					</if>
+					<param name="reason" type="textarea" cols="40" rows="5" label="Reason" description="Optionally input the substitution supported reason. If left blank will default to spam." class="input-block" />
+				</if>
+				<if name="mode" nametype="param:string" operator="=" value="captcha" valuetype="const:string" type="showhide">
+					<param name="method" type="list" default="display" translate-default="no" label="Method" description="Select if displaying the captcha or validating it. Validate method will return true if successful or false if failed.">
+						<option value="display">Display</option>
+						<option value="validate">Validate</option>
+					</param>
+					<param name="captcha" type="xml:antispam_captcha_mode" default="-1" blanktext="Same as Global" label="Captcha" description="Select the type of captcha to display or validate." />
+					<param name="name" type="text" label="Name" description="Optionally input the substitution supported name for this captcha. This should be unique per captcha. If left blank will default to autoaction.ACTION_ID." />
+					<if name="method" nametype="param:string" operator="=" value="validate" valuetype="const:string" type="showhide">
+						<param name="error" type="textarea" cols="40" rows="5" label="Error" description="Optionally input the substitution supported error message if the captcha fails. The validation error will be set to any object in the trigger with a setError method. If no object can be found a global plugin error will be set." class="input-block" />
+					</if>
+				</if>
+			</params>
+		</view>
+	</views>
+</cbxml>

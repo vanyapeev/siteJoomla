@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="autoaction_type" base="xml:autoaction_type">
+			<option value="acymailing">AcyMailing</option>
+		</type>
+	</types>
+	<views>
+		<view name="actiontype_acymailing" type="params" ui="admin">
+			<param name="" type="spacer" display="2lines" label="" default="Adds, modifies, and removes users list subscriptions." />
+			<params name="acymailing" type="params" label="" display="2lines">
+				<param name="for" type="text" label="For" description="Optionally input substitution supported user as single integer user_id or email address. Leave blank to use trigger user. Note this will result in user substitutions being from the specified user_id." size="40" />
+				<param name="subscribe" type="list" multiple="true" size="10" label="Subscribe" description="Optionally select lists to subscribe the user to.">
+					<data name="" type="private" class="\CB\Plugin\AutoActions\Action\AcymailingAction" method="lists" />
+				</param>
+				<param name="unsubscribe" type="list" multiple="true" size="10" label="Unsubscribe" description="Optionally select lists to unsubscribe the user from.">
+					<data name="" type="private" class="\CB\Plugin\AutoActions\Action\AcymailingAction" method="lists" />
+				</param>
+				<param name="remove" type="list" multiple="true" size="10" label="Remove" description="Optionally select lists to remove the user from.">
+					<data name="" type="private" class="\CB\Plugin\AutoActions\Action\AcymailingAction" method="lists" />
+				</param>
+				<param name="pending" type="list" multiple="true" size="10" label="Pending" description="Optionally select lists to subscribe the user to as pending.">
+					<data name="" type="private" class="\CB\Plugin\AutoActions\Action\AcymailingAction" method="lists" />
+				</param>
+			</params>
+		</view>
+	</views>
+</cbxml>

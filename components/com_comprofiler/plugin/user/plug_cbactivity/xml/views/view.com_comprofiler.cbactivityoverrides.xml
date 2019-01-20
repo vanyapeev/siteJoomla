@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="cbactivity_activityParams" type="params" ui="admin">
+			<tabpane name="activity_override">
+				<tabpanetab label="Display">
+					<param name="activity_layout" type="list" default="stream" label="Layout" description="Select the layout for this stream. Button layout displays a button that displays the stream after clicking.">
+						<option value="stream">Stream</option>
+						<option value="button">Button</option>
+						<option value="toggle">Toggle</option>
+					</param>
+					<param name="activity_direction" type="xml:activity_direction" default="-1" blanktext="Same as Global" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." />
+					<param name="activity_auto_update" type="xml:activity_yesno" default="-1" label="Auto Update" description="Enable or disable automatically updating the stream with newest entries. Note this is done at set intervals and will prepend new entries at the beginning of the stream based off the timestamp of the most recent entry." />
+					<param name="activity_auto_load" type="xml:activity_yesno" default="-1" label="Auto Load" description="Enable or disable automatically loading in the next page. Note this is done at set intervals and will only load in the next page if the more button is visible during its check." />
+					<param name="activity_pinned" type="xml:activity_yesno" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." />
+				</tabpanetab>
+				<tabpanetab label="Create">
+					<param name="activity_create" type="xml:activity_yesno" default="-1" label="Create" description="Enable or disable creation of new posts." />
+					<param name="activity_create_access" type="viewaccesslevel" default="-1" managelevels="false" blanktext="Same as Global" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled." />
+					<param name="activity_create_connected" type="xml:activity_yesno" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission." />
+					<param name="activity_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+					<param name="activity_collapsed" type="xml:activity_yesno" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons." />
+				</tabpanetab>
+				<tabpanetab label="Paging">
+					<param name="activity_paging" type="xml:activity_yesno" default="-1" label="Paging" description="Enable or disable usage of paging." />
+					<param name="activity_paging_first_limit" type="int" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+					<param name="activity_paging_limit" type="int" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				</tabpanetab>
+				<tabpanetab label="Parser">
+					<param name="activity_parser_substitutions" type="xml:activity_yesno" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." />
+					<param name="activity_parser_emotes" type="xml:activity_yesno" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." />
+					<param name="activity_parser_hashtags" type="xml:activity_yesno" default="-1" label="Hashtags" description="Enable or disable parsing of messages for #hashtag filter links." />
+					<param name="activity_parser_profiles" type="xml:activity_yesno" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" />
+					<param name="activity_parser_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." />
+					<param name="activity_parser_prepare" type="xml:activity_yesno" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." />
+				</tabpanetab>
+				<tabpanetab label="Actions">
+					<tabpane name="activity_actions">
+						<tabpanetab label="Display">
+							<param name="activity_actions" type="xml:activity_yesno" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="activity_actions_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+							<param name="activity_actions_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what actions are included for selection. Note actions already selected will be unaffected.">
+								<option value="0">All</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+							<param name="activity_actions_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+								<option value="0">None</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Locations">
+					<tabpane name="activity_locations">
+						<tabpanetab label="Display">
+							<param name="activity_locations" type="xml:activity_yesno" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="activity_locations_address_limit" type="int" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+							<param name="activity_locations_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what locations to include for selection. Note locations already selected will be unaffected.">
+								<option value="0">All</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+							<param name="activity_locations_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+								<option value="0">None</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Links">
+					<tabpane name="activity_links">
+						<tabpanetab label="Display">
+							<param name="activity_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="activity_links_embedded" type="xml:activity_yesno" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message." />
+							<param name="activity_links_link_limit" type="int" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+						</tabpanetab>
+						<tabpanetab label="Validation">
+							<param name="activity_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Tags">
+					<param name="activity_tags" type="xml:activity_yesno" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting." />
+				</tabpanetab>
+				<tabpanetab label="Likes">
+					<tabpane name="activity_likes">
+						<tabpanetab label="Display">
+							<param name="activity_likes" type="xml:activity_yesno" default="-1" label="Likes" description="Enable or disable usage of likes." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="activity_likes_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+								<option value="0">All</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+							<param name="activity_likes_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+								<option value="0">None</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Comments">
+					<tabpane name="activity_comments">
+						<tabpanetab label="Display">
+							<param name="activity_comments" type="xml:activity_yesno" default="-1" label="Comments" description="Enable or disable display of activity comments." />
+							<param name="activity_comments_direction" type="xml:activity_direction" default="-1" blanktext="Same as Global" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." />
+							<param name="activity_comments_pinned" type="xml:activity_yesno" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="activity_comments_create" type="xml:activity_yesno" default="-1" label="Create" description="Enable or disable creation of new posts." />
+							<param name="activity_comments_create_access" type="viewaccesslevel" default="-1" managelevels="false" blanktext="Same as Global" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled." />
+							<param name="activity_comments_create_connected" type="xml:activity_yesno" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission." />
+							<param name="activity_comments_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+							<param name="activity_comments_collapsed" type="xml:activity_yesno" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons." />
+						</tabpanetab>
+						<tabpanetab label="Paging">
+							<param name="activity_comments_paging" type="xml:activity_yesno" default="-1" label="Paging" description="Enable or disable usage of paging." />
+							<param name="activity_comments_paging_first_limit" type="int" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+							<param name="activity_comments_paging_limit" type="int" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+						</tabpanetab>
+						<tabpanetab label="Parser">
+							<param name="activity_comments_parser_substitutions" type="xml:activity_yesno" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." />
+							<param name="activity_comments_parser_emotes" type="xml:activity_yesno" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." />
+							<param name="activity_comments_parser_profiles" type="xml:activity_yesno" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" />
+							<param name="activity_comments_parser_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." />
+							<param name="activity_comments_parser_prepare" type="xml:activity_yesno" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." />
+						</tabpanetab>
+						<tabpanetab label="Actions">
+							<tabpane name="activity_comments_actions">
+								<tabpanetab label="Display">
+									<param name="activity_comments_actions" type="xml:activity_yesno" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="activity_comments_actions_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+									<param name="activity_comments_actions_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what actions are included for selection. Note actions already selected will be unaffected.">
+										<option value="0">All</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+									<param name="activity_comments_actions_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+										<option value="0">None</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+						<tabpanetab label="Locations">
+							<tabpane name="activity_comments_locations">
+								<tabpanetab label="Display">
+									<param name="activity_comments_locations" type="xml:activity_yesno" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="activity_comments_locations_address_limit" type="int" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+									<param name="activity_comments_locations_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what locations to include for selection. Note locations already selected will be unaffected.">
+										<option value="0">All</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+									<param name="activity_comments_locations_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+										<option value="0">None</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+						<tabpanetab label="Links">
+							<tabpane name="activity_comments_links">
+								<tabpanetab label="Display">
+									<param name="activity_comments_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="activity_comments_links_embedded" type="xml:activity_yesno" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message." />
+									<param name="activity_comments_links_link_limit" type="int" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+								</tabpanetab>
+								<tabpanetab label="Validation">
+									<param name="activity_comments_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+						<tabpanetab label="Tags">
+							<param name="activity_comments_tags" type="xml:activity_yesno" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting." />
+						</tabpanetab>
+						<tabpanetab label="Likes">
+							<tabpane name="activity_comments_likes">
+								<tabpanetab label="Display">
+									<param name="activity_comments_likes" type="xml:activity_yesno" default="-1" label="Likes" description="Enable or disable usage of likes." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="activity_comments_likes_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+										<option value="0">All</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+									<param name="activity_comments_likes_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+										<option value="0">None</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+						<tabpanetab label="Replies">
+							<tabpane name="activity_comments_replies">
+								<tabpanetab label="Display">
+									<param name="activity_comments_replies" type="xml:activity_yesno" default="-1" label="Replies" description="Enable or disable display of comment replies." />
+									<param name="activity_comments_replies_direction" type="xml:activity_direction" default="-1" blanktext="Same as Global" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." />
+									<param name="activity_comments_replies_pinned" type="xml:activity_yesno" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="activity_comments_replies_create" type="xml:activity_yesno" default="-1" label="Create" description="Enable or disable creation of new posts." />
+									<param name="activity_comments_replies_create_access" type="viewaccesslevel" default="-1" managelevels="false" blanktext="Same as Global" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled." />
+									<param name="activity_comments_replies_create_connected" type="xml:activity_yesno" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission." />
+									<param name="activity_comments_replies_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+									<param name="activity_comments_replies_collapsed" type="xml:activity_yesno" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons." />
+								</tabpanetab>
+								<tabpanetab label="Paging">
+									<param name="activity_comments_replies_paging" type="xml:activity_yesno" default="-1" label="Paging" description="Enable or disable usage of paging." />
+									<param name="activity_comments_replies_paging_first_limit" type="int" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+									<param name="activity_comments_replies_paging_limit" type="int" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+								</tabpanetab>
+								<tabpanetab label="Parser">
+									<param name="activity_comments_replies_parser_substitutions" type="xml:activity_yesno" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." />
+									<param name="activity_comments_replies_parser_emotes" type="xml:activity_yesno" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." />
+									<param name="activity_comments_replies_parser_profiles" type="xml:activity_yesno" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" />
+									<param name="activity_comments_replies_parser_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." />
+									<param name="activity_comments_replies_parser_prepare" type="xml:activity_yesno" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." />
+								</tabpanetab>
+								<tabpanetab label="Actions">
+									<tabpane name="activity_comments_replies_actions">
+										<tabpanetab label="Display">
+											<param name="activity_comments_replies_actions" type="xml:activity_yesno" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting." />
+										</tabpanetab>
+										<tabpanetab label="Create">
+											<param name="activity_comments_replies_actions_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+											<param name="activity_comments_replies_actions_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what actions are included for selection. Note actions already selected will be unaffected.">
+												<option value="0">All</option>
+												<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+													<rows>
+														<field name="id" as="value" />
+														<field name="value" as="text" />
+													</rows>
+													<orderby>
+														<field name="ordering" ordering="ASC" />
+													</orderby>
+												</data>
+											</param>
+											<param name="activity_comments_replies_actions_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+												<option value="0">None</option>
+												<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+													<rows>
+														<field name="id" as="value" />
+														<field name="value" as="text" />
+													</rows>
+													<orderby>
+														<field name="ordering" ordering="ASC" />
+													</orderby>
+												</data>
+											</param>
+										</tabpanetab>
+									</tabpane>
+								</tabpanetab>
+								<tabpanetab label="Locations">
+									<tabpane name="activity_comments_replies_locations">
+										<tabpanetab label="Display">
+											<param name="activity_comments_replies_locations" type="xml:activity_yesno" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made." />
+										</tabpanetab>
+										<tabpanetab label="Create">
+											<param name="activity_comments_replies_locations_address_limit" type="int" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+											<param name="activity_comments_replies_locations_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what locations to include for selection. Note locations already selected will be unaffected.">
+												<option value="0">All</option>
+												<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+													<rows>
+														<field name="id" as="value" />
+														<field name="value" as="text" />
+													</rows>
+													<orderby>
+														<field name="ordering" ordering="ASC" />
+													</orderby>
+												</data>
+											</param>
+											<param name="activity_comments_replies_locations_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+												<option value="0">None</option>
+												<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+													<rows>
+														<field name="id" as="value" />
+														<field name="value" as="text" />
+													</rows>
+													<orderby>
+														<field name="ordering" ordering="ASC" />
+													</orderby>
+												</data>
+											</param>
+										</tabpanetab>
+									</tabpane>
+								</tabpanetab>
+								<tabpanetab label="Links">
+									<tabpane name="activity_comments_replies_links">
+										<tabpanetab label="Display">
+											<param name="activity_comments_replies_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post." />
+										</tabpanetab>
+										<tabpanetab label="Create">
+											<param name="activity_comments_replies_links_embedded" type="xml:activity_yesno" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message." />
+											<param name="activity_comments_replies_links_link_limit" type="int" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+										</tabpanetab>
+										<tabpanetab label="Validation">
+											<param name="activity_comments_replies_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+										</tabpanetab>
+									</tabpane>
+								</tabpanetab>
+								<tabpanetab label="Tags">
+									<param name="activity_comments_replies_tags" type="xml:activity_yesno" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting." />
+								</tabpanetab>
+								<tabpanetab label="Likes">
+									<tabpane name="activity_comments_replies_likes">
+										<tabpanetab label="Display">
+											<param name="activity_comments_replies_likes" type="xml:activity_yesno" default="-1" label="Likes" description="Enable or disable usage of likes." />
+										</tabpanetab>
+										<tabpanetab label="Create">
+											<param name="activity_comments_replies_likes_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+												<option value="0">All</option>
+												<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+													<rows>
+														<field name="id" as="value" />
+														<field name="value" as="text" />
+													</rows>
+													<orderby>
+														<field name="ordering" ordering="ASC" />
+													</orderby>
+												</data>
+											</param>
+											<param name="activity_comments_replies_likes_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+												<option value="0">None</option>
+												<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+													<rows>
+														<field name="id" as="value" />
+														<field name="value" as="text" />
+													</rows>
+													<orderby>
+														<field name="ordering" ordering="ASC" />
+													</orderby>
+												</data>
+											</param>
+										</tabpanetab>
+									</tabpane>
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+			</tabpane>
+		</view>
+		<view name="cbactivity_notificationsParams" type="params" ui="admin">
+			<tabpane name="notifications_override">
+				<tabpanetab label="Display">
+					<param name="notifications_layout" type="list" default="button" label="Layout" description="Select the layout for this stream. Button layout displays a button that displays the stream after clicking.">
+						<option value="stream">Stream</option>
+						<option value="button">Button</option>
+						<option value="toggle">Toggle</option>
+					</param>
+					<param name="notifications_state" type="list" default="unread" label="State" description="Select the read state to check this stream for. This determines if read posts, unread posts, or all posts should be displayed. Note when using button or toggle layout this is only used for the count display.">
+						<option value="all">All</option>
+						<option value="read">Read</option>
+						<option value="unread">Unread</option>
+					</param>
+					<param name="notifications_direction" type="xml:activity_direction" default="-1" blanktext="Same as Global" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." />
+					<param name="notifications_auto_update" type="xml:activity_yesno" default="-1" label="Auto Update" description="Enable or disable automatically updating the stream with newest entries. Note this is done at set intervals and will prepend new entries at the beginning of the stream based off the timestamp of the most recent entry." yes="Enable" no="Disable" />
+					<param name="notifications_auto_load" type="xml:activity_yesno" default="-1" label="Auto Load" description="Enable or disable automatically loading in the next page. Note this is done at set intervals and will only load in the next page if the more button is visible during its check." />
+					<param name="notifications_pinned" type="xml:activity_yesno" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." />
+				</tabpanetab>
+				<tabpanetab label="Paging">
+					<param name="notifications_paging" type="xml:activity_yesno" default="-1" label="Paging" description="Enable or disable usage of paging." yes="Enable" no="Disable" />
+					<param name="notifications_paging_first_limit" type="int" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+					<param name="notifications_paging_limit" type="int" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				</tabpanetab>
+				<tabpanetab label="Parser">
+					<param name="notifications_parser_substitutions" type="xml:activity_yesno" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." yes="Enable" no="Disable" />
+					<param name="notifications_parser_emotes" type="xml:activity_yesno" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." yes="Enable" no="Disable" />
+					<param name="notifications_parser_hashtags" type="xml:activity_yesno" default="-1" label="Hashtags" description="Enable or disable parsing of messages for #hashtag filter links." yes="Enable" no="Disable" />
+					<param name="notifications_parser_profiles" type="xml:activity_yesno" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" yes="Enable" no="Disable" />
+					<param name="notifications_parser_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." yes="Enable" no="Disable" />
+					<param name="notifications_parser_prepare" type="xml:activity_yesno" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." yes="Enable" no="Disable" />
+				</tabpanetab>
+			</tabpane>
+		</view>
+		<view name="cbactivity_commentsParams" type="params" ui="admin">
+			<tabpane name="comments_override">
+				<tabpanetab label="Display">
+					<param name="comments_layout" type="list" default="stream" label="Layout" description="Select the layout for this stream. Button layout displays a button that displays the stream after clicking.">
+						<option value="stream">Stream</option>
+						<option value="button">Button</option>
+						<option value="toggle">Toggle</option>
+					</param>
+					<param name="comments_direction" type="xml:activity_direction" default="-1" blanktext="Same as Global" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." />
+					<param name="comments_auto_update" type="xml:activity_yesno" default="-1" label="Auto Update" description="Enable or disable automatically updating the stream with newest entries. Note this is done at set intervals and will prepend new entries at the beginning of the stream based off the timestamp of the most recent entry." />
+					<param name="comments_auto_load" type="xml:activity_yesno" default="-1" label="Auto Load" description="Enable or disable automatically loading in the next page. Note this is done at set intervals and will only load in the next page if the more button is visible during its check." />
+					<param name="comments_pinned" type="xml:activity_yesno" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." />
+				</tabpanetab>
+				<tabpanetab label="Create">
+					<param name="comments_create" type="xml:activity_yesno" default="-1" label="Create" description="Enable or disable creation of new posts." />
+					<param name="comments_create_access" type="viewaccesslevel" default="-1" managelevels="false" blanktext="Same as Global" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled." />
+					<param name="comments_create_connected" type="xml:activity_yesno" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission." />
+					<param name="comments_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+					<param name="comments_collapsed" type="xml:activity_yesno" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons." />
+				</tabpanetab>
+				<tabpanetab label="Paging">
+					<param name="comments_paging" type="xml:activity_yesno" default="-1" label="Paging" description="Enable or disable usage of paging." />
+					<param name="comments_paging_first_limit" type="int" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+					<param name="comments_paging_limit" type="int" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+				</tabpanetab>
+				<tabpanetab label="Parser">
+					<param name="comments_parser_substitutions" type="xml:activity_yesno" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." />
+					<param name="comments_parser_emotes" type="xml:activity_yesno" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." />
+					<param name="comments_parser_profiles" type="xml:activity_yesno" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" />
+					<param name="comments_parser_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." />
+					<param name="comments_parser_prepare" type="xml:activity_yesno" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." />
+				</tabpanetab>
+				<tabpanetab label="Actions">
+					<tabpane name="comments_actions">
+						<tabpanetab label="Display">
+							<param name="comments_actions" type="xml:activity_yesno" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="comments_actions_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+							<param name="comments_actions_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what actions are included for selection. Note actions already selected will be unaffected.">
+								<option value="0">All</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+							<param name="comments_actions_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+								<option value="0">None</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Locations">
+					<tabpane name="comments_locations">
+						<tabpanetab label="Display">
+							<param name="comments_locations" type="xml:activity_yesno" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="comments_locations_address_limit" type="int" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+							<param name="comments_locations_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what locations to include for selection. Note locations already selected will be unaffected.">
+								<option value="0">All</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+							<param name="comments_locations_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+								<option value="0">None</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Links">
+					<tabpane name="comments_links">
+						<tabpanetab label="Display">
+							<param name="comments_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="comments_links_embedded" type="xml:activity_yesno" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message." />
+							<param name="comments_links_link_limit" type="int" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+						</tabpanetab>
+						<tabpanetab label="Validation">
+							<param name="comments_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Tags">
+					<param name="comments_tags" type="xml:activity_yesno" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting." />
+				</tabpanetab>
+				<tabpanetab label="Likes">
+					<tabpane name="comments_likes">
+						<tabpanetab label="Display">
+							<param name="comments_likes" type="xml:activity_yesno" default="-1" label="Likes" description="Enable or disable usage of likes." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="comments_likes_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+								<option value="0">All</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+							<param name="comments_likes_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+								<option value="0">None</option>
+								<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+									<rows>
+										<field name="id" as="value" />
+										<field name="value" as="text" />
+									</rows>
+									<orderby>
+										<field name="ordering" ordering="ASC" />
+									</orderby>
+								</data>
+							</param>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+				<tabpanetab label="Replies">
+					<tabpane name="comments_replies">
+						<tabpanetab label="Display">
+							<param name="comments_replies" type="xml:activity_yesno" default="-1" label="Replies" description="Enable or disable display of comment replies." />
+							<param name="comments_replies_direction" type="xml:activity_direction" default="-1" blanktext="Same as Global" label="Direction" description="Select what direction posts should load. If up then newest posts will be displayed at the bottom. If down then newest posts will be displayed at the top." />
+							<param name="comments_replies_pinned" type="xml:activity_yesno" default="-1" label="Pinned" description="Enable or disable display of pinned posts. When enabled pinned posts will always display at the top of the stream. When disabled pinned posts will display normally as if it was never pinned." />
+						</tabpanetab>
+						<tabpanetab label="Create">
+							<param name="comments_replies_create" type="xml:activity_yesno" default="-1" label="Create" description="Enable or disable creation of new posts." />
+							<param name="comments_replies_create_access" type="viewaccesslevel" default="-1" managelevels="false" blanktext="Same as Global" label="Create Access" description="Select post create access. Access determines who can post a new message. Moderators are exempt from this configuration unless disabled." />
+							<param name="comments_replies_create_connected" type="xml:activity_yesno" default="-1" label="Create Connected Access" description="Enable or disable connected create access. This checks if the viewing user is connected to the post owner or stream owner. This is in addition to Create Access. If disabled only Create Access will be used to determine posting permission." />
+							<param name="comments_replies_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+							<param name="comments_replies_collapsed" type="xml:activity_yesno" default="-1" label="Collapsed" description="Enable or disable collapsing of new post textarea and its buttons." />
+						</tabpanetab>
+						<tabpanetab label="Paging">
+							<param name="comments_replies_paging" type="xml:activity_yesno" default="-1" label="Paging" description="Enable or disable usage of paging." />
+							<param name="comments_replies_paging_first_limit" type="int" default="" size="5" label="Page First Limit" description="Input first page limit. First Page limit determines how many rows are displayed on the first page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+							<param name="comments_replies_paging_limit" type="int" default="" size="5" label="Page Limit" description="Input page limit. Page limit determines how many rows are displayed per page. If paging is disabled this can still be used to limit the number of rows displayed. Set to 0 for no limit." />
+						</tabpanetab>
+						<tabpanetab label="Parser">
+							<param name="comments_replies_parser_substitutions" type="xml:activity_yesno" default="-1" label="Substitutions" description="Enable or disable parsing of messages for substitutions." />
+							<param name="comments_replies_parser_emotes" type="xml:activity_yesno" default="-1" label="Emotes" description="Enable or disable parsing of messages for emote substitutions." />
+							<param name="comments_replies_parser_profiles" type="xml:activity_yesno" default="-1" label="Profile URLs" description="Enable or disable parsing of messages for @user_id and @username profile links" />
+							<param name="comments_replies_parser_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable parsing of messages for URLs into clickable links." />
+							<param name="comments_replies_parser_prepare" type="xml:activity_yesno" default="-1" label="Prepare Content" description="Enable or disable parsing of messages for Joomla content.prepare usages." />
+						</tabpanetab>
+						<tabpanetab label="Actions">
+							<tabpane name="comments_replies_actions">
+								<tabpanetab label="Display">
+									<param name="comments_replies_actions" type="xml:activity_yesno" default="-1" label="Actions" description="Enable or disable usage of actions. Actions help determine what the person is doing or what their current emotional state is at the time of posting." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="comments_replies_actions_message_limit" type="int" default="" size="5" label="Message Limit" description="Input maximum number of characters a action message can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+									<param name="comments_replies_actions_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what actions are included for selection. Note actions already selected will be unaffected.">
+										<option value="0">All</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+									<param name="comments_replies_actions_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude actions from being selected. Note actions already selected will be unaffected.">
+										<option value="0">None</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+						<tabpanetab label="Locations">
+							<tabpane name="comments_replies_locations">
+								<tabpanetab label="Display">
+									<param name="comments_replies_locations" type="xml:activity_yesno" default="-1" label="Locations" description="Enable or disable usage of locations. Locations help clarify where a post was physically made." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="comments_replies_locations_address_limit" type="int" default="" size="5" label="Address Limit" description="Input maximum number of characters a location address can have. If 0 allow unlimited character limit. Moderators are exempt from this configuration." />
+									<param name="comments_replies_locations_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what locations to include for selection. Note locations already selected will be unaffected.">
+										<option value="0">All</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+									<param name="comments_replies_locations_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude locations from being selected. Note locations already selected will be unaffected.">
+										<option value="0">None</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+						<tabpanetab label="Links">
+							<tabpane name="comments_replies_links">
+								<tabpanetab label="Display">
+									<param name="comments_replies_links" type="xml:activity_yesno" default="-1" label="Links" description="Enable or disable usage of links. Links make it easy to attach images, photos, videos, music, and even websites to a post." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="comments_replies_links_embedded" type="xml:activity_yesno" default="-1" label="Embedded Links" description="Enable or disable parsing of embedded URLs to links. Embedded URLs are URLs supplied directly in a message." />
+									<param name="comments_replies_links_link_limit" type="int" default="" size="5" label="Link Limit" description="Input maximum number of links a post can have. Set to 0 for unlimited links. Moderators are exempt from this configuration." />
+								</tabpanetab>
+								<tabpanetab label="Validation">
+									<param name="comments_replies_links_file_extensions" type="text" default="" size="30" label="Link File Extensions" description="Input a comma separated list of file extensions to be parsed as file links. File links attempt to parse out relevant download information like modify date, file size, and extension." />
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+						<tabpanetab label="Tags">
+							<param name="comments_replies_tags" type="xml:activity_yesno" default="-1" label="Tags" description="Enable or disable usage of tags. Tags help determine who the user is with at time of posting." />
+						</tabpanetab>
+						<tabpanetab label="Likes">
+							<tabpane name="comments_replies_likes">
+								<tabpanetab label="Display">
+									<param name="comments_replies_likes" type="xml:activity_yesno" default="-1" label="Likes" description="Enable or disable usage of likes." />
+								</tabpanetab>
+								<tabpanetab label="Create">
+									<param name="comments_replies_likes_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+										<option value="0">All</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+									<param name="comments_replies_likes_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+										<option value="0">None</option>
+										<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+											<rows>
+												<field name="id" as="value" />
+												<field name="value" as="text" />
+											</rows>
+											<orderby>
+												<field name="ordering" ordering="ASC" />
+											</orderby>
+										</data>
+									</param>
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+			</tabpane>
+		</view>
+		<view name="cbactivity_followParams" type="params" ui="admin">
+			<tabpane name="follow_override">
+				<tabpanetab label="Display">
+					<param name="following_layout" type="list" default="button" label="Layout" description="Select the layout for the follow button. Button layout displays a button style. Simple displays simple text link. Extended displays a simple text link, but extends the count to include the first 2 following users names.">
+						<option value="stream">Stream</option>
+						<option value="button">Button</option>
+						<option value="simple">Simple</option>
+						<option value="extended">Extended</option>
+					</param>
+					<param name="following_count" type="yesno" default="1" label="Count" description="Enable or disable the display of the follower count. Clicking the follower count will display a list of users following the asset." yes="Enable" no="Disable" />
+				</tabpanetab>
+				<tabpanetab label="Create">
+					<param name="following_connected" type="xml:activity_yesno" default="-1" label="Connected" description="Enable or disable connected check. This checks if the viewing user is connected to the asset (e.g. in cases of profile.USER_ID) or stream owner. This is in addition to registered user access check. If disabled only registered user access check will be used to determine following permission. Moderators are exempt from this configuration." yes="Enable" no="Disable" />
+				</tabpanetab>
+			</tabpane>
+		</view>
+		<view name="cbactivity_likesParams" type="params" ui="admin">
+			<tabpane name="likes_override">
+				<tabpanetab label="Display">
+					<param name="likes_layout" type="list" default="button" label="Layout" description="Select the layout for the like button. Button layout displays a button style. Simple displays simple text link. Extended displays a simple text link, but extends the count to include the first 2 likes users names.">
+						<option value="stream">Stream</option>
+						<option value="button">Button</option>
+						<option value="simple">Simple</option>
+						<option value="extended">Extended</option>
+					</param>
+					<param name="likes_count" type="yesno" default="1" label="Count" description="Enable or disable the display of the likes count. Clicking the likes count will display a list of users who liked the asset." yes="Enable" no="Disable" />
+				</tabpanetab>
+				<tabpanetab label="Create">
+					<param name="likes_include" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+						<option value="0">All</option>
+						<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+							<rows>
+								<field name="id" as="value" />
+								<field name="value" as="text" />
+							</rows>
+							<orderby>
+								<field name="ordering" ordering="ASC" />
+							</orderby>
+						</data>
+					</param>
+					<param name="likes_exclude" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+						<option value="0">None</option>
+						<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+							<rows>
+								<field name="id" as="value" />
+								<field name="value" as="text" />
+							</rows>
+							<orderby>
+								<field name="ordering" ordering="ASC" />
+							</orderby>
+						</data>
+					</param>
+				</tabpanetab>
+			</tabpane>
+		</view>
+		<view name="cbactivity_actionParams" type="params" ui="admin">
+			<params name="action" type="params">
+				<param name="id" type="list" label="Action" blanktext="- Select Action -" description="Optionally select an action for this post.">
+					<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_actions" key="id">
+						<rows>
+							<field name="id" as="value" />
+							<field name="value" as="text" />
+						</rows>
+						<orderby>
+							<field name="ordering" ordering="ASC" />
+						</orderby>
+					</data>
+				</param>
+				<if name="id" nametype="param:string" operator="!=" value="" valuetype="const:string" type="showhide">
+					<param name="message" type="text" label="Message" size="60" validate="required" description="Input a message for this action." />
+					<param name="emote" type="list" label="Emote" blanktext="- Select Emote -" description="Optionally select the emote for this action.">
+						<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_emotes" key="id">
+							<rows>
+								<field name="id" as="value" />
+								<field name="value" as="text" />
+							</rows>
+							<orderby>
+								<field name="ordering" ordering="ASC" />
+							</orderby>
+						</data>
+					</param>
+				</if>
+			</params>
+		</view>
+		<view name="cbactivity_locationParams" type="params" ui="admin">
+			<params name="location" type="params">
+				<param name="id" type="list" label="Location" blanktext="- Select Location -" description="Optionally select a location for this post.">
+					<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_locations" key="id">
+						<rows>
+							<field name="id" as="value" />
+							<field name="value" as="text" />
+						</rows>
+						<orderby>
+							<field name="ordering" ordering="ASC" />
+						</orderby>
+					</data>
+				</param>
+				<if name="id" nametype="param:string" operator="!=" value="" valuetype="const:string" type="showhide">
+					<param name="place" type="text" label="Place" size="60" validate="required" description="Input the place for this location." />
+					<param name="address" type="text" label="Address" size="60" description="Optionally input the address for this location." />
+				</if>
+			</params>
+		</view>
+		<view name="cbactivity_linksParams" type="params" ui="admin">
+			<params name="links" type="params" repeat="true" repeatordering="false" label="" display="2lines">
+				<param name="type" type="xml:activity_link_type" label="Type" blanktext="- Select Type -" description="Select the type of this link. Type determines how the link will display." />
+				<if name="type" nametype="param:string" operator="=" value="custom" valuetype="const:string" type="showhide">
+					<fieldset name="mediadata1" label="Media">
+						<params name="media" type="params">
+							<param name="custom" type="textarea" label="Custom" rows="8" cols="80" validate="required" description="Optionally input a custom media display." />
+						</params>
+					</fieldset>
+				</if>
+				<if name="type" nametype="param:string" operator="in" value="image|*|video|*|audio|*|file|*|url" valuetype="const:string" type="showhide">
+					<param name="url" type="text" label="URL" size="60" validate="required" description="Input the link URL for this link." />
+					<if name="url" nametype="param:string" operator="!=" value="" valuetype="const:string" type="showhide">
+						<param name="title" type="text" label="Title" size="60" description="Optionally input a title for this link." />
+						<param name="description" type="textarea" label="Description" rows="3" cols="65" description="Optionally input a description for this link." />
+						<if name="type" nametype="param:string" operator="!=" value="custom" valuetype="const:string" type="showhide">
+							<fieldset name="mediadata2" label="Media">
+								<params name="media" type="params">
+									<param name="url" type="text" label="URL" size="60" description="Input the media URL (e.g. URL to an image, video, audio, or file)" />
+									<if name="url" nametype="param:string" operator="!=" value="" valuetype="const:string" type="showhide">
+										<param name="filename" type="text" label="Filename" size="50" description="Input the media filename (e.g. invoice.pdf). This is necessary for file media." />
+										<param name="mimetype" type="text" label="MimeType" size="30" description="Input the media mimetype (e.g. image/jpeg, video/youtube). This is necessary for video and audio media." />
+										<param name="extension" type="text" label="Extension" size="30" description="Input the media extension (e.g. jpg). This is necessary for file media." />
+										<param name="filesize" type="text" label="Filesize" size="30" description="Input the media filesize in bytes (e.g. 1024). This is necessary for file media." />
+										<param name="internal" type="hidden" />
+									</if>
+									<param name="type" type="hidden" />
+								</params>
+								<if name="type" nametype="param:string" operator="=" value="url" valuetype="const:string" type="showhide">
+									<param name="thumbnail" type="yesno" default="1" label="Thumbnail" description="Enable or disable display of URL thumbnail." yes="Enable" no="Disable" />
+								</if>
+							</fieldset>
+						</if>
+						<if name="table" nametype="get:string" operator="in" value="activitybrowser|*|activitycommentsbrowser" valuetype="const:string" type="condition">
+							<param name="date" type="datetime" default="" timezone="RAW" label="Date" description="Select the date for this link. This is typically the datetime of when the link was added. For file media this will be the modify date of the file." />
+						</if>
+						<if name="table" nametype="get:string" operator="!in" value="activitybrowser|*|activitycommentsbrowser" valuetype="const:string" type="condition">
+							<param name="date" type="text" size="30" default="" label="Date" description="Input the date for this link. This is typically the datetime of when the link was added. For file media this will be the modify date of the file." />
+						</if>
+						<param name="internal" type="hidden" />
+						<param name="embedded" type="hidden" />
+						<param name="selected" type="hidden" />
+						<params name="thumbnails" type="params" repeat="true" repeatordering="false" repeatcount="false" repeatmax="5" label="" display="2lines" cssclass="hidden">
+							<param name="type" type="hidden" />
+							<param name="url" type="hidden" />
+							<param name="filename" type="hidden" />
+							<param name="mimetype" type="hidden" />
+							<param name="extension" type="hidden" />
+							<param name="filesize" type="hidden" />
+							<param name="internal" type="hidden" />
+						</params>
+					</if>
+				</if>
+			</params>
+		</view>
+	</views>
+</cbxml>

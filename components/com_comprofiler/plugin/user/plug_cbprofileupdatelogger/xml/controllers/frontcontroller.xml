@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" group="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types />
+	<actions ui="admin" permission="core.manage" permissionasset="com_comprofiler">
+		<action name="purows" request="view action" action="editPlugin showpulog">
+			<showview view="showpulogs" mode="show" />
+		</action>
+
+		<action name="purow" request="view table action" action="editPlugin pulogbrowser editrow" requestparameters="logid">
+			<showview view="showpulog" mode="show">
+				<data name="" type="sql:row" table="#__comprofiler_plug_pulogger" class="\CB\Plugin\ProfileUpdateLogger\Table\UpdateLogTable" key="id" value="logid" valuetype="request:int" />
+			</showview>
+		</action>
+	</actions>
+	<views>
+		<view name="pluginmenu" type="params" ui="admin" label="" viewformatting="none">
+			<param name="pulog" type="button" default="Log" buttonclass="default" buttonsize="xsmall" link="cb_action:purows" parameters="cid" paramvalues="id" label="" />
+		</view>
+	</views>
+</cbxml>

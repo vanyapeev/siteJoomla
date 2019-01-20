@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" group="user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types />
+	<actions ui="admin" permission="core.manage" permissionasset="com_comprofiler">
+		<action name="pbrows" request="view action" action="editPlugin showpbentries">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.profilebook" mandatory="true" />
+			<showview view="showpbentries" mode="show" />
+		</action>
+
+		<action name="pbrow" request="view table action" action="editPlugin pbentriesbrowser editrow" requestparameters="entryid">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="xml/models/model.profilebook" mandatory="true" />
+			<showview view="editpbentry" mode="edit">
+				<data name="" type="sql:row" table="#__comprofiler_plug_profilebook" class="\CB\Plugin\ProfileBook\Table\EntryTable" key="id" value="entryid" valuetype="request:int" />
+			</showview>
+		</action>
+	</actions>
+	<views>
+		<view name="pluginmenu" type="params" ui="admin" label="" viewformatting="none">
+			<param name="pbentries" type="button" default="Entries" buttonclass="default" buttonsize="xsmall" link="cb_action:pbrows" parameters="cid" paramvalues="id" label="" />
+		</view>
+	</views>
+</cbxml>

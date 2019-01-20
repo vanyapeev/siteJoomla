@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="cbactivity_activityParams" type="params" ui="admin">
+			<tabpane name="activity_override">
+				<tabpanetab label="Gallery">
+					<param name="activity_gallery" type="xml:activity_yesno" default="-1" label="Uploads" description="Enable or disable gallery uploads for new activity. Uploads will always be to a users profile gallery and in the Uploads album. Photos, videos, and music uploads will ignore approval and always be published." />
+				</tabpanetab>
+				<tabpanetab label="Comments">
+					<tabpane name="activity_comments">
+						<tabpanetab label="Gallery">
+							<param name="activity_comments_gallery" type="xml:activity_yesno" default="-1" label="Uploads" description="Enable or disable gallery uploads for new comments on activity. Uploads will always be to a users profile gallery and in the Uploads album. Photos, videos, and music uploads will ignore approval and always be published." />
+						</tabpanetab>
+						<tabpanetab label="Replies">
+							<tabpane name="activity_comments_replies">
+								<tabpanetab label="Gallery">
+									<param name="activity_comments_replies_gallery" type="xml:activity_yesno" default="-1" label="Uploads" description="Enable or disable gallery uploads for new comment replies on activity comments. Uploads will always be to a users profile gallery and in the Uploads album. Photos, videos, and music uploads will ignore approval and always be published." />
+								</tabpanetab>
+							</tabpane>
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+			</tabpane>
+		</view>
+		<view name="cbactivity_commentsParams" type="params" ui="admin">
+			<tabpane name="comments_override">
+				<tabpanetab label="Gallery">
+					<param name="comments_gallery" type="xml:activity_yesno" default="-1" label="Uploads" description="Enable or disable gallery uploads for new comments. Uploads will always be to a users profile gallery and in the Uploads album. Photos, videos, and music uploads will ignore approval and always be published." />
+				</tabpanetab>
+				<tabpanetab label="Replies">
+					<tabpane name="comments_replies">
+						<tabpanetab label="Gallery">
+							<param name="comments_replies_gallery" type="xml:activity_yesno" default="-1" label="Uploads" description="Enable or disable gallery uploads for new replies on comments. Uploads will always be to a users profile gallery and in the Uploads album. Photos, videos, and music uploads will ignore approval and always be published." />
+						</tabpanetab>
+					</tabpane>
+				</tabpanetab>
+			</tabpane>
+		</view>
+		<view name="activityparams" type="params" ui="admin" label="Gallery">
+			<param name="gallery" type="tag" label="Media" description="Input the media ids attached to this post." />
+		</view>
+		<view name="commentparams" type="params" ui="admin" label="Gallery">
+			<param name="gallery" type="tag" label="Media" description="Input the media ids attached to this post." />
+		</view>
+	</views>
+</cbxml>

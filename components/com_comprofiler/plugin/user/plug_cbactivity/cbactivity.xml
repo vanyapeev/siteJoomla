@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbinstall version="1.0" type="plugin" group="user">
+	<name>CB Activity</name>
+	<author>Krileon</author>
+	<creationDate>2018-01-05</creationDate>
+	<copyright>(C) 2004-2017 www.joomlapolis.com / Lightning MultiCom SA - and its licensors, all rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2</license>
+	<authorEmail>krileon@joomlapolis.com</authorEmail>
+	<description>Displays various user activity on profile.</description>
+	<version>2.1.3</version>
+	<release>4.1.0+build.2018.01.05.20.19.03.0f5374272</release>
+	<installfile>install.cbactivity.php</installfile>
+	<files>
+		<filename plugin="cbactivity">cbactivity.php</filename>
+		<filename>index.html</filename>
+		<filename>component.cbactivity.php</filename>
+		<filename>install.cbactivity.php</filename>
+		<foldername>templates</foldername>
+		<foldername>xml</foldername>
+		<foldername>language</foldername>
+		<foldername>js</foldername>
+		<foldername>library</foldername>
+	</files>
+	<delete>
+		<filename>admin.cbactivity.css</filename>
+		<filename>admin.cbactivity.html.php</filename>
+		<filename>admin.cbactivity.php</filename>
+		<filename>cbactivity.class.php</filename>
+		<filename>tab.cbactivity.php</filename>
+		<filename>plugin.cbactivity.php</filename>
+		<filename>toolbar.cbactivity.html.php</filename>
+		<filename>toolbar.cbactivity.php</filename>
+		<filename>templates/default/images/glyphicons-halflings-white.png</filename>
+		<filename>templates/default/images/glyphicons-halflings.png</filename>
+		<filename>templates/default/jquery.php</filename>
+		<filename>templates/default/module.php</filename>
+		<filename>templates/default/recent.php</filename>
+		<filename>templates/default/tab.php</filename>
+		<filename>library/StreamDirection.php</filename>
+		<filename>library/StreamDirectionInterface.php</filename>
+		<foldername>models</foldername>
+	</delete>
+	<libraries>
+		<library name="CB/Plugin/Activity">
+			<files folder="library">
+				<filename>Activity.php</filename>
+				<filename>ActivityInterface.php</filename>
+				<filename>CBActivity.php</filename>
+				<filename>Comments.php</filename>
+				<filename>CommentsInterface.php</filename>
+				<filename>Following.php</filename>
+				<filename>FollowingInterface.php</filename>
+				<filename>Likes.php</filename>
+				<filename>LikesInterface.php</filename>
+				<filename>Notifications.php</filename>
+				<filename>NotificationsInterface.php</filename>
+				<filename>Parser.php</filename>
+				<filename>Stream.php</filename>
+				<filename>StreamInterface.php</filename>
+				<filename>Tags.php</filename>
+				<filename>TagsInterface.php</filename>
+				<filename>index.html</filename>
+				<foldername>Field</foldername>
+				<foldername>Table</foldername>
+				<foldername>Trigger</foldername>
+			</files>
+		</library>
+	</libraries>
+	<fieldtypes>
+		<field type="activity" label="Activity" unique="false">
+			<database version="1">
+				<table name="#__comprofiler" class="moscomprofiler" maintable="true" strict="false" drop="never" shared="true">
+					<columns>
+					</columns>
+				</table>
+			</database>
+			<params>
+				<tabpane name="field">
+					<tabpanetab label="Layout">
+						<showview view="fieldLayoutParams" mode="edit" type="view" />
+					</tabpanetab>
+					<tabpanetab label="Activity">
+						<param name="activity_asset" type="text" label="Asset" description="Optionally input the comma separated assets for this activity. Asset determines activity location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for profile field activity based off the displayed user (e.g. profile.[user_id].field.[field_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, profile.[viewer_id].field.[field_id]) in addition to custom [displayed_id], [viewer_id], and [field_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<showview view="cbactivity_activityParams" mode="edit" type="view" />
+					</tabpanetab>
+				</tabpane>
+			</params>
+		</field>
+		<field type="notifications" label="Notifications" unique="false">
+			<database version="1">
+				<table name="#__comprofiler" class="moscomprofiler" maintable="true" strict="false" drop="never" shared="true">
+					<columns>
+					</columns>
+				</table>
+			</database>
+			<params>
+				<tabpane name="field">
+					<tabpanetab label="Layout">
+						<showview view="fieldLayoutParams" mode="edit" type="view" />
+					</tabpanetab>
+					<tabpanetab label="Notifications">
+						<param name="notifications_asset" type="text" label="Asset" description="Optionally input the comma separated assets for notifications. Asset determines notifications location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for all notifications based off the displayed user (e.g. profile.[user_id].field.[field_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, profile.[viewer_id].field.[field_id]) in addition to custom [displayed_id], [viewer_id], and [field_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<showview view="cbactivity_notificationsParams" mode="edit" type="view" />
+					</tabpanetab>
+				</tabpane>
+			</params>
+		</field>
+		<field type="comments" label="Comments" unique="false">
+			<database version="1">
+				<table name="#__comprofiler" class="moscomprofiler" maintable="true" strict="false" drop="never" shared="true">
+					<columns>
+					</columns>
+				</table>
+			</database>
+			<params>
+				<tabpane name="field">
+					<tabpanetab label="Layout">
+						<showview view="fieldLayoutParams" mode="edit" type="view" />
+					</tabpanetab>
+					<tabpanetab label="Comments">
+						<param name="comments_asset" type="text" label="Asset" description="Optionally input the comma separated assets for comments. Asset determines comments location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for profile field comments based off the displayed user (e.g. profile.[user_id].field.[field_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, profile.[viewer_id].field.[field_id]) in addition to custom [displayed_id], [viewer_id], and [field_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<showview view="cbactivity_commentsParams" mode="edit" type="view" />
+					</tabpanetab>
+				</tabpane>
+			</params>
+		</field>
+		<field type="follow" label="Follow" unique="false">
+			<database version="1">
+				<table name="#__comprofiler" class="moscomprofiler" maintable="true" strict="false" drop="never" shared="true">
+					<columns>
+					</columns>
+				</table>
+			</database>
+			<params>
+				<tabpane name="field">
+					<tabpanetab label="Layout">
+						<showview view="fieldLayoutParams" mode="edit" type="view" />
+					</tabpanetab>
+					<tabpanetab label="Follow">
+						<param name="following_asset" type="text" label="Asset" description="Optionally input the comma separated assets to follow. Asset determines what stream will be followed (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for profile asset based off the displayed user (e.g. profile.[user_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, profile.[viewer_id].field.[field_id]) in addition to custom [displayed_id], [viewer_id], and [field_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<showview view="cbactivity_followParams" mode="edit" type="view" />
+					</tabpanetab>
+				</tabpane>
+			</params>
+		</field>
+		<field type="like" label="Like" unique="false">
+			<database version="1">
+				<table name="#__comprofiler" class="moscomprofiler" maintable="true" strict="false" drop="never" shared="true">
+					<columns>
+					</columns>
+				</table>
+			</database>
+			<params>
+				<tabpane name="field">
+					<tabpanetab label="Layout">
+						<showview view="fieldLayoutParams" mode="edit" type="view" />
+					</tabpanetab>
+					<tabpanetab label="Like">
+						<param name="likes_asset" type="text" label="Asset" description="Optionally input the comma separated assets to like. Asset determines what stream will be liked (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for profile asset based off the displayed user (e.g. profile.[user_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars, profile.[viewer_id].field.[field_id]) in addition to custom [displayed_id], [viewer_id], and [field_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+						<showview view="cbactivity_likesParams" mode="edit" type="view" />
+					</tabpanetab>
+				</tabpane>
+			</params>
+		</field>
+	</fieldtypes>
+	<tabs>
+		<tab name="Activity" description="" class="cbactivityTab" fields="0" position="canvas_main_middle" displaytype="menunested" ordering_register="1">
+			<params>
+				<param name="activity_asset" type="text" label="Asset" description="Optionally input the comma separated assets for this activity. Asset determines activity location (e.g. global.cars, profile.[user_id], profile.%). Use a wildcard of % to match anything starting at and after the wildcard. Leave blank for profile activity based off the displayed user (e.g. profile.[user_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars) in addition to custom [displayed_id] and [viewer_id]. The following custom assets can also be used: global, profile, following, followingonly, likes, likesonly, connections, connectionsonly, self, self.connections, self.connectionsonly, self.following, self.followingonly, self.likes, self.likesonly, user, user.connections, user.connectionsonly, user.following, user.followingonly, user.likes, user.likesonly, displayed, displayed.connections, displayed.connectionsonly, displayed.following, displayed.followingonly, displayed.likes, and displayed.likesonly." />
+				<showview view="cbactivity_activityParams" mode="edit" type="view" />
+			</params>
+		</tab>
+	</tabs>
+	<params>
+		<tabpane name="activity">
+			<tabpanetab label="General">
+				<param name="general_template" type="folderlist" default="default" label="Template" description="Select template to be used for all of CB Activity. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbactivity/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbactivity/templates/" />
+				<param name="general_class" type="text" default="" size="20" label="Class" description="Optionally add a class suffix to surrounding DIV encasing all of CB Activity." />
+				<param name="general_delete" type="yesno" default="1" label="Auto Delete" description="Enable or disable automatic deletion of activity when a user is deleted." yes="Enable" no="Disable" />
+				<param name="general_menu" type="yesno" default="1" label="Admin Menu" description="Enable or disable usage of backend administrator menu." yes="Enable" no="Disable" />
+				<param name="general_notifications" type="yesno" default="1" label="Notifications" description="Enable or disable display of notifications icon on profiles. This will be displayed on the users menu bar above their profile." yes="Enable" no="Disable" />
+			</tabpanetab>
+			<tabpanetab label="Activity">
+				<showview view="cbactivity_activityGlobals" mode="edit" type="view" />
+			</tabpanetab>
+			<tabpanetab label="Notifications">
+				<showview view="cbactivity_notificationsGlobals" mode="edit" type="view" />
+			</tabpanetab>
+			<tabpanetab label="Comments">
+				<showview view="cbactivity_commentsGlobals" mode="edit" type="view" />
+			</tabpanetab>
+			<tabpanetab label="Likes">
+				<param name="likes_include" type="list" multiple="true" default="0" blanktext="All" size="10" label="Include" description="Optionally specify what types to include for selection. Note types already selected will be unaffected.">
+					<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+						<rows>
+							<field name="id" as="value" />
+							<field name="value" as="text" />
+						</rows>
+						<orderby>
+							<field name="ordering" ordering="ASC" />
+						</orderby>
+					</data>
+				</param>
+				<param name="likes_exclude" type="list" multiple="true" default="0" blanktext="None" size="10" label="Exclude" description="Optionally exclude types from being selected. Note types already selected will be unaffected.">
+					<data name="" type="sql:multiplerows" table="#__comprofiler_plugin_activity_like_types" key="id">
+						<rows>
+							<field name="id" as="value" />
+							<field name="value" as="text" />
+						</rows>
+						<orderby>
+							<field name="ordering" ordering="ASC" />
+						</orderby>
+					</data>
+				</param>
+			</tabpanetab>
+			<tabpanetab label="Following">
+				<param name="following_connected" type="yesno" default="0" label="Connected" description="Enable or disable connected check. This checks if the viewing user is connected to the asset (e.g. in cases of profile.USER_ID) or stream owner. This is in addition to registered user access check. If disabled only registered user access check will be used to determine following permission. Moderators are exempt from this configuration." yes="Enable" no="Disable" />
+			</tabpanetab>
+			<tabpanetab label="Reporting">
+				<param name="reporting" type="yesno" default="1" label="Reporting" description="Enable or disable reporting of activity or comments to moderators. Reported activity or comments will be marked as controversial and automatically hidden from the reporter." yes="Enable" no="Disable" />
+				<param name="reporting_notify" type="yesno" default="1" label="Notify" description="Enable or disable notifying moderators of reported activity or comments." yes="Enable" no="Disable" />
+				<param name="reporting_limit" type="int" default="10" size="5" label="Limit" description="Input the number of reports before a reported activity or comment becomes automatically unpublished. Set to 0 for no automatic unpublish." />
+			</tabpanetab>
+			<tabpanetab label="Cleanup">
+				<param name="cleanup_url" type="custom" class="\CB\Plugin\Activity\CBActivity" method="loadCleanUpURL" label="URL" description="Your site unique URL that can be used in CRON or directly accessed to cleanup old activity from the database." />
+				<param name="cleanup_activity" type="list" default="-1 YEAR" translate-default="no" label="Activity" description="Select how long to keep activity. Note this will delete all activity outside of the duration and includes notifications.">
+					<option value="forever">Forever</option>
+					<option value="-1 WEEK">1 Week</option>
+					<option value="-2 WEEKS">2 Weeks</option>
+					<option value="-3 WEEKS">3 Weeks</option>
+					<option value="-1 MONTH">1 Month</option>
+					<option value="-3 MONTHS">3 Months</option>
+					<option value="-6 MONTHS">6 Months</option>
+					<option value="-1 YEAR">1 Year</option>
+					<option value="-2 YEARS">2 Years</option>
+					<option value="-3 YEARS">3 Years</option>
+					<option value="-6 YEARS">6 Years</option>
+				</param>
+				<param name="cleanup_comments" type="list" default="-2 YEARS" translate-default="no" label="Comments" description="Select how long to keep comments. Note this will delete all comments outside of the duration.">
+					<option value="forever">Forever</option>
+					<option value="-1 WEEK">1 Week</option>
+					<option value="-2 WEEKS">2 Weeks</option>
+					<option value="-3 WEEKS">3 Weeks</option>
+					<option value="-1 MONTH">1 Month</option>
+					<option value="-3 MONTHS">3 Months</option>
+					<option value="-6 MONTHS">6 Months</option>
+					<option value="-1 YEAR">1 Year</option>
+					<option value="-2 YEARS">2 Years</option>
+					<option value="-3 YEARS">3 Years</option>
+					<option value="-6 YEARS">6 Years</option>
+				</param>
+			</tabpanetab>
+		</tabpane>
+	</params>
+	<database version="1">
+		<table name="#__comprofiler_plugin_activity" class="\CB\Plugin\Activity\Table\ActivityTable" strict="false" drop="never"> <!-- TODO: For B/C: for migration; change to strict in 5.0.0 -->
+			<columns strict="false" drop="never"> <!-- TODO: For B/C: for migration; change to strict in 5.0.0 -->
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="asset" type="sql:text" />
+				<column name="title" type="sql:text" null="true" />
+				<column name="message" type="sql:text" null="true" />
+				<column name="published" type="sql:tinyint(1)" default="1" />
+				<column name="pinned" type="sql:tinyint(1)" default="0" />
+				<column name="date" type="sql:datetime" default="0000-00-00 00:00:00" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="asset">
+					<column name="asset" size="30" />
+				</index>
+				<index name="activity">
+					<column name="asset" size="30" />
+					<column name="published" />
+					<column name="pinned" />
+					<column name="date" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_notifications" class="\CB\Plugin\Activity\Table\NotificationTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="user" type="sql:int(11)" />
+				<column name="asset" type="sql:text" />
+				<column name="title" type="sql:text" null="true" />
+				<column name="message" type="sql:text" null="true" />
+				<column name="published" type="sql:tinyint(1)" default="1" />
+				<column name="pinned" type="sql:tinyint(1)" default="0" />
+				<column name="date" type="sql:datetime" default="0000-00-00 00:00:00" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="user">
+					<column name="user" />
+				</index>
+				<index name="asset">
+					<column name="asset" size="30" />
+				</index>
+				<index name="notifications">
+					<column name="user" />
+					<column name="asset" size="30" />
+					<column name="published" />
+					<column name="pinned" />
+					<column name="date" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_comments" class="\CB\Plugin\Activity\Table\CommentTable" strict="false" drop="never"> <!-- TODO: For B/C: for migration; change to strict in 5.0.0 -->
+			<columns strict="false" drop="never"> <!-- TODO: For B/C: for migration; change to strict in 5.0.0 -->
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="asset" type="sql:text" />
+				<column name="message" type="sql:text" null="true" />
+				<column name="published" type="sql:tinyint(1)" default="1" />
+				<column name="pinned" type="sql:tinyint(1)" default="0" />
+				<column name="date" type="sql:datetime" default="0000-00-00 00:00:00" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="asset">
+					<column name="asset" size="30" />
+				</index>
+				<index name="comments">
+					<column name="asset" size="30" />
+					<column name="published" />
+					<column name="pinned" />
+					<column name="date" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_read" class="\CB\Plugin\Activity\Table\ReadTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="asset" type="sql:text" />
+				<column name="date" type="sql:datetime" default="0000-00-00 00:00:00" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="asset">
+					<column name="asset" size="30" />
+				</index>
+				<index name="read">
+					<column name="user_id" />
+					<column name="asset" size="30" />
+					<column name="date" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_hidden" class="\CB\Plugin\Activity\Table\HiddenTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="type" type="sql:varchar(255)" />
+				<column name="item" type="sql:varchar(255)" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="types">
+					<column name="type" size="30" />
+					<column name="item" size="30" />
+				</index>
+				<index name="hidden">
+					<column name="user_id" />
+					<column name="type" size="30" />
+					<column name="item" size="30" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_tags" class="\CB\Plugin\Activity\Table\TagTable" strict="false" drop="never"> <!-- TODO: For B/C: for migration; change to strict in 5.0.0 -->
+			<columns strict="false" drop="never"> <!-- TODO: For B/C: for migration; change to strict in 5.0.0 -->
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="asset" type="sql:text" />
+				<column name="tag" type="sql:text" />
+				<column name="date" type="sql:datetime" default="0000-00-00 00:00:00" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="asset">
+					<column name="asset" size="30" />
+				</index>
+				<index name="tag">
+					<column name="tag" size="30" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_following" class="\CB\Plugin\Activity\Table\FollowTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="asset" type="sql:text" />
+				<column name="date" type="sql:datetime" default="0000-00-00 00:00:00" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="user_id">
+					<column name="user_id" />
+				</index>
+				<index name="asset">
+					<column name="asset" size="30" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_likes" class="\CB\Plugin\Activity\Table\LikeTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="1" strict="true" />
+				<column name="user_id" type="sql:int(11)" />
+				<column name="asset" type="sql:text" />
+				<column name="type" type="sql:int(11)" default="0" />
+				<column name="date" type="sql:datetime" default="0000-00-00 00:00:00" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="user_id">
+					<column name="user_id" />
+				</index>
+				<index name="asset">
+					<column name="asset" size="30" />
+				</index>
+			</indexes>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_actions" class="\CB\Plugin\Activity\Table\ActionTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="500" strict="true" />
+				<column name="value" type="sql:varchar(255)" />
+				<column name="title" type="sql:varchar(255)" null="true" />
+				<column name="description" type="sql:varchar(255)" null="true" />
+				<column name="icon" type="sql:varchar(255)" null="true" />
+				<column name="class" type="sql:varchar(255)" null="true" />
+				<column name="published" type="sql:tinyint(1)" default="0" />
+				<column name="ordering" type="sql:int(11)" default="99999" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="value" type="unique">
+					<column name="value" size="30" />
+				</index>
+				<index name="actions">
+					<column name="published" />
+					<column name="ordering" />
+				</index>
+			</indexes>
+			<rows strict="false">
+				<row index="id" value="1" valuetype="const:int" strict="true">
+					<field name="id" value="1" valuetype="const:int" strict="true" />
+					<field name="value" value="Feeling" valuetype="const:string" />
+					<field name="title" value="feeling" valuetype="const:string" />
+					<field name="description" value="How are you feeling?" valuetype="const:string" />
+					<field name="class" value="fa fa-smile-o" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="1" valuetype="const:int" />
+				</row>
+				<row index="id" value="2" valuetype="const:int" strict="true">
+					<field name="id" value="2" valuetype="const:int" strict="true" />
+					<field name="value" value="Watching" valuetype="const:string" />
+					<field name="title" value="watching" valuetype="const:string" />
+					<field name="description" value="What are you watching?" valuetype="const:string" />
+					<field name="class" value="fa fa-ticket" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="2" valuetype="const:int" />
+				</row>
+				<row index="id" value="3" valuetype="const:int" strict="true">
+					<field name="id" value="3" valuetype="const:int" strict="true" />
+					<field name="value" value="Reading" valuetype="const:string" />
+					<field name="title" value="reading" valuetype="const:string" />
+					<field name="description" value="What are you reading?" valuetype="const:string" />
+					<field name="class" value="fa fa-book" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="3" valuetype="const:int" />
+				</row>
+				<row index="id" value="4" valuetype="const:int" strict="true">
+					<field name="id" value="4" valuetype="const:int" strict="true" />
+					<field name="value" value="Listening To" valuetype="const:string" />
+					<field name="title" value="listening to" valuetype="const:string" />
+					<field name="description" value="What are you listening to?" valuetype="const:string" />
+					<field name="class" value="fa fa-headphones" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="4" valuetype="const:int" />
+				</row>
+				<row index="id" value="5" valuetype="const:int" strict="true">
+					<field name="id" value="5" valuetype="const:int" strict="true" />
+					<field name="value" value="Drinking" valuetype="const:string" />
+					<field name="title" value="drinking" valuetype="const:string" />
+					<field name="description" value="What are you drinking?" valuetype="const:string" />
+					<field name="class" value="fa fa-coffee" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="5" valuetype="const:int" />
+				</row>
+				<row index="id" value="6" valuetype="const:int" strict="true">
+					<field name="id" value="6" valuetype="const:int" strict="true" />
+					<field name="value" value="Eating" valuetype="const:string" />
+					<field name="title" value="eating" valuetype="const:string" />
+					<field name="description" value="What are you eating?" valuetype="const:string" />
+					<field name="class" value="fa fa-cutlery" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="6" valuetype="const:int" />
+				</row>
+				<row index="id" value="7" valuetype="const:int" strict="true">
+					<field name="id" value="7" valuetype="const:int" strict="true" />
+					<field name="value" value="Playing" valuetype="const:string" />
+					<field name="title" value="playing" valuetype="const:string" />
+					<field name="description" value="What are you playing?" valuetype="const:string" />
+					<field name="class" value="fa fa-gamepad" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="7" valuetype="const:int" />
+				</row>
+				<row index="id" value="8" valuetype="const:int" strict="true">
+					<field name="id" value="8" valuetype="const:int" strict="true" />
+					<field name="value" value="Traveling To" valuetype="const:string" />
+					<field name="title" value="traveling to" valuetype="const:string" />
+					<field name="description" value="Where are you going?" valuetype="const:string" />
+					<field name="class" value="fa fa-plane" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="8" valuetype="const:int" />
+				</row>
+				<row index="id" value="9" valuetype="const:int" strict="true">
+					<field name="id" value="9" valuetype="const:int" strict="true" />
+					<field name="value" value="Looking For" valuetype="const:string" />
+					<field name="title" value="looking for" valuetype="const:string" />
+					<field name="description" value="What are you looking for?" valuetype="const:string" />
+					<field name="class" value="fa fa-search" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="9" valuetype="const:int" />
+				</row>
+				<row index="id" value="10" valuetype="const:int" strict="true">
+					<field name="id" value="10" valuetype="const:int" strict="true" />
+					<field name="value" value="Celebrating" valuetype="const:string" />
+					<field name="title" value="celebrating" valuetype="const:string" />
+					<field name="description" value="What are you celebrating?" valuetype="const:string" />
+					<field name="class" value="fa fa-birthday-cake" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="10" valuetype="const:int" />
+				</row>
+			</rows>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_locations" class="\CB\Plugin\Activity\Table\LocationTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="500" strict="true" />
+				<column name="value" type="sql:varchar(255)" />
+				<column name="title" type="sql:varchar(255)" null="true" />
+				<column name="url" type="sql:text" null="true" />
+				<column name="published" type="sql:tinyint(1)" default="0" />
+				<column name="ordering" type="sql:int(11)" default="99999" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="value" type="unique">
+					<column name="value" size="30" />
+				</index>
+				<index name="locations">
+					<column name="published" />
+					<column name="ordering" />
+				</index>
+			</indexes>
+			<rows strict="false">
+				<row index="id" value="1" valuetype="const:int" strict="true">
+					<field name="id" value="1" valuetype="const:int" strict="true" />
+					<field name="value" value="At" valuetype="const:string" />
+					<field name="title" value="at" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="1" valuetype="const:int" />
+				</row>
+				<row index="id" value="2" valuetype="const:int" strict="true">
+					<field name="id" value="2" valuetype="const:int" strict="true" />
+					<field name="value" value="In" valuetype="const:string" />
+					<field name="title" value="in" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="2" valuetype="const:int" />
+				</row>
+				<row index="id" value="3" valuetype="const:int" strict="true">
+					<field name="id" value="3" valuetype="const:int" strict="true" />
+					<field name="value" value="Near" valuetype="const:string" />
+					<field name="title" value="near" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="3" valuetype="const:int" />
+				</row>
+				<row index="id" value="4" valuetype="const:int" strict="true">
+					<field name="id" value="4" valuetype="const:int" strict="true" />
+					<field name="value" value="Going To" valuetype="const:string" />
+					<field name="title" value="going to" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="4" valuetype="const:int" />
+				</row>
+				<row index="id" value="5" valuetype="const:int" strict="true">
+					<field name="id" value="5" valuetype="const:int" strict="true" />
+					<field name="value" value="Leaving From" valuetype="const:string" />
+					<field name="title" value="leaving from" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="5" valuetype="const:int" />
+				</row>
+			</rows>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_emotes" class="\CB\Plugin\Activity\Table\EmoteTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="500" strict="true" />
+				<column name="value" type="sql:varchar(255)" />
+				<column name="icon" type="sql:varchar(255)" null="true" />
+				<column name="class" type="sql:varchar(255)" null="true" />
+				<column name="published" type="sql:tinyint(1)" default="0" />
+				<column name="ordering" type="sql:int(11)" default="99999" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="value" type="unique">
+					<column name="value" size="30" />
+				</index>
+				<index name="emotes">
+					<column name="published" />
+					<column name="ordering" />
+				</index>
+			</indexes>
+			<rows strict="false">
+				<row index="id" value="1" valuetype="const:int" strict="true">
+					<field name="id" value="1" valuetype="const:int" strict="true" />
+					<field name="value" value="smile" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f604" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="1" valuetype="const:int" />
+				</row>
+				<row index="id" value="2" valuetype="const:int" strict="true">
+					<field name="id" value="2" valuetype="const:int" strict="true" />
+					<field name="value" value="laughing" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f606" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="2" valuetype="const:int" />
+				</row>
+				<row index="id" value="3" valuetype="const:int" strict="true">
+					<field name="id" value="3" valuetype="const:int" strict="true" />
+					<field name="value" value="blush" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f60a" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="3" valuetype="const:int" />
+				</row>
+				<row index="id" value="4" valuetype="const:int" strict="true">
+					<field name="id" value="4" valuetype="const:int" strict="true" />
+					<field name="value" value="smiley" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f603" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="4" valuetype="const:int" />
+				</row>
+				<row index="id" value="5" valuetype="const:int" strict="true">
+					<field name="id" value="5" valuetype="const:int" strict="true" />
+					<field name="value" value="relaxed" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-263a" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="5" valuetype="const:int" />
+				</row>
+				<row index="id" value="6" valuetype="const:int" strict="true">
+					<field name="id" value="6" valuetype="const:int" strict="true" />
+					<field name="value" value="smirk" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f60f" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="6" valuetype="const:int" />
+				</row>
+				<row index="id" value="7" valuetype="const:int" strict="true">
+					<field name="id" value="7" valuetype="const:int" strict="true" />
+					<field name="value" value="heart_eyes" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f60d" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="7" valuetype="const:int" />
+				</row>
+				<row index="id" value="8" valuetype="const:int" strict="true">
+					<field name="id" value="8" valuetype="const:int" strict="true" />
+					<field name="value" value="kissing_heart" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f618" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="8" valuetype="const:int" />
+				</row>
+				<row index="id" value="9" valuetype="const:int" strict="true">
+					<field name="id" value="9" valuetype="const:int" strict="true" />
+					<field name="value" value="kissing_closed_eyes" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f61a" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="9" valuetype="const:int" />
+				</row>
+				<row index="id" value="10" valuetype="const:int" strict="true">
+					<field name="id" value="10" valuetype="const:int" strict="true" />
+					<field name="value" value="flushed" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f633" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="10" valuetype="const:int" />
+				</row>
+				<row index="id" value="11" valuetype="const:int" strict="true">
+					<field name="id" value="11" valuetype="const:int" strict="true" />
+					<field name="value" value="relieved" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f625" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="11" valuetype="const:int" />
+				</row>
+				<row index="id" value="12" valuetype="const:int" strict="true">
+					<field name="id" value="12" valuetype="const:int" strict="true" />
+					<field name="value" value="satisfied" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f60c" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="12" valuetype="const:int" />
+				</row>
+				<row index="id" value="13" valuetype="const:int" strict="true">
+					<field name="id" value="13" valuetype="const:int" strict="true" />
+					<field name="value" value="grin" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f601" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="13" valuetype="const:int" />
+				</row>
+				<row index="id" value="14" valuetype="const:int" strict="true">
+					<field name="id" value="14" valuetype="const:int" strict="true" />
+					<field name="value" value="wink" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f609" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="14" valuetype="const:int" />
+				</row>
+				<row index="id" value="15" valuetype="const:int" strict="true">
+					<field name="id" value="15" valuetype="const:int" strict="true" />
+					<field name="value" value="stuck_out_tongue_winking_eye" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f61c" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="15" valuetype="const:int" />
+				</row>
+				<row index="id" value="16" valuetype="const:int" strict="true">
+					<field name="id" value="16" valuetype="const:int" strict="true" />
+					<field name="value" value="stuck_out_tongue_closed_eyes" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f61d" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="16" valuetype="const:int" />
+				</row>
+				<row index="id" value="17" valuetype="const:int" strict="true">
+					<field name="id" value="17" valuetype="const:int" strict="true" />
+					<field name="value" value="grinning" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f600" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="17" valuetype="const:int" />
+				</row>
+				<row index="id" value="18" valuetype="const:int" strict="true">
+					<field name="id" value="18" valuetype="const:int" strict="true" />
+					<field name="value" value="kissing" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f617" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="18" valuetype="const:int" />
+				</row>
+				<row index="id" value="19" valuetype="const:int" strict="true">
+					<field name="id" value="19" valuetype="const:int" strict="true" />
+					<field name="value" value="kissing_smiling_eyes" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f619" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="19" valuetype="const:int" />
+				</row>
+				<row index="id" value="20" valuetype="const:int" strict="true">
+					<field name="id" value="20" valuetype="const:int" strict="true" />
+					<field name="value" value="stuck_out_tongue" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f61b" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="20" valuetype="const:int" />
+				</row>
+				<row index="id" value="21" valuetype="const:int" strict="true">
+					<field name="id" value="21" valuetype="const:int" strict="true" />
+					<field name="value" value="sleeping" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f634" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="21" valuetype="const:int" />
+				</row>
+				<row index="id" value="22" valuetype="const:int" strict="true">
+					<field name="id" value="22" valuetype="const:int" strict="true" />
+					<field name="value" value="worried" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f61f" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="22" valuetype="const:int" />
+				</row>
+				<row index="id" value="23" valuetype="const:int" strict="true">
+					<field name="id" value="23" valuetype="const:int" strict="true" />
+					<field name="value" value="frowning" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f626" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="23" valuetype="const:int" />
+				</row>
+				<row index="id" value="24" valuetype="const:int" strict="true">
+					<field name="id" value="24" valuetype="const:int" strict="true" />
+					<field name="value" value="anguished" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f627" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="24" valuetype="const:int" />
+				</row>
+				<row index="id" value="25" valuetype="const:int" strict="true">
+					<field name="id" value="25" valuetype="const:int" strict="true" />
+					<field name="value" value="open_mouth" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f62e" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="25" valuetype="const:int" />
+				</row>
+				<row index="id" value="26" valuetype="const:int" strict="true">
+					<field name="id" value="26" valuetype="const:int" strict="true" />
+					<field name="value" value="grimacing" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f62c" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="26" valuetype="const:int" />
+				</row>
+				<row index="id" value="27" valuetype="const:int" strict="true">
+					<field name="id" value="27" valuetype="const:int" strict="true" />
+					<field name="value" value="confused" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f615" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="27" valuetype="const:int" />
+				</row>
+				<row index="id" value="28" valuetype="const:int" strict="true">
+					<field name="id" value="28" valuetype="const:int" strict="true" />
+					<field name="value" value="hushed" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f62f" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="28" valuetype="const:int" />
+				</row>
+				<row index="id" value="29" valuetype="const:int" strict="true">
+					<field name="id" value="29" valuetype="const:int" strict="true" />
+					<field name="value" value="expressionless" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f611" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="29" valuetype="const:int" />
+				</row>
+				<row index="id" value="30" valuetype="const:int" strict="true">
+					<field name="id" value="30" valuetype="const:int" strict="true" />
+					<field name="value" value="unamused" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f612" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="30" valuetype="const:int" />
+				</row>
+				<row index="id" value="31" valuetype="const:int" strict="true">
+					<field name="id" value="31" valuetype="const:int" strict="true" />
+					<field name="value" value="sweat_smile" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f605" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="31" valuetype="const:int" />
+				</row>
+				<row index="id" value="32" valuetype="const:int" strict="true">
+					<field name="id" value="32" valuetype="const:int" strict="true" />
+					<field name="value" value="sweat" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f613" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="32" valuetype="const:int" />
+				</row>
+				<row index="id" value="33" valuetype="const:int" strict="true">
+					<field name="id" value="33" valuetype="const:int" strict="true" />
+					<field name="value" value="weary" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f629" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="33" valuetype="const:int" />
+				</row>
+				<row index="id" value="34" valuetype="const:int" strict="true">
+					<field name="id" value="34" valuetype="const:int" strict="true" />
+					<field name="value" value="pensive" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f614" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="34" valuetype="const:int" />
+				</row>
+				<row index="id" value="35" valuetype="const:int" strict="true">
+					<field name="id" value="35" valuetype="const:int" strict="true" />
+					<field name="value" value="disappointed" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f61e" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="35" valuetype="const:int" />
+				</row>
+				<row index="id" value="36" valuetype="const:int" strict="true">
+					<field name="id" value="36" valuetype="const:int" strict="true" />
+					<field name="value" value="confounded" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f616" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="36" valuetype="const:int" />
+				</row>
+				<row index="id" value="37" valuetype="const:int" strict="true">
+					<field name="id" value="37" valuetype="const:int" strict="true" />
+					<field name="value" value="fearful" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f628" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="37" valuetype="const:int" />
+				</row>
+				<row index="id" value="38" valuetype="const:int" strict="true">
+					<field name="id" value="38" valuetype="const:int" strict="true" />
+					<field name="value" value="cold_sweat" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f630" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="38" valuetype="const:int" />
+				</row>
+				<row index="id" value="39" valuetype="const:int" strict="true">
+					<field name="id" value="39" valuetype="const:int" strict="true" />
+					<field name="value" value="persevere" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f623" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="39" valuetype="const:int" />
+				</row>
+				<row index="id" value="40" valuetype="const:int" strict="true">
+					<field name="id" value="40" valuetype="const:int" strict="true" />
+					<field name="value" value="cry" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f622" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="40" valuetype="const:int" />
+				</row>
+				<row index="id" value="41" valuetype="const:int" strict="true">
+					<field name="id" value="41" valuetype="const:int" strict="true" />
+					<field name="value" value="sob" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f62d" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="41" valuetype="const:int" />
+				</row>
+				<row index="id" value="42" valuetype="const:int" strict="true">
+					<field name="id" value="42" valuetype="const:int" strict="true" />
+					<field name="value" value="joy" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f602" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="42" valuetype="const:int" />
+				</row>
+				<row index="id" value="43" valuetype="const:int" strict="true">
+					<field name="id" value="43" valuetype="const:int" strict="true" />
+					<field name="value" value="astonished" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f632" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="43" valuetype="const:int" />
+				</row>
+				<row index="id" value="44" valuetype="const:int" strict="true">
+					<field name="id" value="44" valuetype="const:int" strict="true" />
+					<field name="value" value="scream" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f631" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="44" valuetype="const:int" />
+				</row>
+				<row index="id" value="45" valuetype="const:int" strict="true">
+					<field name="id" value="45" valuetype="const:int" strict="true" />
+					<field name="value" value="tired_face" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f62b" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="45" valuetype="const:int" />
+				</row>
+				<row index="id" value="46" valuetype="const:int" strict="true">
+					<field name="id" value="46" valuetype="const:int" strict="true" />
+					<field name="value" value="angry" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f620" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="46" valuetype="const:int" />
+				</row>
+				<row index="id" value="47" valuetype="const:int" strict="true">
+					<field name="id" value="47" valuetype="const:int" strict="true" />
+					<field name="value" value="rage" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f621" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="47" valuetype="const:int" />
+				</row>
+				<row index="id" value="48" valuetype="const:int" strict="true">
+					<field name="id" value="48" valuetype="const:int" strict="true" />
+					<field name="value" value="triumph" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f624" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="48" valuetype="const:int" />
+				</row>
+				<row index="id" value="49" valuetype="const:int" strict="true">
+					<field name="id" value="49" valuetype="const:int" strict="true" />
+					<field name="value" value="sleepy" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f62a" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="49" valuetype="const:int" />
+				</row>
+				<row index="id" value="50" valuetype="const:int" strict="true">
+					<field name="id" value="50" valuetype="const:int" strict="true" />
+					<field name="value" value="yum" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f60b" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="50" valuetype="const:int" />
+				</row>
+				<row index="id" value="51" valuetype="const:int" strict="true">
+					<field name="id" value="51" valuetype="const:int" strict="true" />
+					<field name="value" value="mask" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f637" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="51" valuetype="const:int" />
+				</row>
+				<row index="id" value="52" valuetype="const:int" strict="true">
+					<field name="id" value="52" valuetype="const:int" strict="true" />
+					<field name="value" value="sunglasses" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f60e" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="52" valuetype="const:int" />
+				</row>
+				<row index="id" value="53" valuetype="const:int" strict="true">
+					<field name="id" value="53" valuetype="const:int" strict="true" />
+					<field name="value" value="dizzy_face" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f635" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="53" valuetype="const:int" />
+				</row>
+				<row index="id" value="54" valuetype="const:int" strict="true">
+					<field name="id" value="54" valuetype="const:int" strict="true" />
+					<field name="value" value="neutral_face" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f610" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="54" valuetype="const:int" />
+				</row>
+				<row index="id" value="55" valuetype="const:int" strict="true">
+					<field name="id" value="55" valuetype="const:int" strict="true" />
+					<field name="value" value="no_mouth" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f636" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="55" valuetype="const:int" />
+				</row>
+				<row index="id" value="56" valuetype="const:int" strict="true">
+					<field name="id" value="56" valuetype="const:int" strict="true" />
+					<field name="value" value="innocent" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f607" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="56" valuetype="const:int" />
+				</row>
+				<row index="id" value="57" valuetype="const:int" strict="true">
+					<field name="id" value="57" valuetype="const:int" strict="true" />
+					<field name="value" value="beer" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f37a" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="57" valuetype="const:int" />
+				</row>
+				<row index="id" value="58" valuetype="const:int" strict="true">
+					<field name="id" value="58" valuetype="const:int" strict="true" />
+					<field name="value" value="coffee" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-2615" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="58" valuetype="const:int" />
+				</row>
+				<row index="id" value="59" valuetype="const:int" strict="true">
+					<field name="id" value="59" valuetype="const:int" strict="true" />
+					<field name="value" value="tada" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f389" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="59" valuetype="const:int" />
+				</row>
+				<row index="id" value="60" valuetype="const:int" strict="true">
+					<field name="id" value="60" valuetype="const:int" strict="true" />
+					<field name="value" value="zzz" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f4a4" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="60" valuetype="const:int" />
+				</row>
+				<row index="id" value="61" valuetype="const:int" strict="true">
+					<field name="id" value="61" valuetype="const:int" strict="true" />
+					<field name="value" value="fork_and_knife" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f374" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="61" valuetype="const:int" />
+				</row>
+				<row index="id" value="62" valuetype="const:int" strict="true">
+					<field name="id" value="62" valuetype="const:int" strict="true" />
+					<field name="value" value="birthday" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f382" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="62" valuetype="const:int" />
+				</row>
+				<row index="id" value="63" valuetype="const:int" strict="true">
+					<field name="id" value="63" valuetype="const:int" strict="true" />
+					<field name="value" value="heart" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-heart text-danger" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="63" valuetype="const:int" />
+				</row>
+				<row index="id" value="64" valuetype="const:int" strict="true">
+					<field name="id" value="64" valuetype="const:int" strict="true" />
+					<field name="value" value="thumbsup" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-thumbs-o-up text-primary" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="64" valuetype="const:int" />
+				</row>
+				<row index="id" value="65" valuetype="const:int" strict="true">
+					<field name="id" value="65" valuetype="const:int" strict="true" />
+					<field name="value" value="thumbsdown" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-thumbs-o-down text-primary" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="65" valuetype="const:int" />
+				</row>
+				<row index="id" value="66" valuetype="const:int" strict="true">
+					<field name="id" value="66" valuetype="const:int" strict="true" />
+					<field name="value" value="car" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-car text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="66" valuetype="const:int" />
+				</row>
+				<row index="id" value="67" valuetype="const:int" strict="true">
+					<field name="id" value="67" valuetype="const:int" strict="true" />
+					<field name="value" value="bell" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-bell-o text-warning" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="67" valuetype="const:int" />
+				</row>
+				<row index="id" value="68" valuetype="const:int" strict="true">
+					<field name="id" value="68" valuetype="const:int" strict="true" />
+					<field name="value" value="bomb" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-bomb text-default" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="68" valuetype="const:int" />
+				</row>
+				<row index="id" value="69" valuetype="const:int" strict="true">
+					<field name="id" value="69" valuetype="const:int" strict="true" />
+					<field name="value" value="book" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-book text-default" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="69" valuetype="const:int" />
+				</row>
+				<row index="id" value="70" valuetype="const:int" strict="true">
+					<field name="id" value="70" valuetype="const:int" strict="true" />
+					<field name="value" value="bus" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-bus text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="70" valuetype="const:int" />
+				</row>
+				<row index="id" value="71" valuetype="const:int" strict="true">
+					<field name="id" value="71" valuetype="const:int" strict="true" />
+					<field name="value" value="taxi" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-taxi text-warning" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="71" valuetype="const:int" />
+				</row>
+				<row index="id" value="72" valuetype="const:int" strict="true">
+					<field name="id" value="72" valuetype="const:int" strict="true" />
+					<field name="value" value="train" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-train text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="72" valuetype="const:int" />
+				</row>
+				<row index="id" value="73" valuetype="const:int" strict="true">
+					<field name="id" value="73" valuetype="const:int" strict="true" />
+					<field name="value" value="plane" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-plane text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="73" valuetype="const:int" />
+				</row>
+				<row index="id" value="74" valuetype="const:int" strict="true">
+					<field name="id" value="74" valuetype="const:int" strict="true" />
+					<field name="value" value="music" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-music text-primary" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="74" valuetype="const:int" />
+				</row>
+				<row index="id" value="75" valuetype="const:int" strict="true">
+					<field name="id" value="75" valuetype="const:int" strict="true" />
+					<field name="value" value="soccer" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-futbol-o text-default" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="75" valuetype="const:int" />
+				</row>
+				<row index="id" value="76" valuetype="const:int" strict="true">
+					<field name="id" value="76" valuetype="const:int" strict="true" />
+					<field name="value" value="snow" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-snowflake-o text-primary" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="76" valuetype="const:int" />
+				</row>
+				<row index="id" value="77" valuetype="const:int" strict="true">
+					<field name="id" value="77" valuetype="const:int" strict="true" />
+					<field name="value" value="paperclip" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-paperclip text-default" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="77" valuetype="const:int" />
+				</row>
+				<row index="id" value="78" valuetype="const:int" strict="true">
+					<field name="id" value="78" valuetype="const:int" strict="true" />
+					<field name="value" value="bicycle" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-bicycle text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="78" valuetype="const:int" />
+				</row>
+				<row index="id" value="79" valuetype="const:int" strict="true">
+					<field name="id" value="79" valuetype="const:int" strict="true" />
+					<field name="value" value="motorcycle" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-motorcycle text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="79" valuetype="const:int" />
+				</row>
+				<row index="id" value="80" valuetype="const:int" strict="true">
+					<field name="id" value="80" valuetype="const:int" strict="true" />
+					<field name="value" value="recycle" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-recycle text-primary" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="80" valuetype="const:int" />
+				</row>
+				<row index="id" value="81" valuetype="const:int" strict="true">
+					<field name="id" value="81" valuetype="const:int" strict="true" />
+					<field name="value" value="gift" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-gift text-danger" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="81" valuetype="const:int" />
+				</row>
+				<row index="id" value="82" valuetype="const:int" strict="true">
+					<field name="id" value="82" valuetype="const:int" strict="true" />
+					<field name="value" value="camera" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-camera-retro text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="82" valuetype="const:int" />
+				</row>
+				<row index="id" value="83" valuetype="const:int" strict="true">
+					<field name="id" value="83" valuetype="const:int" strict="true" />
+					<field name="value" value="globe" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-globe text-primary" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="83" valuetype="const:int" />
+				</row>
+				<row index="id" value="84" valuetype="const:int" strict="true">
+					<field name="id" value="84" valuetype="const:int" strict="true" />
+					<field name="value" value="idea" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-lightbulb-o text-warning" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="84" valuetype="const:int" />
+				</row>
+				<row index="id" value="85" valuetype="const:int" strict="true">
+					<field name="id" value="85" valuetype="const:int" strict="true" />
+					<field name="value" value="paw" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-paw text-default" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="85" valuetype="const:int" />
+				</row>
+				<row index="id" value="86" valuetype="const:int" strict="true">
+					<field name="id" value="86" valuetype="const:int" strict="true" />
+					<field name="value" value="shopping" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-shopping-bag text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="86" valuetype="const:int" />
+				</row>
+				<row index="id" value="87" valuetype="const:int" strict="true">
+					<field name="id" value="87" valuetype="const:int" strict="true" />
+					<field name="value" value="phone" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-phone text-success" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="87" valuetype="const:int" />
+				</row>
+				<row index="id" value="88" valuetype="const:int" strict="true">
+					<field name="id" value="88" valuetype="const:int" strict="true" />
+					<field name="value" value="tree" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-tree text-success" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="88" valuetype="const:int" />
+				</row>
+				<row index="id" value="89" valuetype="const:int" strict="true">
+					<field name="id" value="89" valuetype="const:int" strict="true" />
+					<field name="value" value="trophy" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-trophy text-warning" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="89" valuetype="const:int" />
+				</row>
+				<row index="id" value="90" valuetype="const:int" strict="true">
+					<field name="id" value="90" valuetype="const:int" strict="true" />
+					<field name="value" value="umbrella" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-umbrella text-info" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="90" valuetype="const:int" />
+				</row>
+			</rows>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+		<table name="#__comprofiler_plugin_activity_like_types" class="\CB\Plugin\Activity\Table\LikeTypeTable" strict="true" drop="never">
+			<columns strict="true" drop="never">
+				<column name="id" type="sql:int(11)" unsigned="true" auto_increment="500" strict="true" />
+				<column name="value" type="sql:varchar(255)" />
+				<column name="icon" type="sql:varchar(255)" null="true" />
+				<column name="class" type="sql:varchar(255)" null="true" />
+				<column name="published" type="sql:tinyint(1)" default="0" />
+				<column name="ordering" type="sql:int(11)" default="99999" />
+				<column name="params" type="sql:text" null="true" />
+			</columns>
+			<indexes strict="true" drop="always">
+				<index name="PRIMARY" type="primary">
+					<column name="id" />
+				</index>
+				<index name="types">
+					<column name="published" />
+					<column name="ordering" />
+				</index>
+			</indexes>
+			<rows strict="false">
+				<row index="id" value="1" valuetype="const:int" strict="true">
+					<field name="id" value="1" valuetype="const:int" strict="true" />
+					<field name="value" value="Like" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-thumbs-o-up text-primary" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="1" valuetype="const:int" />
+				</row>
+				<row index="id" value="2" valuetype="const:int" strict="true">
+					<field name="id" value="2" valuetype="const:int" strict="true" />
+					<field name="value" value="Love" valuetype="const:string" />
+					<field name="class" value="fa fa-lg fa-heart text-danger" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="2" valuetype="const:int" />
+				</row>
+				<row index="id" value="3" valuetype="const:int" strict="true">
+					<field name="id" value="3" valuetype="const:int" strict="true" />
+					<field name="value" value="Funny" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f606" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="3" valuetype="const:int" />
+				</row>
+				<row index="id" value="4" valuetype="const:int" strict="true">
+					<field name="id" value="4" valuetype="const:int" strict="true" />
+					<field name="value" value="Sad" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f622" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="4" valuetype="const:int" />
+				</row>
+				<row index="id" value="5" valuetype="const:int" strict="true">
+					<field name="id" value="5" valuetype="const:int" strict="true" />
+					<field name="value" value="Angry" valuetype="const:string" />
+					<field name="class" value="twemoji twemoji-1f621" valuetype="const:string" />
+					<field name="published" value="1" valuetype="const:int" />
+					<field name="ordering" value="5" valuetype="const:int" />
+				</row>
+			</rows>
+			<engine type="InnoDB" sameastable="#__comprofiler" strict="updatewithtable" />
+		</table>
+	</database>
+</cbinstall>

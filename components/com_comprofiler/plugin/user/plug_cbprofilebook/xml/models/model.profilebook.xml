@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="profilebook_state" base="published" valuetype="string">
+			<option value="0" title="Unpublish Entry">Unpublished</option>
+			<option value="-1" title="Unapprove Entry" iconclass="clock-o" textclass="warning" toggleable="false">Unapproved</option>
+			<option value="1" title="Publish Entry">Published</option>
+		</type>
+		<type name="profilebook_status" base="published" valuetype="string">
+			<option value="0" title="Mark Unread">Unread</option>
+			<option value="1" title="Mark Read">Read</option>
+		</type>
+		<type name="profilebook_mode" base="list" valuetype="string">
+			<option value="g">Guestbook</option>
+			<option value="b">Blog</option>
+			<option value="w">Wall</option>
+		</type>
+	</types>
+</cbxml>

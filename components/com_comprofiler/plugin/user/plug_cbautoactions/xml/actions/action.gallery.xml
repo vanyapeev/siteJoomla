@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="autoaction_type" base="xml:autoaction_type">
+			<option value="gallery">CB Gallery</option>
+		</type>
+		<type name="autoaction_triggers" base="xml:autoaction_triggers">
+			<optgroup label="CB Gallery">
+				<option value="gallery_onAfterActivity" translate="no">gallery_onAfterActivity</option>
+				<option value="gallery_onAfterCreateFolder" translate="no">gallery_onAfterCreateFolder</option>
+				<option value="gallery_onAfterCreateItem" translate="no">gallery_onAfterCreateItem</option>
+				<option value="gallery_onAfterDeleteFolder" translate="no">gallery_onAfterDeleteFolder</option>
+				<option value="gallery_onAfterDeleteItem" translate="no">gallery_onAfterDeleteItem</option>
+				<option value="gallery_onAfterDisplayFolder" translate="no">gallery_onAfterDisplayFolder</option>
+				<option value="gallery_onAfterDisplayGallery" translate="no">gallery_onAfterDisplayGallery</option>
+				<option value="gallery_onAfterFolderEdit" translate="no">gallery_onAfterFolderEdit</option>
+				<option value="gallery_onAfterItemEdit" translate="no">gallery_onAfterItemEdit</option>
+				<option value="gallery_onAfterItemEditMini" translate="no">gallery_onAfterItemEditMini</option>
+				<option value="gallery_onAfterItemsNew" translate="no">gallery_onAfterItemsNew</option>
+				<option value="gallery_onAfterUpdateFolder" translate="no">gallery_onAfterUpdateFolder</option>
+				<option value="gallery_onAfterUpdateItem" translate="no">gallery_onAfterUpdateItem</option>
+				<option value="gallery_onBeforeCreateFolder" translate="no">gallery_onBeforeCreateFolder</option>
+				<option value="gallery_onBeforeCreateItem" translate="no">gallery_onBeforeCreateItem</option>
+				<option value="gallery_onBeforeDeleteFolder" translate="no">gallery_onBeforeDeleteFolder</option>
+				<option value="gallery_onBeforeDeleteItem" translate="no">gallery_onBeforeDeleteItem</option>
+				<option value="gallery_onBeforeDisplayFolder" translate="no">gallery_onBeforeDisplayFolder</option>
+				<option value="gallery_onBeforeDisplayGallery" translate="no">gallery_onBeforeDisplayGallery</option>
+				<option value="gallery_onBeforeFolderEdit" translate="no">gallery_onBeforeFolderEdit</option>
+				<option value="gallery_onBeforeItemEdit" translate="no">gallery_onBeforeItemEdit</option>
+				<option value="gallery_onBeforeItemEditMini" translate="no">gallery_onBeforeItemEditMini</option>
+				<option value="gallery_onBeforeItemsNew" translate="no">gallery_onBeforeItemsNew</option>
+				<option value="gallery_onBeforeUpdateFolder" translate="no">gallery_onBeforeUpdateFolder</option>
+				<option value="gallery_onBeforeUpdateItem" translate="no">gallery_onBeforeUpdateItem</option>
+				<option value="gallery_onDisplayFolder" translate="no">gallery_onDisplayFolder</option>
+				<option value="gallery_onDisplayItem" translate="no">gallery_onDisplayItem</option>
+				<option value="gallery_onDisplayModal" translate="no">gallery_onDisplayModal</option>
+				<option value="gallery_onGallery" translate="no">gallery_onGallery</option>
+				<option value="gallery_onGalleryFoldersCreateAccess" translate="no">gallery_onGalleryFoldersCreateAccess</option>
+				<option value="gallery_onGalleryItemsCreateAccess" translate="no">gallery_onGalleryItemsCreateAccess</option>
+				<option value="gallery_onGalleryModerateAccess" translate="no">gallery_onGalleryModerateAccess</option>
+				<option value="gallery_onLoadFolders" translate="no">gallery_onLoadFolders</option>
+				<option value="gallery_onLoadItems" translate="no">gallery_onLoadItems</option>
+				<option value="gallery_onQueryFolderItems" translate="no">gallery_onQueryFolderItems</option>
+				<option value="gallery_onQueryFolders" translate="no">gallery_onQueryFolders</option>
+				<option value="gallery_onQueryItems" translate="no">gallery_onQueryItems</option>
+			</optgroup>
+		</type>
+	</types>
+	<views>
+		<view name="actiontype_gallery" type="params" ui="admin">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbgallery/xml/models/model.gallery" mandatory="false" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbgalleryoverrides" mandatory="false" mode="extend" keyattribute="name" />
+			<param name="" type="spacer" display="2lines" label="" default="Creates gallery linked items and folders." />
+			<params name="gallery" type="params" repeat="true" label="" display="2lines">
+				<param name="mode" type="list" default="" blanktext="- Select Mode -" label="Mode" onchange="evaluate" description="Select the gallery action mode.">
+					<option value="item">Item</option>
+					<option value="folder">Folder</option>
+					<option value="gallery">Gallery</option>
+				</param>
+				<if name="mode" nametype="param:string" operator="in" value="item|*|folder" valuetype="const:string" type="condition">
+					<param name="method" type="list" default="create" translate-default="no" label="Method" description="Select if a new entry should be created or an existing entry deleted.">
+						<option value="create">Create</option>
+						<option value="delete">Delete</option>
+					</param>
+					<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+						<param name="published" type="text" default="" label="Published" description="Optionally input the substitution supported published state for this entry. Note this will be converted to an integer with 1 being published and 0 being unpublished." size="15" />
+					</if>
+					<param name="asset" type="text" size="50" label="Asset" description="Optionally input the substitution supported asset for this entry. Asset determines item location (e.g. global, profile.USER_ID, profile.USER_ID.field.FIELD_ID). Leave blank for entry based off the owner (e.g. profile.[user_id])." />
+					<if name="mode" nametype="param:string" operator="=" value="item" valuetype="const:string" type="condition">
+						<param name="value" type="text" label="Link" description="Input substitution supported item file link." size="50" />
+					</if>
+					<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+						<param name="title" type="text" label="Title" description="Optionally input substitution supported title." size="50" />
+						<param name="description" type="textarea" rows="5" label="Description" description="Optionally input substitution supported description." cssclass="input-block" />
+					</if>
+					<param name="owner" type="text" label="Owner" size="15" description="Input substitution supported owner as single integer user_id. Leave blank to use trigger user as the owner. Note this will result in user substitutions being from the specified user_id." />
+					<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+						<param name="create_by" type="list" default="asset_link_owner" translate-default="no" label="Load" description="Select if this entry should be loaded by the selected criteria to see if it exists first. If it does exist it will be updated instead of a new entry created. Note only the first entry found will be loaded.">
+							<attributes>
+								<attribute name="default">
+									<if name="mode" nametype="param:string" operator="=" value="item" valuetype="const:string" type="condition">
+										<then>
+											<param name="" default="asset_link_owner" translate-default="no" type="string" />
+										</then>
+										<else>
+											<param name="" default="none" translate-default="no" type="string" />
+										</else>
+									</if>
+								</attribute>
+							</attributes>
+							<if name="mode" nametype="param:string" operator="=" value="item" valuetype="const:string" type="condition">
+								<then>
+									<option value="none">None</option>
+									<option value="link">By Link Only</option>
+									<option value="asset">By Asset Only</option>
+									<option value="asset_link">By Asset and Link</option>
+									<option value="asset_owner">By Asset and Owner</option>
+									<option value="link_owner">By Link and Owner</option>
+									<option value="asset_link_owner">By Asset, Link, and Owner</option>
+								</then>
+								<else>
+									<option value="none">None</option>
+									<option value="asset">By Asset Only</option>
+									<option value="asset_owner">By Asset and Owner</option>
+								</else>
+							</if>
+						</param>
+					</if>
+					<if name="method" nametype="param:string" operator="=" value="delete" valuetype="const:string" type="showhide">
+						<param name="delete_by" type="list" default="asset_link_owner" translate-default="no" label="Load" description="Select what criteria to load by when deleting entries.">
+							<attributes>
+								<attribute name="default">
+									<if name="mode" nametype="param:string" operator="=" value="item" valuetype="const:string" type="condition">
+										<then>
+											<param name="" default="asset_link_owner" translate-default="no" type="string" />
+										</then>
+										<else>
+											<param name="" default="asset_owner" translate-default="no" type="string" />
+										</else>
+									</if>
+								</attribute>
+							</attributes>
+							<if name="mode" nametype="param:string" operator="=" value="item" valuetype="const:string" type="condition">
+								<then>
+									<option value="link">By Link Only</option>
+									<option value="asset">By Asset Only</option>
+									<option value="asset_link">By Asset and Link</option>
+									<option value="asset_owner">By Asset and Owner</option>
+									<option value="link_owner">By Link and Owner</option>
+									<option value="asset_link_owner">By Asset, Link, and Owner</option>
+								</then>
+								<else>
+									<option value="asset">By Asset Only</option>
+									<option value="asset_owner">By Asset and Owner</option>
+								</else>
+							</if>
+						</param>
+					</if>
+				</if>
+				<if name="mode" nametype="param:string" operator="=" value="gallery" valuetype="const:string" type="condition">
+					<param name="asset" type="text" size="50" label="Asset" description="Optionally input the comma separated substitution supported assets for this gallery. Asset determines gallery location (e.g. global.cars, profile.[user_id], profile.%). Leave blank for profile galley based off the owner (e.g. profile.[user_id]). Additionally substitutions are supported (e.g. profile.[user_id].cars.[field_id]) in addition to custom [displayed_id] and [viwer_id]. The following custom assets can also be used: profile, uploads, connections, connectionsonly, self, self.uploads, self.connections, self.connectionsonly, user, user.uploads, user.connections, user.connectionsonly, displayed, displayed.uploads, displayed.connections, and displayed.connectionsonly." />
+					<fieldset name="gallerygallery" label="Gallery">
+						<params name="gallery_gallery" type="params" label="">
+							<showview view="cbgallery_galleryParams" mode="edit" type="view" />
+						</params>
+					</fieldset>
+					<param name="location" type="text" size="60" label="Location" description="Optionally input the substitution supported location URL for this gallery. This determines what page the gallery belongs to. Leave blank to use the current location that the gallery is displayed on." />
+					<param name="moderators" type="text" size="40" label="Moderators" description="Optionally input the substitution supported moderators as comma separated list of integer user_ids. The supplied user ids will have moderator permissions for this gallery." />
+					<param name="notify" type="text" size="40" label="Notify" description="Optionally input the substitution supported notification recipients as comma separated list of integer user_ids. The supplied user ids will be notified for any moderator required actions." />
+					<param name="owner" type="text" label="Owner" size="15" description="Input substitution supported owner as single integer user_id. Leave blank to use trigger user as the owner. Note this will result in user substitutions being from the specified user_id." />
+				</if>
+			</params>
+		</view>
+	</views>
+</cbxml>

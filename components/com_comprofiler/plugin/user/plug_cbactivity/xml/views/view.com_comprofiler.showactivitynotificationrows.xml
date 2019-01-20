@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="showactivitynotifications" type="params" ui="admin" label="Notifications" icon="list" viewformatting="none">
+			<tablebrowser name="activitynotificationsbrowser" table="#__comprofiler_plugin_activity_notifications" class="\CB\Plugin\Activity\Table\NotificationTable">
+				<toolbarmenu>
+					<menu name="new" action="linkAction" task="new" link="cbo:newrow" label="New" />
+					<menu name="edit" action="linkAction" task="edit" link="cbo:editrows/notificationid" label="Edit" />
+					<menu name="publish" action="linkAction" task="publish" link="cbo:publish/published" label="Publish" />
+					<menu name="unpublish" action="linkAction" task="unpublish" link="cbo:unpublish/published" label="Unpublish" />
+					<menu name="delete" action="linkAction" task="delete" link="cbo:deleterows" label="Delete" />
+					<menu name="cancel" action="linkAction" task="cancel" link="cb_action:plugins" label="Close" />
+				</toolbarmenu>
+				<quicksearchfields placeholder="Search Notifications..." size="30">
+					<field name="owner">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+					</field>
+					<field name="target">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user" />
+					</field>
+					<field name="asset" />
+					<field name="title" />
+					<field name="message" />
+					<field name="id" valuetype="const:int" />
+				</quicksearchfields>
+				<filters>
+					<filter name="owner" value="username" valuetype="sql:string" type="string" label="" blanktext="Owner">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+					</filter>
+					<filter name="target" value="username" valuetype="sql:string" type="string" label="" blanktext="User">
+						<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user" />
+					</filter>
+					<filter name="asset" valuetype="sql:string" type="string" label="" blanktext="Asset" />
+					<filter name="pinned" valuetype="sql:int" type="xml:activity_pinned" label="" blanktext="- Select Pinned -" />
+					<filter name="published" valuetype="sql:int" type="xml:activity_published" label="" blanktext="- Select Published -" />
+					<filter name="datefrom" value="date" valuetype="sql:string" type="datetime" operator="&gt;=" view="datefromto" />
+					<filter name="dateto" value="date" valuetype="sql:string" type="datetime" operator="&lt;=" view="datefromto" />
+					<view name="datefromto" type="params">
+						<fieldset name="daterange" label="Date">
+							<param name="filter_datefrom" type="datetime" default="" label="From" />
+							<param name="filter_dateto" type="datetime" default="" label="To" />
+						</fieldset>
+					</view>
+					<filter name="id" type="field_show_only_if_selected" base="int" default="" label="" blanktext="- Select ID -" />
+				</filters>
+				<orderby>
+					<ordergroup name="date_asc" label="Date ascending">
+						<field name="date" ordering="ASC" />
+					</ordergroup>
+					<ordergroup name="date_desc" label="Date descending" default="true" translate-default="no">
+						<field name="date" ordering="DESC" />
+					</ordergroup>
+					<ordergroup name="owner_asc" label="Owner ascending">
+						<field name="user_comment" type="sql:string" ordering="ASC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+						</field>
+					</ordergroup>
+					<ordergroup name="owner_desc" label="Owner descending">
+						<field name="user_comment" type="sql:string" ordering="DESC">
+							<data name="username" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+						</field>
+					</ordergroup>
+				</orderby>
+				<listfields>
+					<header type="standard" />
+					<rows type="standard" height="auto">
+						<field name="" type="rownumber" width="1%" align="center" label="#" responsivehiddenon="xsmall" />
+						<field name="id" type="primarycheckbox" width="1%" align="center" />
+						<field name="owner" type="string" link="cbo:rowedit" parameters="notificationid" paramvalues="id" align="left" label="Owner" allowordering="ascending,descending">
+							<data name="user_id" type="sql:field" />
+							<data name="username" as="owner" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user_id" />
+						</field>
+						<field name="target" type="string" width="15%" align="left" label="User" allowordering="ascending,descending">
+							<data name="user" type="sql:field" />
+							<data name="username" as="target" type="sql:field" table="#__users" class="\CB\Database\Table\UserTable" key="id" value="user" />
+						</field>
+						<field name="message" type="firstwords" size="100" width="25%" label="Message" allowordering="ascending,descending" />
+						<field name="asset" type="string" width="20%" align="center" label="Asset" allowordering="ascending,descending" />
+						<field name="date" type="datetime" timezone="RAW" width="15%" align="center" label="Date" responsivehiddenon="xsmall" allowordering="ascending,descending" />
+						<field name="pinned" type="xml:activity_pinned" width="5%" align="center" label="Pinned" onclick="toggle" allowordering="ascending,descending" />
+						<field name="published" type="published" width="5%" align="center" label="Published" onclick="toggle" allowordering="ascending,descending" />
+						<field name="id" type="int" width="5%" align="center" label="ID" allowordering="ascending,descending" />
+					</rows>
+				</listfields>
+				<batchprocess>
+					<batch name="user_id" type="text" label="" blanktext="Owner" />
+					<batch name="user" type="text" label="" blanktext="User" />
+					<batch name="asset" type="text" label="" blanktext="Asset" />
+					<batch name="pinned" valuetype="sql:string" type="xml:activity_pinned" label="" blanktext="- Select Pinned -" />
+				</batchprocess>
+			</tablebrowser>
+		</view>
+	</views>
+</cbxml>

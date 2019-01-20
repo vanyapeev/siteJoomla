@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../cb/validation/ahawow.xsd">
+	<types>
+		<type name="autoaction_type" base="xml:autoaction_type">
+			<option value="piwik">Piwik</option>
+		</type>
+	</types>
+	<views>
+		<view name="actiontype_piwik" type="params" ui="admin">
+			<param name="" type="spacer" display="2lines" label="" default="Allows for piwik tracking of pages." />
+			<params name="piwik" type="params" repeat="true" label="" display="2lines">
+				<param name="installation" type="text" label="Installation URL" description="Input substitution supported piwik installation URL (e.g. http://www.example.com/piwik). Begin with leading slash to path from Joomla root (e.g. /images/piwik). The file piwik.php should be at the supplied URL. Do not include a trailing slash." size="80" validate="required" />
+				<param name="site" type="text" label="Site ID" description="Input the substitution supported Site ID for tracking provided by your Piwik install. You can find your sites unique ID within Piwik &gt; Settings &gt; Websites." size="40" validate="required" />
+				<param name="url" type="text" label="URL" description="Optionally input the substitution supported URL to track. Leave blank to use the current URL the action is executed on." size="80" />
+				<fieldset name="piwikaction" label="Action">
+					<params name="action" type="params">
+						<param name="name" type="text" label="Name" description="Optionally input the substitution supported action name (e.g. Feedback, Help, etc..). Separate multiple actions with a slash (e.g. Help / Feedback)." size="50" />
+						<param name="link" type="text" label="Link" description="Optionally input the substitution supported external URL opened. It is recommended to also set URL to same as this. Additionally supply [current_url] substitution for the current URL." size="50" />
+						<param name="download" type="text" label="Download" description="Optionally input the substitution supported download URL. It is recommended to also set URL to same as this. Additionally supply [current_url] substitution for the current URL." size="50" />
+					</params>
+				</fieldset>
+				<fieldset name="piwiklocaton" label="Location Tracking">
+					<params name="location" type="params">
+						<param name="useragent" type="text" label="User Agent" description="Optionally input the substitution supported browser user agent. Leave blank to use user agent at time of trigger." size="50" />
+						<param name="language" type="text" label="Language" description="Optionally input the substitution supported user language code (e.g. en-GB, de-CH, en-US). Leave blank to use trigger user language." size="50" />
+						<if name="token" nametype="param:string" operator="!=" value="" valuetype="const:string" type="showhide">
+							<param name="ipaddress" type="text" label="IP Address" description="Optionally input the substitution supported user ip address." size="50" />
+							<param name="country" type="text" label="Country" description="Optionally input the substitution supported user country. Note this should be a lowercase 2 letter ISO code (e.g. us)." size="50" />
+							<param name="region" type="text" label="State / Province" description="Optionally input the substitution supported user region. Note this should be a uppercase 2 letter region code (e.g. GA)." size="50" />
+							<param name="city" type="text" label="City" description="Optionally input the substitution supported user city (e.g. Atlanta)." size="50" />
+							<param name="latitude" type="text" label="Latitude" description="Optionally input the substitution supported user latitude." size="50" />
+							<param name="longitude" type="text" label="Longitude" description="Optionally input the substitution supported user longitude." size="50" />
+						</if>
+					</params>
+				</fieldset>
+				<fieldset name="piwikcampaign" label="Campaign Tracking">
+					<params name="campaign" type="params">
+						<param name="name" type="text" label="Category" description="Optionally input the substitution supported campaign name." size="50" />
+						<param name="keyword" type="text" label="Action" description="Optionally input the substitution supported campaign keyword." size="50" />
+					</params>
+				</fieldset>
+				<fieldset name="piwikevent" label="Event Tracking">
+					<params name="event" type="params">
+						<param name="category" type="text" label="Category" description="Optionally input the substitution supported event category (e.g. Videos, Music, Games, etc..)." size="50" />
+						<param name="action" type="text" label="Action" description="Optionally input the substitution supported event action (e.g. Play, Pause, Duration, Add Playlist, Downloaded, Clicked, etc..)." size="50" />
+						<param name="name" type="text" label="Name" description="Optionally input the substitution supported event name (e.g. a movie name, or song name, or file name, etc..)." size="50" />
+						<param name="value" type="text" label="Value" description="Optionally input the substitution supported event value (e.g. 56, 32.1). Note this must be numeric." size="50" />
+					</params>
+				</fieldset>
+				<fieldset name="piwikcontent" label="Content Tracking">
+					<params name="content" type="params">
+						<param name="name" type="text" label="Name" description="Optionally input the substitution supported content name (e.g. Ad Foo Bar)." size="50" />
+						<param name="piece" type="textarea" rows="5" label="Piece" description="Optionally input the substitution supported content piece (e.g. path to image, path to video, path to audio, any text, etc..)." cssclass="input-block" />
+						<param name="target" type="text" label="Target" description="Optionally input the substitution supported content target (e.g. landing page url). Additionally supply [current_url] substitution for the current URL." size="50" />
+						<param name="interaction" type="text" label="Interaction" description="Optionally input the substitution supported content interaction (e.g. click)." size="50" />
+					</params>
+				</fieldset>
+				<fieldset name="piwikecommerce" label="Ecommerce Tracking">
+					<params name="ecommerce" type="params">
+						<param name="order" type="text" label="Order ID" description="Optionally input the substitution supported unique ecommerce order id." size="50" />
+						<param name="tax" type="text" label="Tax" description="Optionally input the substitution supported excommerice tax amount." size="50" />
+						<param name="shipping" type="text" label="Shipping" description="Optionally input the substitution supported excommerice shipping cost." size="50" />
+						<param name="discount" type="text" label="Discount" description="Optionally input the substitution supported excommerice discount amount." size="50" />
+						<param name="subtotal" type="text" label="Sub-Total" description="Optionally input the substitution supported excommerice sub-total excluding shipping." size="50" />
+						<param name="revenue" type="text" label="Revenue" description="Optionally input the substitution supported ecommerce total revenue." size="50" />
+						<params name="items" type="params" repeat="true" label="Items">
+							<param name="sku" type="text" label="SKU" description="Optionally input the substitution supported item sku." size="50" />
+							<param name="name" type="text" label="Name" description="Optionally input the substitution supported item name." size="50" />
+							<param name="category" type="text" label="Category" description="Optionally input the substitution supported item category." size="50" />
+							<param name="price" type="text" label="Price" description="Optionally input the substitution supported item price." size="50" />
+							<param name="quantity" type="text" label="Quantity" description="Optionally input the substitution supported item quantity." size="50" />
+						</params>
+					</params>
+				</fieldset>
+				<fieldset name="piwikcustom" label="Custom Variables">
+					<params name="custom" type="params" repeat="true" label="" display="2lines">
+						<param name="key" type="text" label="Key" description="Optionally input the substitution supported variable key (e.g. id)." size="50" />
+						<param name="value" type="text" label="Value" description="Optionally input the substitution supported key value (e.g. [user_id])." size="50" />
+					</params>
+				</fieldset>
+				<param name="goal" type="text" label="Goal" description="Optionally input the substitution supported goal id. Note this will be set to 0 if using ecommerce tracking." size="50" />
+				<param name="token" type="text" label="Token" description="Optionally input the substitution supported piwik api authentication token. You can find your sites unique Auth Token within Piwik &gt; API &gt; User authentication" size="50" />
+				<param name="user" type="text" label="User" description="Optionally input the substitution supported piwik user id. Leave blank for md5 of trigger user and site domain." size="50" />
+				<param name="visitor" type="text" label="Visitor" description="Optionally input the substitution supported piwik visitor id." size="50" />
+			</params>
+		</view>
+	</views>
+</cbxml>

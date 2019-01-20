@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="privacy_closed_type" base="list" valuetype="string">
+			<option value="disable">Disabled</option>
+			<option value="delete">Deleted</option>
+			<option value="pending">Pending</option>
+		</type>
+		<type name="privacy_yesno" base="list" valuetype="string">
+			<option value="-1">Same as Global</option>
+			<option value="1">Enable</option>
+			<option value="0">Disable</option>
+		</type>
+		<type name="privacy_layout" base="list" valuetype="string">
+			<option value="button">Button</option>
+			<option value="icon">Icon</option>
+			<option value="tags">Tags</option>
+		</type>
+	</types>
+</cbxml>

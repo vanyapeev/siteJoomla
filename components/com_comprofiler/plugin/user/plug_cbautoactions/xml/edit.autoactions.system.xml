@@ -1,0 +1,1940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoactions>
+	<!-- GENERIC -->
+	<autoaction name="autologin" label="Auto Login" type="loginlogout" published="0">
+		<param name="description" value="Automatically logs in a user after registration or confirmation (must be approved and confirmed)." />
+		<param name="trigger" value="onAfterUserConfirmation|*|onAfterSaveUserRegistration" />
+		<conditions>
+			<condition>
+				<param name="field" value="[approved]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[confirmed]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[block]" />
+				<param name="operator" value="0" />
+				<param name="value" value="0" />
+			</condition>
+		</conditions>
+		<action>
+			<param name="mode" value="1" />
+			<param name="method" value="1" />
+			<param name="username" value="[username]" />
+			<param name="redirect" value="index.php" />
+		</action>
+	</autoaction>
+	<!-- PROFILE -->
+	<autoaction name="activityprofilelogin" label="Profile - Logged In" type="activity" published="0">
+		<param name="description" value="Logs activity when a user logs in." />
+		<param name="trigger" value="onAfterLogin" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="profile.[user_id].login" />
+				<param name="owner" value="[user_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityprofilelogout" label="Profile - Logged Out" type="activity" published="0">
+		<param name="description" value="Logs activity when a user logs out." />
+		<param name="trigger" value="onAfterLogout" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="profile.[user_id].logout" />
+				<param name="owner" value="[user_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityprofileregister" label="Profile - Register" type="activity" published="0">
+		<param name="description" value="Logs activity when a new user registers." />
+		<param name="trigger" value="onAfterUserApproval|*|onAfterUserConfirm|*|onAfterUserRegistration" />
+		<conditions>
+			<condition>
+				<param name="field" value="[approved]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[confirmed]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="profile.[user_id].registration" />
+				<param name="owner" value="[user_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityprofileupdate" label="Profile - Update" type="activity" published="0">
+		<param name="description" value="Logs activity for profile updates." />
+		<param name="trigger" value="onAfterUserUpdate" />
+		<param name="access" value="-7" />
+		<conditions>
+			<condition>
+				<param name="field" value="[approved]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[confirmed]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[block]" />
+				<param name="operator" value="0" />
+				<param name="value" value="0" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="profile.[user_id].update" />
+				<param name="owner" value="[user_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityprofileavatar" label="Profile - Avatar" type="activity" published="1">
+		<param name="description" value="Logs activity for avatar updates." />
+		<param name="trigger" value="onAfterUserUpdate" />
+		<param name="access" value="-7" />
+		<conditions>
+			<condition>
+				<param name="field" value="[approved]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[confirmed]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[block]" />
+				<param name="operator" value="0" />
+				<param name="value" value="0" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_avatarapproved]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_avatar]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[var3_avatar]" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_avatar]" />
+				<param name="operator" value="7" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="profile.[user_id].avatar" />
+				<param name="owner" value="[user_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityprofilecanvas" label="Profile - Canvas" type="activity" published="1">
+		<param name="description" value="Logs activity for canvas updates." />
+		<param name="trigger" value="onAfterUserUpdate" />
+		<param name="access" value="-7" />
+		<conditions>
+			<condition>
+				<param name="field" value="[approved]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[confirmed]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[block]" />
+				<param name="operator" value="0" />
+				<param name="value" value="0" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_canvasapproved]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_canvas]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[var3_canvas]" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_canvas]" />
+				<param name="operator" value="7" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="profile.[user_id].canvas" />
+				<param name="owner" value="[user_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- CB CONNECTIONS -->
+	<autoaction name="activityaddconn" label="CB Connections - Add" type="activity" published="1">
+		<param name="description" value="Logs activity when a new connection is added and accepted." />
+		<param name="trigger" value="onAfterAcceptConnection|*|onAfterAddConnection" />
+		<conditions>
+			<condition>
+				<param name="field" value="[cb:if trigger=&quot;onAfterAcceptConnection&quot;]0[cb:else][var3][/cb:else][/cb:if]" />
+				<param name="operator" value="1" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="profile.[var2].connection" />
+				<param name="owner" value="[var1]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityremoveconn" label="CB Connections - Remove" type="activity" published="1">
+		<param name="description" value="Deletes activity for removed connections." />
+		<param name="trigger" value="onAfterRemoveConnection" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="profile.[var2].connection" />
+				<param name="owner" value="[var1]" />
+				<param name="delete_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- CB ACTIVITY -->
+	<autoaction name="activitycomment" label="CB Activity - Comment" type="activity" published="0">
+		<param name="description" value="Logs activity for activity comments." />
+		<param name="trigger" value="activity_onAfterCreateStreamComment|*|activity_onAfterUpdateStreamComment" />
+		<conditions>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var1_activity][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var3_published]" />
+				<param name="asset" value="activity.[var1_activity].comment" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationcomment" label="CB Activity - Comment Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for activity comments." />
+		<param name="trigger" value="activity_onAfterCreateStreamComment" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var3_asset]" />
+				<param name="operator" value="11" />
+				<param name="value" value="/^gallery./" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var1_activity][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="activity.[var1_activity].comment" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="user" value="[var2_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitytag" label="CB Activity - Tag" type="activity" published="0">
+		<param name="description" value="Logs activity for activity tags." />
+		<param name="trigger" value="activity_onAfterCreateStreamTag" />
+		<conditions>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var1_activity][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_tag][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_tag][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="activity.[var1_activity].tag" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationtag" label="CB Activity - Tag Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for activity tags." />
+		<param name="trigger" value="activity_onAfterCreateStreamTag" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var3_asset]" />
+				<param name="operator" value="11" />
+				<param name="value" value="/^gallery./" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var1_activity][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_tag][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_tag][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="activity.[var1_activity].tag" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="user" value="[var3_tag]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitylike" label="CB Activity - Like" type="activity" published="0">
+		<param name="description" value="Logs activity for activity likes." />
+		<param name="trigger" value="activity_onAfterLikeStream" />
+		<conditions>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var1_activity][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="activity.[var1_activity].like" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationlike" label="CB Activity - Like Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for activity likes." />
+		<param name="trigger" value="activity_onAfterLikeStream" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var3_asset]" />
+				<param name="operator" value="11" />
+				<param name="value" value="/^gallery./" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var1_activity][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="activity.[var1_activity].like" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="user" value="[var2_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityprivacynew" label="CB Activity - Privacy - New" type="privacy" published="1">
+		<param name="description" value="Displays privacy selector for new activity." />
+		<param name="trigger" value="activity_onDisplayStreamActivityNew" />
+		<param name="object" value="2" />
+		<actions>
+			<action>
+				<param name="mode" value="privacy" />
+				<param name="method" value="display" />
+				<param name="asset" value="activity.0" />
+				<param name="privacy_privacy.privacy_layout" value="button" />
+				<param name="privacy_privacy.privacy_ajax" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var1&apos;][&apos;right&apos;][] = &apos;&lt;span class=&quot;streamInputSelect streamInputPrivacy&quot;&gt;&apos; . $content . &apos;&lt;/span&gt;&apos;;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="1" />
+		</params>
+	</autoaction>
+	<autoaction name="activityprivacyedit" label="CB Activity - Privacy - Edit" type="privacy" published="1">
+		<param name="description" value="Displays privacy selector for activity edit." />
+		<param name="trigger" value="activity_onDisplayStreamActivityEdit" />
+		<param name="object" value="2" />
+		<actions>
+			<action>
+				<param name="mode" value="privacy" />
+				<param name="method" value="display" />
+				<param name="asset" value="activity.[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="privacy_privacy.privacy_layout" value="button" />
+				<param name="privacy_privacy.privacy_ajax" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;][&apos;right&apos;][] = &apos;&lt;span class=&quot;streamInputSelect streamInputPrivacy&quot;&gt;&apos; . $content . &apos;&lt;/span&gt;&apos;;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activityprivacysave" label="CB Activity - Privacy - Save" type="privacy" published="1">
+		<param name="description" value="Saves activity privacy rules." />
+		<param name="trigger" value="activity_onAfterCreateStreamActivity|*|activity_onAfterUpdateStreamActivity" />
+		<param name="object" value="2" />
+		<actions>
+			<action>
+				<param name="mode" value="privacy" />
+				<param name="method" value="save" />
+				<param name="asset" value="activity.[var3_id]" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="privacy_privacy.privacy_layout" value="button" />
+				<param name="privacy_privacy.privacy_ajax" value="0" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityprivacyauthorized" label="CB Activity - Privacy - Authorized" type="privacy" published="1">
+		<param name="description" value="Checks privacy rules on activity." />
+		<param name="trigger" value="activity_onLoadActivityStream" />
+		<param name="object" value="2" />
+		<param name="access" value="-4" />
+		<conditions>
+			<condition>
+				<param name="field" value="[user_id]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[loop_user_id]" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="privacy" />
+				<param name="method" value="authorized" />
+				<param name="asset" value="activity.[loop_id]" />
+				<param name="owner" value="[loop_user_id]" />
+				<param name="privacy_privacy.privacy_layout" value="button" />
+				<param name="privacy_privacy.privacy_ajax" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="references" value="1" />
+			<param name="loop" value="1" />
+		</params>
+	</autoaction>
+	<!-- CB GALLERY -->
+	<autoaction name="activitygallerycreate" label="CB Gallery - Create" type="activity" published="1">
+		<param name="description" value="Logs activity for uploaded and linked media." />
+		<param name="trigger" value="gallery_onAfterCreateItem|*|gallery_onAfterUpdateItem" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_asset]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/^profile\./" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_asset]" />
+				<param name="operator" value="11" />
+				<param name="value" value="/\.uploads$/" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="gallery.[var1_type].[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitygallerydelete" label="CB Gallery - Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications, comments, tags and likes for deleted media." />
+		<param name="trigger" value="gallery_onAfterDeleteItem" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="gallery.[var1_type].[var1_id],gallery.[var1_type].[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="gallery.[var1_type].[var1_id],gallery.[var1_type].[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="comment" />
+				<param name="method" value="delete" />
+				<param name="asset" value="gallery.[var1_type].[var1_id],gallery.[var1_type].[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="tag" />
+				<param name="method" value="delete" />
+				<param name="asset" value="gallery.[var1_type].[var1_id],gallery.[var1_type].[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="like" />
+				<param name="method" value="delete" />
+				<param name="asset" value="gallery.[var1_type].[var1_id],gallery.[var1_type].[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitygallerylikes" label="CB Gallery - Likes" type="activity" published="0">
+		<param name="description" value="Adds likes to gallery media." />
+		<param name="trigger" value="gallery_onDisplayModal" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="like" />
+				<param name="asset" value="gallery.[var1_type].[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="likes_stream.likes_layout" value="extended" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="return" />
+			<param name="display_layout" value="&lt;div style=&quot;margin-bottom: 5px;&quot;&gt;[content]&lt;/div&gt;" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygallerycomments" label="CB Gallery - Comments" type="activity" published="1">
+		<param name="description" value="Adds commenting to gallery media." />
+		<param name="trigger" value="gallery_onDisplayModal" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="comments" />
+				<param name="asset" value="gallery.[var1_type].[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="comments_stream.comments_direction" value="down" />
+				<param name="comments_stream.comments_pinned" value="0" />
+				<param name="comments_stream.comments_create" value="1" />
+				<param name="comments_stream.comments_create_access" value="2" />
+				<param name="comments_stream.comments_create_connected" value="1" />
+				<param name="comments_stream.comments_actions" value="0" />
+				<param name="comments_stream.comments_locations" value="0" />
+				<param name="comments_stream.comments_links" value="0" />
+				<param name="comments_stream.comments_tags" value="0" />
+				<param name="comments_stream.comments_likes" value="0" />
+				<param name="comments_stream.comments_replies" value="0" />
+				<param name="comments_stream.comments_gallery" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="return" />
+		</params>
+	</autoaction>
+	<autoaction name="notificationgallerycreateconn" label="CB Gallery - Create Connections Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications to users connections for uploaded and linked media." />
+		<param name="trigger" value="gallery_onAfterCreateItem" />
+		<param name="object" value="5" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_asset]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/^profile\./" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="gallery.[var1_type].[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="user" value="[action_user]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgallerycomment" label="CB Gallery - Comment Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for gallery media comments." />
+		<param name="trigger" value="activity_onAfterCreateStreamComment" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var3_asset]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/^gallery./" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="[var3_asset].comment" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="user" value="[var2_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgallerytag" label="CB Gallery - Tag Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for gallery media tags." />
+		<param name="trigger" value="activity_onAfterCreateStreamTag" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var3_asset]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/^gallery./" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="[var3_asset].tag" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="user" value="[var2_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgallerylike" label="CB Gallery - Like Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for gallery media likes." />
+		<param name="trigger" value="activity_onAfterLikeStream" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var3_asset]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/^gallery./" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+				<param name="format" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var2_user_id][/cb:parse]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[cb:parse function=&quot;clean&quot; method=&quot;int&quot;][var3_user_id][/cb:parse]" />
+				<param name="format" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="[var3_asset].like" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="user" value="[var2_user_id]" />
+				<param name="date" value="[var3_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="galleryprivacyedit" label="CB Gallery - Privacy - Edit" type="privacy" published="1">
+		<param name="description" value="Displays privacy selector for gallery album and media edit." />
+		<param name="trigger" value="gallery_onAfterFolderEdit|*|gallery_onAfterItemEdit|*|gallery_onAfterItemEditMini" />
+		<param name="object" value="2" />
+		<actions>
+			<action>
+				<param name="mode" value="privacy" />
+				<param name="method" value="display" />
+				<param name="asset" value="gallery.[cb:if trigger=&quot;gallery_onAfterFolderEdit&quot;]album[cb:else][var1_type][/cb:else][/cb:if].[cb:if var1_id=&quot;&quot;]0[cb:else][var1_id][/cb:else][/cb:if]" />
+				<param name="owner" value="[cb:if var1_user_id=&quot;&quot;][user_id][cb:else][var1_user_id][/cb:else][/cb:if]" />
+				<param name="privacy_privacy.privacy_layout" value="button" />
+				<param name="privacy_privacy.privacy_ajax" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="return" />
+			<param name="display_layout" value="return ( $variables[&apos;trigger&apos;] == &apos;gallery_onAfterItemEditMini&apos; ? &apos;&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-sm-12&quot;&gt;&apos; . $content . &apos;&lt;/div&gt;&lt;/div&gt;&apos; : &apos;&lt;div class=&quot;cbft_select cbtt_select form-group cb_form_line clearfix&quot;&gt;&lt;label class=&quot;col-sm-3 control-label&quot;&gt;&apos; . CBTxt::T( &apos;Privacy&apos; ) . &apos;&lt;/label&gt;&lt;div class=&quot;cb_field col-sm-9&quot;&gt;&apos; . $content . &apos;&lt;/div&gt;&lt;/div&gt;&apos; );" />
+			<param name="display_method" value="php" />
+		</params>
+	</autoaction>
+	<autoaction name="galleryprivacysave" label="CB Gallery - Privacy - Save" type="privacy" published="1">
+		<param name="description" value="Saves gallery privacy rules." />
+		<param name="trigger" value="gallery_onAfterUpdateGalleryItem|*|gallery_onAfterCreateGalleryItem|*|gallery_onAfterUpdateGalleryFolder|*|gallery_onAfterCreateGalleryFolder" />
+		<param name="object" value="2" />
+		<actions>
+			<action>
+				<param name="mode" value="privacy" />
+				<param name="method" value="save" />
+				<param name="asset" value="gallery.[cb:if trigger=&quot;gallery_onAfterUpdateGalleryFolder&quot; or trigger=&quot;gallery_onAfterCreateGalleryFolder&quot;]album[cb:else][var3_type][/cb:else][/cb:if].[var3_id]" />
+				<param name="owner" value="[var3_user_id]" />
+				<param name="privacy_privacy.privacy_layout" value="button" />
+				<param name="privacy_privacy.privacy_ajax" value="0" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="galleryprivacyauthorized" label="CB Gallery - Privacy - Authorized" type="privacy" published="1">
+		<param name="description" value="Checks privacy rules on gallery." />
+		<param name="trigger" value="gallery_onLoadFolders|*|gallery_onLoadItems" />
+		<param name="object" value="2" />
+		<param name="access" value="-4" />
+		<conditions>
+			<condition>
+				<param name="field" value="[user_id]" />
+				<param name="operator" value="1" />
+				<param name="value" value="[loop_user_id]" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="privacy" />
+				<param name="method" value="authorized" />
+				<param name="asset" value="gallery.[cb:if trigger=&quot;gallery_onLoadFolders&quot;]album[cb:else][loop_type][/cb:else][/cb:if].[loop_id]" />
+				<param name="owner" value="[loop_user_id]" />
+				<param name="privacy_privacy.privacy_layout" value="button" />
+				<param name="privacy_privacy.privacy_ajax" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="references" value="1" />
+			<param name="loop" value="1" />
+		</params>
+	</autoaction>
+	<!-- CB BLOGS -->
+	<autoaction name="activityblogcreate" label="CB Blogs - Create" type="activity" published="1">
+		<param name="description" value="Logs activity for newly created blog entries." />
+		<param name="trigger" value="cbblogs_onAfterUpdateBlog|*|cbblogs_onAfterCreateBlog" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="blog.[var2_id]" />
+				<param name="owner" value="[var1_user]" />
+				<param name="date" value="[var2_created]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationblogcreateconn" label="CB Blogs - Create Connections Notification" type="activity" published="1">
+		<param name="description" value="Logs notifications to users connections for newly created blog entries." />
+		<param name="trigger" value="cbblogs_onAfterUpdateBlog|*|cbblogs_onAfterCreateBlog" />
+		<param name="object" value="5" />
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="blog.[var2_id]" />
+				<param name="owner" value="[var1_user]" />
+				<param name="user" value="[action_user]" />
+				<param name="date" value="[var2_created]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activityblogdelete" label="CB Blogs - Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications, comments and likes for deleted blog entries." />
+		<param name="trigger" value="cbblogs_onAfterDeleteBlog" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="blog.[var2_id],blog.[var2_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="blog.[var2_id],blog.[var2_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="comment" />
+				<param name="method" value="delete" />
+				<param name="asset" value="blog.[var2_id],blog.[var2_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="like" />
+				<param name="method" value="delete" />
+				<param name="asset" value="blog.[var2_id],blog.[var2_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- KUNENA -->
+	<autoaction name="activitykunenacreate" label="Kunena - Create" type="activity" published="0">
+		<param name="description" value="Logs activity for newly created discussions." />
+		<param name="trigger" value="kunenaIntegration" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/onAfterPost|onAfterEdit|onAfterUndelete/" />
+			</condition>
+			<condition>
+				<param name="field" value="[var3_message_parent]" />
+				<param name="operator" value="0" />
+				<param name="value" value="0" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="kunena.[var3_message_id].create" />
+				<param name="owner" value="[var3_message_userid]" />
+				<param name="date" value="[var3_time]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitykunenareply" label="Kunena - Reply" type="activity" published="0">
+		<param name="description" value="Logs activity for discussion replies." />
+		<param name="trigger" value="kunenaIntegration" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/onAfterReply|onAfterEdit|onAfterUndelete/" />
+			</condition>
+			<condition>
+				<param name="field" value="[var3_message_parent]" />
+				<param name="operator" value="1" />
+				<param name="value" value="0" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="asset" value="kunena.[var3_message_id].reply" />
+				<param name="owner" value="[var3_message_userid]" />
+				<param name="date" value="[var3_time]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitykunenadelete" label="Kunena - Delete" type="activity" published="0">
+		<param name="description" value="Deletes activity for deleted discussions." />
+		<param name="trigger" value="kunenaIntegration" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="onAfterDelete" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="kunena.[var3_message_id],kunena.[var3_message_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- CB GROUPJIVE -->
+	<autoaction name="activitygjgrpcreate" label="CB GroupJive - Group Create" type="activity" published="1">
+		<param name="description" value="Logs activity for newly created groups." />
+		<param name="trigger" value="gj_onAfterCreateGroup|*|gj_onAfterUpdateGroup" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_id].create" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjgrpcreateconn" label="CB GroupJive - Group Create Connections Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications to users connections for newly created groups." />
+		<param name="trigger" value="gj_onAfterCreateGroup|*|gj_onAfterUpdateGroup" />
+		<param name="object" value="5" />
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_id].create" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="user" value="[action_user]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitygjgrpdelete" label="CB GroupJive - Group Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications, follows, tags and likes for deleted groups." />
+		<param name="trigger" value="gj_onAfterDeleteGroup" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_id],groupjive.group.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_id],groupjive.group.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="follow" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_id],groupjive.group.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="tag" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_id],groupjive.group.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="like" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_id],groupjive.group.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitygjgrpjoin" label="CB GroupJive - Group Join" type="activity" published="1">
+		<param name="description" value="Logs activity when joining a group." />
+		<param name="trigger" value="gj_onAfterJoinGroup|*|gj_onAfterUpdateUser" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[cb:if var1_status&gt;&quot;0&quot;]1[cb:else]0[/cb:else][/cb:if]" />
+				<param name="asset" value="groupjive.group.[var1_group].join" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjgrpjoin" label="CB GroupJive - Group Join Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications when joining a group." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="user_join" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].join" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var7_id].leave" />
+				<param name="owner" value="[var3_id]" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="notificationgjgrpjoinconn" label="CB GroupJive - Group Join Connections Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications to users connections when joining a group." />
+		<param name="trigger" value="gj_onAfterJoinGroup|*|gj_onAfterUpdateUser" />
+		<param name="object" value="5" />
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="published" value="[cb:if var1_status&gt;&quot;0&quot;]1[cb:else]0[/cb:else][/cb:if]" />
+				<param name="asset" value="groupjive.group.[var1_group].join" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="user" value="[action_user]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitygjgrpleave" label="CB GroupJive - Group Leave" type="activity" published="1">
+		<param name="description" value="Deletes group activity on group leave." />
+		<param name="trigger" value="gj_onAfterDeleteUser" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group],groupjive.group.[var1_group].%" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="delete_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjgrpleave" label="CB GroupJive - Group Leave Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications when leaving a group." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="user_leave" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].leave" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var7_id].join" />
+				<param name="owner" value="[var3_id]" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="notificationgjgrpinvite" label="CB GroupJive - Group Invite Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications when invited to a group." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="user_invite" />
+			</condition>
+			<condition>
+				<param name="field" value="[var4]" />
+				<param name="operator" value="7" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].invite" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="notificationgjgrpmessage" label="CB GroupJive - Group Message Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications when sending group messages." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="group_message" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].message" />
+				<param name="message" value="[var8_message]" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="none" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjgrpstream" label="CB Groupjive - Stream" type="activity" published="0">
+		<param name="description" value="Adds activity stream to groups." />
+		<param name="trigger" value="gj_onBeforeDisplayGroup" />
+		<param name="object" value="2" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="activity" />
+				<param name="asset" value="groupjive.group.[var2_id],groupjive.group.[var2_id].%" />
+				<param name="moderators" value="[var2_user_id]" />
+				<param name="notify" value="[var2_user_id]" />
+				<param name="activity_stream.activity_pinned" value="0" />
+				<param name="activity_stream.activity_create_connected" value="0" />
+				<param name="activity_stream.activity_comments_pinned" value="0" />
+				<param name="activity_stream.activity_comments_create_connected" value="0" />
+				<param name="activity_stream.activity_comments_replies_pinned" value="0" />
+				<param name="activity_stream.activity_comments_replies_create_connected" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="return" />
+			<param name="display_layout" value="return array( &apos;id&apos; =&gt; &apos;activity&apos;, &apos;title&apos; =&gt; CBTxt::T( &apos;Activity&apos; ), &apos;content&apos; =&gt; $content );" />
+			<param name="display_method" value="php" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjgrpfollow" label="CB Groupjive - Follow" type="activity" published="0">
+		<param name="description" value="Adds follow button to groups. Note only applies to Open groups." />
+		<param name="trigger" value="gj_onBeforeDisplayGroup" />
+		<param name="object" value="2" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+			<condition>
+				<param name="field" value="[var2_type]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="follow" />
+				<param name="asset" value="groupjive.group.[var2_id],groupjive.group.[var2_id].%" />
+				<param name="following_stream.following_count" value="0" />
+				<param name="following_stream.following_connected" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var6&apos;][] = $content;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="6" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjgrplikes" label="CB Groupjive - Likes" type="activity" published="0">
+		<param name="description" value="Adds like button to groups." />
+		<param name="trigger" value="gj_onBeforeDisplayGroup" />
+		<param name="object" value="2" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="like" />
+				<param name="asset" value="groupjive.group.[var2_id]" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var6&apos;][] = $content;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="6" />
+		</params>
+	</autoaction>
+	<autoaction name="gallerygjgrpgallery" label="CB Groupjive - Gallery" type="gallery" published="0">
+		<param name="description" value="Adds media gallery to groups." />
+		<param name="trigger" value="gj_onBeforeDisplayGroup" />
+		<param name="object" value="2" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="gallery" />
+				<param name="asset" value="groupjive.group.[var2_id]" />
+				<param name="moderators" value="[var2_user_id]" />
+				<param name="notify" value="[var2_user_id]" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="return" />
+			<param name="display_layout" value="return array( &apos;id&apos; =&gt; &apos;gallery&apos;, &apos;title&apos; =&gt; CBTxt::T( &apos;Gallery&apos; ), &apos;content&apos; =&gt; $content );" />
+			<param name="display_method" value="php" />
+		</params>
+	</autoaction>
+	<autoaction name="notificationgjgrpgeneral" label="CB GroupJive - General Notifications" type="activity" published="0">
+		<param name="description" value="Attempts to log all other notifications instead of sending private messages or emails. Note this will store the subject and message in the notification." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="1" />
+				<param name="value" value="/user_join|user_leave|user_invite|group_message|wall_reply|wall_new|photo_new|file_new|video_new|event_new/" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id]" />
+				<param name="title" value="[var5]" />
+				<param name="message" value="[var6]" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="none" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<!-- CB GROUPJIVE WALL -->
+	<autoaction name="activitygjwallcreate" label="CB GroupJive Wall - Create" type="activity" published="1">
+		<param name="description" value="Logs activity for newly created group wall posts." />
+		<param name="trigger" value="gj_onAfterCreateWall|*|gj_onAfterUpdateWall" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_reply]" />
+				<param name="operator" value="5" />
+				<param name="value" value="0" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_group].wall.[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="activitygjwallreply" label="CB GroupJive Wall - Reply" type="activity" published="0">
+		<param name="description" value="Logs comments for newly created group wall post replies." />
+		<param name="trigger" value="gj_onAfterCreateWall|*|gj_onAfterUpdateWall" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_reply]" />
+				<param name="operator" value="2" />
+				<param name="value" value="0" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="comment" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_group].wall.[var1_reply].reply.[var1_id]" />
+				<param name="message" value="[var1_post]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset_owner" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjwallcreate" label="CB GroupJive Wall - Create Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for newly created group wall posts." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="10" />
+				<param name="value" value="/wall_reply|wall_new/" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].wall.[var8_wall_id]" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjwalldelete" label="CB GroupJive Wall - Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications and comments for deleted group wall posts." />
+		<param name="trigger" value="gjint_onAfterDeleteWall" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].wall.[var1_id],groupjive.group.[var1_group].wall.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var7_id].wall.[var8_wall_id],groupjive.group.[var7_id].wall.[var8_wall_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="comment" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].wall.[var1_id],groupjive.group.[var1_group].wall.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- CB GROUPJIVE PHOTO -->
+	<autoaction name="activitygjphotolikes" label="CB Groupjive Photo - Likes" type="activity" published="0">
+		<param name="description" value="Adds like button to group photos." />
+		<param name="trigger" value="gj_onDisplayPhoto" />
+		<param name="object" value="2" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="like" />
+				<param name="asset" value="groupjive.group.[var1_group].photo.[var1_id]" />
+				<param name="likes_stream.likes_layout" value="simple" />
+				<param name="likes_stream.likes_count" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;][] = $content;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjphotocreate" label="CB GroupJive Photo - Create" type="activity" published="1">
+		<param name="description" value="Logs activity for newly uploaded group photos." />
+		<param name="trigger" value="gj_onAfterCreatePhoto|*|gj_onAfterUpdatePhoto" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_group].photo.[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjphotocreate" label="CB GroupJive Photo - Create Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for newly uploaded group photos." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="photo_new" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].photo.[var8_photo_id]" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjphotodelete" label="CB GroupJive Photo - Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications and likes for deleted group photos." />
+		<param name="trigger" value="gj_onAfterDeletePhoto" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].photo.[var1_id],groupjive.group.[var1_group].photo.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].photo.[var1_id],groupjive.group.[var1_group].photo.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="like" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].photo.[var1_id],groupjive.group.[var1_group].photo.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- CB GROUPJIVE FILE -->
+	<autoaction name="activitygjfilecreate" label="CB GroupJive File - Create" type="activity" published="1">
+		<param name="description" value="Logs activity for newly uploaded group files." />
+		<param name="trigger" value="gj_onAfterCreateFile|*|gj_onAfterUpdateFile" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_group].file.[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjfilecreate" label="CB GroupJive File - Create Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for newly uploaded group files." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="file_new" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].file.[var8_file_id]" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjfiledelete" label="CB GroupJive File - Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications and likes for deleted group files." />
+		<param name="trigger" value="gj_onAfterDeleteFile" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].file.[var1_id],groupjive.group.[var1_group].file.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].file.[var1_id],groupjive.group.[var1_group].file.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="like" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].file.[var1_id],groupjive.group.[var1_group].file.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- CB GROUPJIVE VIDEO -->
+	<autoaction name="activitygjvideolikes" label="CB Groupjive Video - Likes" type="activity" published="0">
+		<param name="description" value="Adds like button to group videos." />
+		<param name="trigger" value="gj_onDisplayVideo" />
+		<param name="object" value="2" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="like" />
+				<param name="asset" value="groupjive.group.[var1_group].video.[var1_id]" />
+				<param name="likes_stream.likes_layout" value="simple" />
+				<param name="likes_stream.likes_count" value="0" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;][] = $content;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjvideocreate" label="CB GroupJive Video - Create" type="activity" published="1">
+		<param name="description" value="Logs activity for newly uploaded group videos." />
+		<param name="trigger" value="gj_onAfterCreateVideo|*|gj_onAfterUpdateVideo" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_group].video.[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="date" value="[var1_date]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjvideocreate" label="CB GroupJive Video - Create Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for newly uploaded group videos." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="video_new" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].video.[var8_video_id]" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjvideodelete" label="CB GroupJive Video - Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications and likes for deleted group videos." />
+		<param name="trigger" value="gj_onAfterDeleteVideo" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].video.[var1_id],groupjive.group.[var1_group].video.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].video.[var1_id],groupjive.group.[var1_group].video.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="like" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].video.[var1_id],groupjive.group.[var1_group].video.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<!-- CB GROUPJIVE EVENTS -->
+	<autoaction name="activitygjeventslikes" label="CB Groupjive Events - Likes" type="activity" published="0">
+		<param name="description" value="Adds like button to group events." />
+		<param name="trigger" value="gj_onDisplayEvent" />
+		<param name="object" value="2" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var1_published]" />
+				<param name="operator" value="0" />
+				<param name="value" value="1" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="stream" />
+				<param name="stream" value="like" />
+				<param name="asset" value="groupjive.group.[var1_group].event.[var1_id]" />
+				<param name="likes_stream.likes_layout" value="extended" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="return" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjeventscreate" label="CB GroupJive Events - Create" type="activity" published="1">
+		<param name="description" value="Logs activity for newly scheduled events." />
+		<param name="trigger" value="gj_onAfterCreateEvent|*|gj_onAfterUpdateEvent" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="create" />
+				<param name="published" value="[var1_published]" />
+				<param name="asset" value="groupjive.group.[var1_group].event.[var1_id]" />
+				<param name="owner" value="[var1_user_id]" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+	<autoaction name="notificationgjeventscreate" label="CB GroupJive Events - Create Notification" type="activity" published="0">
+		<param name="description" value="Logs notifications for newly scheduled events." />
+		<param name="trigger" value="gj_onSendNotification" />
+		<conditions>
+			<condition>
+				<param name="field" value="[var2]" />
+				<param name="operator" value="1" />
+				<param name="value" value="3" />
+			</condition>
+			<condition>
+				<param name="field" value="[var1]" />
+				<param name="operator" value="0" />
+				<param name="value" value="event_new" />
+			</condition>
+		</conditions>
+		<actions>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="create" />
+				<param name="asset" value="groupjive.group.[var7_id].event.[var8_event_id]" />
+				<param name="owner" value="[var3_id]" />
+				<param name="user" value="[var4_id]" />
+				<param name="date" value="now" />
+				<param name="create_by" value="asset_owner_user" />
+			</action>
+		</actions>
+		<params>
+			<param name="display" value="silent" />
+			<param name="display_layout" value="$variables[&apos;var2&apos;] = 99;" />
+			<param name="display_method" value="php" />
+			<param name="references" value="2" />
+		</params>
+	</autoaction>
+	<autoaction name="activitygjeventsdelete" label="CB GroupJive Events - Delete" type="activity" published="1">
+		<param name="description" value="Deletes activity, notifications and likes for deleted group events." />
+		<param name="trigger" value="gj_onAfterDeleteEvent" />
+		<actions>
+			<action>
+				<param name="mode" value="activity" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].event.[var1_id],groupjive.group.[var1_group].event.[var1_id].%" />
+				<param name="delete_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="notification" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].event.[var1_id],groupjive.group.[var1_group].event.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+			<action>
+				<param name="mode" value="like" />
+				<param name="method" value="delete" />
+				<param name="asset" value="groupjive.group.[var1_group].event.[var1_id],groupjive.group.[var1_group].event.[var1_id].%" />
+				<param name="create_by" value="asset" />
+			</action>
+		</actions>
+	</autoaction>
+</autoactions>

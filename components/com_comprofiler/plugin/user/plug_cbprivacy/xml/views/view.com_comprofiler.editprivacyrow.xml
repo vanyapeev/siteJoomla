@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="editprivacy" type="params" ui="admin" label="Privacy" icon="lock" viewformatting="div">
+			<toolbarmenu>
+				<menu name="apply" action="apply" task="act=apply" label="Save" />
+				<menu name="save" action="save" task="act=save" label="Save &amp; Close" />
+				<menu name="savenew" action="custom" task="act=savenew" label="Save &amp; New" icon="save-new" />
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:privacyrows" label="Cancel" />
+			</toolbarmenu>
+			<param name="asset" type="text" label="Asset" size="25" validate="required" description="Input the asset for this privacy. Asset determines what is being protected (e.g. profile, profile.field.FIELD_ID)." />
+			<param name="rule" type="list" default="0" blanktext="" label="Rule" validate="required" description="Select the privacy rule. This determines who can access the protected content based off the rule selected.">
+				<data name="" type="private" class="\CB\Plugin\Privacy\CBPrivacy" method="getPrivacyOptions" />
+			</param>
+			<param name="user_id" type="user" label="Owner" size="5" validate="required" description="Input owner of this privacy as single integer user_id." />
+		</view>
+	</views>
+</cbxml>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbinstall version="1.0" type="plugin" group="user">
+	<name>CB Progress Field</name>
+	<author>Krileon</author>
+	<creationDate>2017-07-28</creationDate>
+	<copyright>(C) 2004-2017 www.joomlapolis.com / Lightning MultiCom SA - and its licensors, all rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2</license>
+	<authorEmail>krileon@joomlapolis.com</authorEmail>
+	<description>Display a users profile progress with a field.</description>
+	<version>2.1.3</version>
+	<release>3.1.1</release>
+	<files>
+		<filename plugin="cbprogressfield">cbprogressfield.php</filename>
+		<filename>index.html</filename>
+		<foldername>language</foldername>
+		<foldername>templates</foldername>
+	</files>
+	<delete>
+		<filename>admin.cbprogressfield.css</filename>
+		<filename>admin.cbprogressfield.html.php</filename>
+		<filename>admin.cbprogressfield.php</filename>
+		<filename>cbprogressfield.class.php</filename>
+		<filename>field.cbprogressfield.css</filename>
+		<filename>field.cbprogressfield.php</filename>
+		<filename>plugin.cbprogressfield.php</filename>
+		<filename>toolbar.cbprogressfield.html.php</filename>
+		<filename>toolbar.cbprogressfield.php</filename>
+		<foldername>images</foldername>
+	</delete>
+	<fieldtypes>
+		<field type="progress" label="Progress" unique="false">
+			<database version="1">
+				<table name="#__comprofiler" class="moscomprofiler" maintable="true" strict="false" drop="never" shared="true">
+					<columns>
+					</columns>
+				</table>
+			</database>
+			<params>
+				<tabpane name="field">
+					<tabpanetab label="Layout">
+						<showview view="fieldLayoutParams" mode="edit" type="view" />
+					</tabpanetab>
+					<tabpanetab label="Progress">
+						<param name="prg_template" type="folderlist" default="" blanktext="Same as Global" label="Template" description="Select template to be used for this progress display. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprogressfield/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprogressfield/templates/" />
+						<param name="prg_fields" type="field" multiple="true" size="10" default="" label="Fields" description="Select the fields to be used in progress calculation. All fields progress is calculated automatically from a scale of 100 percent." />
+						<param name="prg_bar" type="list" default="1" label="Bar" description="Select the color of the bar or disable bar display.">
+							<option value="0">Disable</option>
+							<option value="1">Default</option>
+							<option value="blue">Blue</option>
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="orange">Orange</option>
+						</param>
+						<if name="prg_bar" operator="!=" value="0" valuetype="const:string" type="showhide">
+							<param name="prg_completeness" type="yesno" default="0" label="Completeness" description="Enable or disable display of profile completeness percent inside the progress bar." yes="Enable" no="Disable" />
+						</if>
+						<param name="prg_checklist" type="list" default="0" label="Checklist" description="Display checklist of fields which contribute towards profile completeness.">
+							<option value="0">Disable</option>
+							<option value="1">Complete</option>
+							<option value="2">InComplete</option>
+							<option value="3">Complete &amp; InComplete</option>
+						</param>
+						<param name="prg_hide" type="yesno" default="0" label="Hide on Complete" description="Enable or disable hiding of progress field when profile is completed." yes="Enable" no="Disable" />
+						<param name="prg_private" type="yesno" default="1" label="Private Display" description="Enable or disable display of progress field to users self only. Moderators are exempt and can always see progress." yes="Enable" no="Disable" />
+					</tabpanetab>
+				</tabpane>
+			</params>
+		</field>
+	</fieldtypes>
+	<params>
+		<param name="general_template" type="folderlist" default="default" label="Template" description="Select template to be used for all of CB Progress Field. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprogressfield/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprogressfield/templates/" />
+	</params>
+</cbinstall>

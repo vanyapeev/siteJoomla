@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="editpbentry" type="params" ui="admin" label="Entry" icon="list-alt" viewformatting="div">
+			<toolbarmenu>
+				<menu name="apply" action="apply" task="act=apply" label="Save" />
+				<menu name="save" action="save" task="act=save" label="Save &amp; Close" />
+				<menu name="savenew" action="custom" task="act=savenew" label="Save &amp; New" icon="save-new" />
+				<menu name="cancel" action="linkAction" task="cancel" link="cb_action:pbrows" label="Cancel" />
+			</toolbarmenu>
+			<grid fluid="true">
+				<gridcol size="12">
+					<gridrow>
+						<if name="mode" nametype="param:string" operator="=" value="b" valuetype="const:string" type="showhide">
+							<param name="postertitle" type="text" label="Title" display="2lines" description="Input the title for this entry." size="80" />
+						</if>
+					</gridrow>
+				</gridcol>
+			</grid>
+			<grid fluid="true">
+				<gridcol size="9">
+					<gridrow>
+						<param name="postercomment" type="textarea" rows="10" label="Message" display="2lines" description="Input the entry message." cssclass="input-block" />
+						<if name="mode" nametype="param:string" operator="!=" value="b" valuetype="const:string" type="showhide">
+							<param name="feedback" type="textarea" rows="5" label="Feedback" display="2lines" description="Input feedback for this entry. Feedback will always appear as if it is from the user." cssclass="input-block" />
+						</if>
+						<param name="date" type="datetime" default="" timezone="RAW" label="Date" display="2lines" validate="required" description="Select a date for this entry." />
+					</gridrow>
+				</gridcol>
+				<gridcol size="3">
+					<gridrow>
+						<param name="published" type="xml:profilebook_state" default="1" label="Published" display="2lines" description="Select publish status of this entry. If unpublished this entry will not be visible to the public." />
+						<param name="mode" type="xml:profilebook_mode" default="w" translate-default="no" label="Mode" display="2lines" description="Select what type of entry this is." />
+						<param name="posterid" type="user" label="Owner" display="2lines" size="5" description="Input owner as single integer user_id. This is the user making the entry. Set to 0 for anonymous." />
+						<if name="posterid" nametype="param:int" operator="=" value="0" valuetype="const:int" type="showhide">
+							<param name="postername" type="text" label="Owner Name" display="2lines" validate="required" description="Input the anonymous owner name for this entry. This will be publicly visible." />
+							<param name="posteremail" type="text" label="Owner Email Address" display="2lines" validate="required" description="Input the anonymous owner name for this entry. This will not be publicly visible." />
+						</if>
+						<if name="posterip" nametype="param:string" operator="!=" value="" valuetype="const:string" type="condition">
+							<param name="posterip" type="text" label="Owner IP Address" mode="show" display="2lines" description="The ip address of the user who originally made this entry." />
+						</if>
+						<param name="userid" type="user" label="User" display="2lines" size="5" validate="required" description="Input user as single integer user_id. This is the user receiving the entry." />
+						<if name="mode" nametype="param:string" operator="!=" value="b" valuetype="const:string" type="showhide">
+							<param name="postervote" type="int" label="Rating" display="2lines" size="5"  description="Optionally input a rating of 0-5 for this entry." />
+							<param name="status" type="yesno" default="0" label="Read" display="2lines" description="Select read status of this entry. Only the user will be able to see if a entry is read or unread." />
+						</if>
+					</gridrow>
+				</gridcol>
+			</grid>
+		</view>
+	</views>
+</cbxml>

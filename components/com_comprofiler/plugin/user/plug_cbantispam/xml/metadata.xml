@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="request">
+		<fieldset name="request" label="">
+			<field name="action" type="list" required="true" default="block" label="Action" description="">
+				<option value="block">Block</option>
+				<option value="whitelist">Whitelist</option>
+			</field>
+		</fieldset>
+	</fields>
+</form>

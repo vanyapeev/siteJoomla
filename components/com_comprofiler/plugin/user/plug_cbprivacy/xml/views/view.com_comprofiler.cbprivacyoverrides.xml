@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<views>
+		<view name="cbprivacy_privacyParams" type="params" ui="admin">
+			<tabpane name="privacy_override">
+				<tabpanetab label="Display">
+					<param name="privacy_template" type="folderlist" default="-1" blanktext="Same as Global" label="Template" description="Select template to be used for this privacy selector. If template is incomplete then missing files will be used from the default template. Template files can be located at the following location: components/com_comprofiler/plugin/user/plug_cbprivacy/templates/." directory="/components/com_comprofiler/plugin/user/plug_cbprivacy/templates/" />
+					<param name="privacy_layout" type="xml:privacy_layout" default="-1" blanktext="Same as Global" label="Layout" description="Select the layout for privacy selectors. Layout determines how the privacy selector is displayed." />
+					<param name="privacy_ajax" type="xml:privacy_yesno" default="-1" blanktext="Same as Global" label="Ajax" description="Enable or disable ajax updating of privacy selection. This will cause the privacy rule to immediately save after selection." />
+					<param name="privacy_options_default" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Default" description="Select the default privacy rules for this privacy selector. The default will apply even if no privacy exists for a user.">
+						<data name="" type="private" class="\CB\Plugin\Privacy\CBPrivacy" method="getPrivacyOptions" />
+					</param>
+				</tabpanetab>
+				<tabpanetab label="Rules">
+					<param name="privacy_options_visible" type="xml:privacy_yesno" default="-1" label="Public" description="Enable or disable Public privacy option for this privacy selector. Public privacy allows anyone to see the protected content. Note the content owner and moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_users" type="xml:privacy_yesno" default="-1" label="Users" description="Enable or disable Users privacy option for this privacy selector. Users privacy allows only registered and logged in users to see the protected content. Note the content owner and moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_invisible" type="xml:privacy_yesno" default="-1" label="Private" description="Enable or disable Private privacy option for this privacy selector. Private privacy allows only the owner of the content to see it. Note moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_conn" type="xml:privacy_yesno" default="-1" label="Connections" description="Enable or disable Connections privacy option for this privacy selector. Connections privacy allows only users the owner is connected to to see the protected content. Note the content owner and moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_connofconn" type="xml:privacy_yesno" default="-1" label="Connections of Connections" description="Enable or disable Connections of Connections privacy option for this privacy selector. Connections of Connections privacy allows only connections of the owners connections to see the protected content. This can be combined with other privacy rules like Connections. Note moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_conntype" type="xml:privacy_yesno" default="-1" label="Connection Type" description="Enable or disable selection of connection type privacy options for this privacy selector. Connection Type privacy allows only users the owner is connected to and of a specific type to see the protected content. Note the content owner and moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_conntypes" type="list" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Connection Types" description="Select the connetion types available for privacy control.">
+						<option value="0">All Connection Types</option>
+						<data name="" type="private" class="\CB\Plugin\Privacy\CBPrivacy" method="getConnectionTypes" />
+					</param>
+					<param name="privacy_options_viewaccesslevel" type="xml:privacy_yesno" default="-1" label="View Access Level" description="Enable or disable selection of view access level privacy options for this privacy selector. View Access Level privacy allows only users with the specified view access level to see protected content. Note the content owner and moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_viewaccesslevels" type="viewaccesslevel" multiple="true" default="-1" blanktext="Same as Global" size="10" label="View Access Levels" description="Select the view access levels available for privacy control." managelevels="false">
+						<option value="0">All View Access Levels</option>
+					</param>
+					<param name="privacy_options_usergroup" type="xml:privacy_yesno" default="-1" label="Usergroup" description="Enable or disable selection of usergroup privacy options for this privacy selector. Usergroup privacy allows only users with the specified usergroup to see protected content. This will also check inherited usergroups (e.g. Author is child of Registered so if Registered is selected Author also has access). Note the content owner and moderators are exempt from this privacy rule." yes="Enable" no="Disable" />
+					<param name="privacy_options_usergroups" type="usergroup" multiple="true" default="-1" blanktext="Same as Global" size="10" label="Usergroups" description="Select the usergroups available for privacy control." managegroups="false">
+						<option value="0">All Usergroups</option>
+					</param>
+				</tabpanetab>
+			</tabpane>
+		</view>
+	</views>
+</cbxml>

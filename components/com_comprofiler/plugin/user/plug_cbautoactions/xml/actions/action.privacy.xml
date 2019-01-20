@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbxml version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../../../../../../validation/ahawow.xsd">
+	<types>
+		<type name="autoaction_type" base="xml:autoaction_type">
+			<option value="privacy">CB Privacy</option>
+		</type>
+		<type name="autoaction_triggers" base="xml:autoaction_triggers">
+			<optgroup label="CB Privacy">
+				<option value="privacy_onAfterAccountDelete" translate="no">privacy_onAfterAccountDelete</option>
+				<option value="privacy_onAfterAccountDisable" translate="no">privacy_onAfterAccountDisable</option>
+				<option value="privacy_onAfterCreateClosed" translate="no">privacy_onAfterCreateClosed</option>
+				<option value="privacy_onAfterCreatePrivacy" translate="no">privacy_onAfterCreatePrivacy</option>
+				<option value="privacy_onAfterDeleteClosed" translate="no">privacy_onAfterDeleteClosed</option>
+				<option value="privacy_onAfterDeletePrivacy" translate="no">privacy_onAfterDeletePrivacy</option>
+				<option value="privacy_onAfterPrivacyOptions" translate="no">privacy_onAfterPrivacyOptions</option>
+				<option value="privacy_onAfterUpdateClosed" translate="no">privacy_onAfterUpdateClosed</option>
+				<option value="privacy_onAfterUpdatePrivacy" translate="no">privacy_onAfterUpdatePrivacy</option>
+				<option value="privacy_onAuthorized" translate="no">privacy_onAuthorized</option>
+				<option value="privacy_onBeforeAccountDelete" translate="no">privacy_onBeforeAccountDelete</option>
+				<option value="privacy_onBeforeAccountDisable" translate="no">privacy_onBeforeAccountDisable</option>
+				<option value="privacy_onBeforeCreateClosed" translate="no">privacy_onBeforeCreateClosed</option>
+				<option value="privacy_onBeforeCreatePrivacy" translate="no">privacy_onBeforeCreatePrivacy</option>
+				<option value="privacy_onBeforeDeleteClosed" translate="no">privacy_onBeforeDeleteClosed</option>
+				<option value="privacy_onBeforeDeletePrivacy" translate="no">privacy_onBeforeDeletePrivacy</option>
+				<option value="privacy_onBeforePrivacyOptions" translate="no">privacy_onBeforePrivacyOptions</option>
+				<option value="privacy_onBeforeUpdateClosed" translate="no">privacy_onBeforeUpdateClosed</option>
+				<option value="privacy_onBeforeUpdatePrivacy" translate="no">privacy_onBeforeUpdatePrivacy</option>
+				<option value="privacy_onLoadPrivacy" translate="no">privacy_onLoadPrivacy</option>
+				<option value="privacy_onQueryPrivacy" translate="no">privacy_onQueryPrivacy</option>
+			</optgroup>
+		</type>
+	</types>
+	<views>
+		<view name="actiontype_privacy" type="params" ui="admin">
+			<extend toxpathnode="/cbxml/types" fromxpathnode="/*/types/type" file="/components/com_comprofiler/plugin/user/plug_cbprivacy/xml/models/model.privacy" mandatory="false" />
+			<extend type="plugin" toxpathnode="/cbxml/views" fromxpathnode="/*/views/view" file="xml/views/view.com_comprofiler.cbprivacyoverrides" mandatory="false" mode="extend" keyattribute="name" />
+			<param name="" type="spacer" display="2lines" label="" default="Creates customized privacy." />
+			<params name="privacy" type="params" repeat="true" label="" display="2lines">
+				<param name="mode" type="list" default="" blanktext="- Select Mode -" label="Mode" onchange="evaluate" description="Select the privacy action mode.">
+					<option value="rules">Rules</option>
+					<option value="privacy">Privacy</option>
+				</param>
+				<if name="mode" nametype="param:string" operator="=" value="rules" valuetype="const:string" type="condition">
+					<param name="method" type="list" default="create" translate-default="no" label="Method" description="Select if a new entry should be created or an existing entry deleted.">
+						<option value="create">Create</option>
+						<option value="delete">Delete</option>
+					</param>
+					<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported asset for this privacy. Asset determines what is being protected (e.g. profile, profile.field.FIELD_ID)." />
+					<if name="method" nametype="param:string" operator="=" value="create" valuetype="const:string" type="showhide">
+						<param name="rules" type="list" multiple="true" default="0" blanktext="" label="Rules" validate="required" description="Select the privacy rules. This determines who can access the protected content based off the rules selected.">
+							<data name="" type="private" class="\CB\Plugin\Privacy\CBPrivacy" method="getPrivacyOptions" />
+						</param>
+					</if>
+					<param name="owner" type="text" label="Owner" size="15" description="Input substitution supported owner as single integer user_id. Leave blank to use trigger user as the owner. Note this will result in user substitutions being from the specified user_id." />
+					<if name="method" nametype="param:string" operator="=" value="delete" valuetype="const:string" type="showhide">
+						<param name="delete_by" type="list" default="asset_owner" translate-default="no" label="Load" description="Select what criteria to load by when deleting entries.">
+							<option value="asset">By Asset Only</option>
+							<option value="owner">By Owner Only</option>
+							<option value="asset_owner">By Asset and Owner</option>
+						</param>
+					</if>
+				</if>
+				<if name="mode" nametype="param:string" operator="=" value="privacy" valuetype="const:string" type="condition">
+					<param name="method" type="list" default="display" translate-default="no" label="Method" description="Select if displaying the privacy controls or saving them. The authorized method attempts to check if the user is authorized to access the asset. If variable looping is used and access is not authorized the loop will be removed from the variable otherwise returns true for authorized or false for not authorized.">
+						<option value="display">Display</option>
+						<option value="save">Save</option>
+						<option value="authorized">Authorized</option>
+					</param>
+					<param name="asset" type="text" size="50" label="Asset" validate="required" description="Input the substitution supported assets for this privacy. Asset determines privacy location (e.g. profile, self, profile.cars). Additionally substitutions are supported (e.g. profile.field.[field_id]) in addition to custom [displayed_id] and [viwer_id]. The following custom assets can also be used: profile, self, user, displayed." />
+					<fieldset name="privacyprivacy" label="Privacy">
+						<params name="privacy_privacy" type="params" label="">
+							<showview view="cbprivacy_privacyParams" mode="edit" type="view" />
+						</params>
+					</fieldset>
+					<param name="owner" type="text" label="Owner" size="15" description="Input substitution supported owner as single integer user_id. Leave blank to use trigger user as the owner. Note this will result in user substitutions being from the specified user_id." />
+				</if>
+			</params>
+		</view>
+	</views>
+</cbxml>
